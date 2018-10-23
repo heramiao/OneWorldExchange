@@ -1,5 +1,52 @@
 class UserController < ApplicationController
 
+  # Swagger Documentation
+  swagger_controller :user, "User Accounts"
+
+  swagger_api :index do
+    summary "Fetches all users"
+    notes "This lists all the users"
+  end
+
+  swagger_api :show do
+    summary "Shows one user"
+    param :path, :id, :integer, :required, "User ID"
+    notes "This lists details of one user"
+    response :not_found
+  end
+
+  swagger_api :create do
+    summary "Creates a new user"
+    param :form, :first_name, :string, :required, "First Name"
+    param :form, :last_name, :string, :required, "Last Name"
+    param :form, :email, :string, :required, "Email"
+    param :form, :phone, :string, :required, "Phone"
+    param :form, :password, :string, :required, "Password"
+    param :form, :password_confirmation, :string, :required, "Password Confirmation"
+    param :form, :base_currency, :string, :required, "Base Currency"
+    response :not_acceptable
+  end
+
+  swagger_api :update do
+    summary "Updates an existing user"
+    param :path, :id, :integer, :required, "User ID"
+    param :form, :first_name, :string, :optional, "First Name"
+    param :form, :last_name, :string, :optional, "Last Name"
+    param :form, :email, :string, :optional, "Email"
+    param :form, :phone, :string, :optional, "Phone"
+    param :form, :password, :string, :optional, "Password"
+    param :form, :password_confirmation, :string, :optional, "Password Confirmation"
+    param :form, :base_currency, :string, :optional, "Base Currency"
+    response :not_found
+    response :not_acceptable
+  end
+
+  swagger_api :destroy do
+    summary "Deletes an existing user"
+    param :path, :id, :integer, :required, "User ID"
+    response :not_found
+  end
+
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /user
