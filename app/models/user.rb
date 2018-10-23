@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
     # Methods
     def name
-        self.last_name + ", " + self.first_name
+        self.first_name + " " + self.last_name
     end
 
     # # Callback Methods

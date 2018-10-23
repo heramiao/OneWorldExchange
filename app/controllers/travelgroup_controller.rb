@@ -1,4 +1,4 @@
-class TravelGroupController < ApplicationController
+class TravelgroupController < ApplicationController
 
     before_action :set_travel_group, only: [:show, :update, :destroy]
   

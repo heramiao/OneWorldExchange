@@ -6,5 +6,6 @@ class Split < ApplicationRecord
 
     # Validations
     validates :split_type, inclusion: { in: %w[manual even] }
+    validates_date :pay_date, on_or_after: :charge_date, allow_blank: true
 
 end

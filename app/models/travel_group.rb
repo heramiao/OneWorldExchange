@@ -8,7 +8,7 @@ class TravelGroup < ApplicationRecord
     # Scopes
     scope :alphabetical, -> { order(:trip_name) }
     scope :chronological, -> { order(start_date: :desc ) }
-    scope :current_trip, ->(Date.today) { where("start_date <= ? AND (end_date > ? OR end_date IS NULL)", Date.today, Date.today) }
+    #scope :current_trip, -> (Date.today) { where("start_date <= ? AND (end_date > ? OR end_date IS NULL)", Date.today, Date.today) }
 
     # Validations
     validates_presence_of :trip_name, :start_date
