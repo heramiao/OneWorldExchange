@@ -1,0 +1,2 @@
+class TravelGroup < ApplicationRecord
+end

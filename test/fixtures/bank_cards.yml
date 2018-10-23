@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  card_num: MyString
+  expiration_date: 2018-10-22
+  security_code: MyString
+
+two:
+  card_num: MyString
+  expiration_date: 2018-10-22
+  security_code: MyString
