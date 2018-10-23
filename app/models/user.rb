@@ -1,4 +1,4 @@
-class UserAccount < ApplicationRecord
+class User < ApplicationRecord
 
     # Relationships
     has_many :group_members
@@ -7,12 +7,14 @@ class UserAccount < ApplicationRecord
     has_many :bank_cards
 
     # Validations
-    validates_presence_of :first_name, :last_name, :email, :phone, :base_currency, :password
+    validates_presence_of :first_name, :last_name, :email, :phone, :base_currency, :password, :password_confirmation
     validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([a-z0-9.-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format"
     # phone can have dashes, spaces, dots and parens, but must be 10 digits
     validates_format_of :phone, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only"
     validates_uniqueness_of :email
-    validates_inclusion_of :base_currency, in %w[USD EUR GBP CHF AUD JPY TWD CNH]
+    validates :base_currency, inclusion: { in: %w[USD EUR GBP CHF AUD JPY TWD CNH] }
+    validates_confirmation_of :password, on: :create, message: "does not match"
+    validates_length_of :password, minimum: 8, message: "must be at least 8 characters long", allow_blank: true
 
 
     # # Callbacks
