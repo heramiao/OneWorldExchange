@@ -1,6 +1,10 @@
 class Split < ApplicationRecord
 
+    # Relationships
+    has_one :conversion
+    has_one :transaction_detail 
+
     # Validations
-    validates_inclusion_of :split_type, in: %w[manual even]
+    validates :split_type, inclusion: { in: %w[manual even] }
 
 end
