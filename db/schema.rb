@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2018_10_23_024700) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_accounts", force: :cascade do |t|
+  create_table "user", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
