@@ -1,4 +1,4 @@
-class ConversioController < ApplicationController
+class ConversionController < ApplicationController
 
     # Swagger Documentation
     swagger_controller :conversion, "Conversion"
