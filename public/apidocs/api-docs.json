@@ -6,6 +6,10 @@
     {
       "path": "/apidocs/user.{format}",
       "description": "User Accounts"
+    },
+    {
+      "path": "/apidocs/travelgroup.{format}",
+      "description": "Travel Groups"
     }
   ],
   "authorizations": null,
