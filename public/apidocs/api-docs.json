@@ -10,11 +10,15 @@
     {
       "path": "/apidocs/travelgroup.{format}",
       "description": "Travel Groups"
+    },
+    {
+      "path": "/apidocs/transactiondetail.{format}",
+      "description": "Transaction Details"
     }
   ],
   "authorizations": null,
   "info": {
-    "title": "Chore Tracker API",
-    "description": "Uses swagger ui and docs to document the ChoreTracker API"
+    "title": "OWE API",
+    "description": "Uses swagger ui and docs to document the OWE API"
   }
 }

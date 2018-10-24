@@ -1,5 +1,19 @@
-class TransactionDetailController < ApplicationController
-    # Controller Code
+class TransactiondetailController < ApplicationController
+
+    # Swagger Documentation
+    swagger_controller :transactiondetail, "Transaction Details"
+
+    swagger_api :index do
+        summary "Fetches all transaction details"
+        notes "This lists all the transaction details"
+    end
+
+    swagger_api :show do
+        summary "Shows one transaction's details"
+        param :path, :id, :integer, :required, "Transaction Detail ID"
+        notes "This lists details of one transaction"
+        response :not_found
+    end
   
     before_action :set_transaction_details, only: [:show]
   

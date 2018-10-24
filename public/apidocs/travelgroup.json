@@ -39,8 +39,8 @@
               "paramType": "form",
               "name": "end_date",
               "type": "date",
-              "description": "End Date",
-              "required": true
+              "description": null,
+              "required": false
             }
           ],
           "responseMessages": [
