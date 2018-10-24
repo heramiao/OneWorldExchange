@@ -1,0 +1,221 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000",
+  "resourcePath": "split",
+  "apis": [
+    {
+      "path": "/split.json",
+      "operations": [
+        {
+          "summary": "Fetches all splits",
+          "notes": "This lists all the splits",
+          "nickname": "Split#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/split.json",
+      "operations": [
+        {
+          "summary": "Creates a new split",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "description",
+              "type": "string",
+              "description": "Description",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "split_type",
+              "type": "string",
+              "description": "Split Type",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "split_factor",
+              "type": "float",
+              "description": "Split Factor",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "total_split_amount",
+              "type": "float",
+              "description": "Total Split Amount",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "split_currency_type",
+              "type": "string",
+              "description": "Split Currency Type",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "charge_date",
+              "type": "date",
+              "description": "Charge Date",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "pay_date",
+              "type": "date",
+              "description": null,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Split#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/split/{id}.json",
+      "operations": [
+        {
+          "summary": "Shows one split",
+          "notes": "This lists details of one split",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Split ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Split#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/split/{id}.json",
+      "operations": [
+        {
+          "summary": "Updates an existing split",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Split ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "description",
+              "type": "string",
+              "description": "Description",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "split_type",
+              "type": "string",
+              "description": "Split Type",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "split_factor",
+              "type": "float",
+              "description": "Split Factor",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "total_split_amount",
+              "type": "float",
+              "description": "Total Split Amount",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "split_currency_type",
+              "type": "string",
+              "description": "Split Currency Type",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "charge_date",
+              "type": "date",
+              "description": "Charge Date",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "pay_date",
+              "type": "date",
+              "description": "Pay Date",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Split#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/split/{id}.json",
+      "operations": [
+        {
+          "summary": "Deletes an existing split",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Split ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Split#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

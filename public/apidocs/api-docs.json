@@ -18,6 +18,10 @@
     {
       "path": "/apidocs/trip.{format}",
       "description": "Trip"
+    },
+    {
+      "path": "/apidocs/split.{format}",
+      "description": "Split"
     }
   ],
   "authorizations": null,

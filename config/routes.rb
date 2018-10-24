@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :transactiondetail
   resources :trip
   resources :split
+  resources :conversion
+
 end
