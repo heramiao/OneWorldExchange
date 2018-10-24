@@ -22,8 +22,8 @@ class Swagger::Docs::Config
       # add custom attributes to api-docs
       :attributes => {
         :info => {
-          "title" => "Chore Tracker API",
-          "description" => "Uses swagger ui and docs to document the ChoreTracker API"
+          "title" => "OWE API",
+          "description" => "Uses swagger ui and docs to document the OWE API"
         }
       }
     }

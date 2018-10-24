@@ -1,53 +1,38 @@
 class TransactionDetailController < ApplicationController
     # Controller Code
   
-    before_action :set_transaction_details, only: [:show, :update, :destroy]
+    before_action :set_transaction_details, only: [:show]
   
-    # GET /children
+    # GET /transactiondetail
     def index
-      @children = Child.all
+      @transactiondetails = TransactionDetail.all
   
-      render json: @children
+      render json: @transactiondetails
     end
   
-    # GET /children/1
+    # GET /transactiondetail/1
     def show
-      render json: @child
+      render json: @transactiondetail
     end
   
     # POST /children
     def create
-      @child = Child.new(child_params)
-  
-      if @child.save
-        render json: @child, status: :created, location: @child
-      else
-        render json: @child.errors, status: :unprocessable_entity
-      end
+        # transaction detail gets created when split gets created
     end
   
     # PATCH/PUT /children/1
     def update
-      if @child.update(child_params)
-        render json: @child
-      else
-        render json: @child.errors, status: :unprocessable_entity
-      end
+        # transaction detail gets updated when split gets updated
     end
   
     # DELETE /children/1
     def destroy
-      @child.destroy
+        # transaction detail gets deleted when split gets deleted 
     end
   
     private
       # Use callbacks to share common setup or constraints between actions.
-      def set_child
-        @child = Child.find(params[:id])
-      end
-  
-      # Only allow a trusted parameter "white list" through.
-      def child_params
-        params.permit(:first_name, :last_name, :active)
+      def set_transaction_details
+        @transactiondetail = TransactionDetail.find(params[:id])
       end
   end
