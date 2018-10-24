@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :travelgroup
   resources :transactiondetail
   resources :trip
+  resources :split
 end

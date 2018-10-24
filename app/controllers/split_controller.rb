@@ -1,4 +1,51 @@
 class SplitController < ApplicationController
+
+    # Swagger Documentation
+    swagger_controller :split, "Split"
+
+    swagger_api :index do
+        summary "Fetches all splits"
+        notes "This lists all the splits"
+    end
+
+    swagger_api :show do
+        summary "Shows one split"
+        param :path, :id, :integer, :required, "Split ID"
+        notes "This lists details of one split"
+        response :not_found
+    end
+
+    swagger_api :create do
+        summary "Creates a new split"
+        param :form, :description, :string, :required, "Description"
+        param :form, :split_type, :string, :required, "Split Type"
+        param :form, :split_factor, :float, :required, "Split Factor"
+        param :form, :total_split_amount, :float, :required, "Total Split Amount"
+        param :form, :split_currency_type, :string, :required, "Split Currency Type"
+        param :form, :charge_date, :date, :required, "Charge Date"
+        param :form, :pay_date, :date, "Pay Date"
+        response :not_acceptable
+    end
+
+    swagger_api :update do
+        summary "Updates an existing split"
+        param :path, :id, :integer, :required, "Split ID"
+        param :form, :description, :string, :optional, "Description"
+        param :form, :split_type, :string, :optional, "Split Type"
+        param :form, :split_factor, :float, :optional, "Split Factor"
+        param :form, :total_split_amount, :float, :optional, "Total Split Amount"
+        param :form, :split_currency_type, :string, :optional, "Split Currency Type"
+        param :form, :charge_date, :date, :optional, "Charge Date"
+        param :form, :pay_date, :date, :optional, "Pay Date"
+        response :not_found
+        response :not_acceptable
+    end
+
+    swagger_api :destroy do
+        summary "Deletes an existing split"
+        param :path, :id, :integer, :required, "Split ID"
+        response :not_found
+    end
   
     before_action :set_split, only: [:show, :update, :destroy]
   
