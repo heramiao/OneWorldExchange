@@ -1,5 +1,44 @@
 class TravelgroupController < ApplicationController
 
+    # Swagger Documentation
+    swagger_controller :travelgroup, "Travel Groups"
+
+    swagger_api :index do
+      summary "Fetches all travel groups"
+      notes "This lists all the travel groups"
+    end
+
+    swagger_api :show do
+      summary "Shows one travel group"
+      param :path, :id, :integer, :required, "Travel Group ID"
+      notes "This lists details of one travel group"
+      response :not_found
+    end
+
+    swagger_api :create do
+      summary "Creates a new travel group"
+      param :form, :trip_name, :string, :required, "Trip Name"
+      param :form, :start_date, :date, :required, "Start Date"
+      param :form, :end_date, :date, "End Date"
+      response :not_acceptable
+    end
+
+    swagger_api :update do
+      summary "Updates an existing travel group"
+      param :path, :id, :integer, :required, "Travel Group ID"
+      param :form, :trip_name, :string, :optional, "Trip Name"
+      param :form, :start_date, :date, :optional, "Start Date"
+      param :form, :end_date, :date, :optional, "End Date"
+      response :not_found
+      response :not_acceptable
+    end
+
+    swagger_api :destroy do
+      summary "Deletes an existing travel group"
+      param :path, :id, :integer, :required, "Travel Group ID"
+      response :not_found
+    end
+
     before_action :set_travel_group, only: [:show, :update, :destroy]
   
     # GET /travelgroup
@@ -41,7 +80,7 @@ class TravelgroupController < ApplicationController
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_travel_group
-        @travel_group = TravelGroup.find(params[:id])
+        @travelgroup = TravelGroup.find(params[:id])
       end
   
       # Only allow a trusted parameter "white list" through.
