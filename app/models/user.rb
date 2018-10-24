@@ -5,6 +5,7 @@ class User < ApplicationRecord
     has_many :travel_groups, through: :group_members
     has_many :bank_accounts
     has_many :bank_cards
+    has_many :splits
 
     # Validations
     validates_presence_of :first_name, :last_name, :email, :phone, :base_currency, :password, :password_confirmation
