@@ -22,6 +22,10 @@
     {
       "path": "/apidocs/split.{format}",
       "description": "Split"
+    },
+    {
+      "path": "/apidocs/conversion.{format}",
+      "description": "Conversion"
     }
   ],
   "authorizations": null,
