@@ -3,8 +3,6 @@ class User < ApplicationRecord
     # Relationships
     has_many :group_members
     has_many :travel_groups, through: :group_members
-    has_many :bank_accounts
-    has_many :bank_cards
     has_many :splits
 
     # Validations

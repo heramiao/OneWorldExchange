@@ -10,54 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_024700) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "bank_accounts", force: :cascade do |t|
-    t.string "routing_num"
-    t.string "account_num"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "bank_cards", force: :cascade do |t|
-    t.string "card_num"
-    t.date "expiration_date"
-    t.string "security_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "conversions", force: :cascade do |t|
-    t.float "converted_amount"
-    t.float "exchange_rate"
-    t.datetime "date_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_10_23_024237) do
 
   create_table "group_members", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "splits", force: :cascade do |t|
-    t.string "description"
-    t.string "split_type"
-    t.float "split_factor"
-    t.float "total_split_amount"
-    t.string "split_currency_type"
-    t.date "charge_date"
-    t.date "pay_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "transaction_details", force: :cascade do |t|
-    t.string "expense_type"
-    t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
