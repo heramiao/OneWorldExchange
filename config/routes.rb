@@ -3,9 +3,8 @@ Rails.application.routes.draw do
 
   resources :user
   resources :travelgroup
-  resources :transactiondetail
   resources :trip
   resources :split
-  resources :conversion
+  resources :transaction
 
 end

@@ -4,6 +4,7 @@ class TravelGroup < ApplicationRecord
     has_many :group_members
     has_many :users, through: :group_members
     has_one :trip
+    has_many :transactions
 
     # Scopes
     scope :alphabetical, -> { order(:trip_name) }

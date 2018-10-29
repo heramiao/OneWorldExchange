@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_charged: 2018-10-29
+  description: MyString
+  currency_type: MyString
+  total_charged: 1.5
+  country: MyString
+  expense_type: MyString
+  travel_groups: one
+
+two:
+  date_charged: 2018-10-29
+  description: MyString
+  currency_type: MyString
+  total_charged: 1.5
+  country: MyString
+  expense_type: MyString
+  travel_groups: two

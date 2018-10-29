@@ -10,11 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_024237) do
+ActiveRecord::Schema.define(version: 2018_10_29_182846) do
 
   create_table "group_members", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "users_id"
+    t.integer "travel_groups_id"
+    t.index ["travel_groups_id"], name: "index_group_members_on_travel_groups_id"
+    t.index ["users_id"], name: "index_group_members_on_users_id"
+  end
+
+  create_table "splits", force: :cascade do |t|
+    t.float "percent_owed"
+    t.float "amount_owed"
+    t.date "date_paid"
+    t.integer "transactions_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["transactions_id"], name: "index_splits_on_transactions_id"
+    t.index ["user_id"], name: "index_splits_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.date "date_charged"
+    t.string "description"
+    t.string "currency_type"
+    t.float "total_charged"
+    t.string "country"
+    t.string "expense_type"
+    t.integer "travel_groups_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["travel_groups_id"], name: "index_transactions_on_travel_groups_id"
   end
 
   create_table "travel_groups", force: :cascade do |t|
@@ -28,6 +57,10 @@ ActiveRecord::Schema.define(version: 2018_10_23_024237) do
   create_table "trips", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "travel_groups_id"
+    t.integer "transactions_id"
+    t.index ["transactions_id"], name: "index_trips_on_transactions_id"
+    t.index ["travel_groups_id"], name: "index_trips_on_travel_groups_id"
   end
 
   create_table "users", force: :cascade do |t|
