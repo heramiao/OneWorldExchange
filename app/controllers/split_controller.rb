@@ -15,13 +15,13 @@ class SplitController < ApplicationController
         response :not_found
     end
 
-    swagger_api :create do
-        summary "Creates a new split"
-        param :form, :percent_owed, :float, :required, "Percent Owed"
-        param :form, :amount_owed, :float, :required, "Amount Owed"
-        param :form, :date_paid, :date, "Date Paid"
-        response :not_acceptable
-    end
+    # swagger_api :create do
+    #     summary "Creates a new split"
+    #     param :form, :percent_owed, :float, :required, "Percent Owed"
+    #     param :form, :amount_owed, :float, :required, "Amount Owed"
+    #     param :form, :date_paid, :date, "Date Paid"
+    #     response :not_acceptable
+    # end
 
     swagger_api :update do
         summary "Updates an existing split"
@@ -54,15 +54,15 @@ class SplitController < ApplicationController
     end
   
     # POST /split
-    def create
-      @split = Split.new(split_params)
+    # def create
+    #   @split = Split.new(split_params)
   
-      if @split.save
-        render json: @split, status: :created, location: @split
-      else
-        render json: @split.errors, status: :unprocessable_entity
-      end
-    end
+    #   if @split.save
+    #     render json: @split, status: :created, location: @split
+    #   else
+    #     render json: @split.errors, status: :unprocessable_entity
+    #   end
+    # end
   
     # PATCH/PUT /split/1
     def update
