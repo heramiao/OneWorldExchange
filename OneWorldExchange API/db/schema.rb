@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_182846) do
+ActiveRecord::Schema.define(version: 2018_10_30_011347) do
 
   create_table "group_members", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_182846) do
     t.string "base_currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_confirmation"
   end
 
 end
