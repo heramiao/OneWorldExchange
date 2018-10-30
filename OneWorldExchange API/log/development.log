@@ -1,0 +1,131 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateUsers (20181023023401)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "phone" varchar, "password" varchar, "base_currency" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181023023401_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181023023401"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateTravelGroups (20181023024119)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "travel_groups" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "trip_name" varchar, "start_date" date, "end_date" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181023024119_create_travel_groups.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181023024119"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateTrips (20181023024228)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "trips" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181023024228_create_trips.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181023024228"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateGroupMembers (20181023024237)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "group_members" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181023024237_create_group_members.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181023024237"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateTransactions (20181029164743)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date_charged" date, "description" varchar, "currency_type" varchar, "total_charged" float, "country" varchar, "expense_type" varchar, "travel_groups_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_01fef4b54e"
+FOREIGN KEY ("travel_groups_id")
+  REFERENCES "travel_groups" ("id")
+)[0m
+  ↳ db/migrate/20181029164743_create_transactions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_transactions_on_travel_groups_id" ON "transactions" ("travel_groups_id")[0m
+  ↳ db/migrate/20181029164743_create_transactions.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181029164743"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateSplits (20181029170952)
+  [1m[35m (1.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "splits" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "percent_owed" float, "amount_owed" float, "date_paid" date, "transactions_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_01fb874f44"
+FOREIGN KEY ("transactions_id")
+  REFERENCES "transactions" ("id")
+)[0m
+  ↳ db/migrate/20181029170952_create_splits.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_splits_on_transactions_id" ON "splits" ("transactions_id")[0m
+  ↳ db/migrate/20181029170952_create_splits.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181029170952"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to AddForeignKeys (20181029171154)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "group_members" ADD "users_id" integer[0m
+  ↳ db/migrate/20181029171154_add_foreign_keys.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_group_members_on_users_id" ON "group_members" ("users_id")[0m
+  ↳ db/migrate/20181029171154_add_foreign_keys.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "group_members" ADD "travel_groups_id" integer[0m
+  ↳ db/migrate/20181029171154_add_foreign_keys.rb:4
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_group_members_on_travel_groups_id" ON "group_members" ("travel_groups_id")[0m
+  ↳ db/migrate/20181029171154_add_foreign_keys.rb:4
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "trips" ADD "travel_groups_id" integer[0m
+  ↳ db/migrate/20181029171154_add_foreign_keys.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_trips_on_travel_groups_id" ON "trips" ("travel_groups_id")[0m
+  ↳ db/migrate/20181029171154_add_foreign_keys.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "trips" ADD "transactions_id" integer[0m
+  ↳ db/migrate/20181029171154_add_foreign_keys.rb:7
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_trips_on_transactions_id" ON "trips" ("transactions_id")[0m
+  ↳ db/migrate/20181029171154_add_foreign_keys.rb:7
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181029171154"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to AddUserToSplits (20181029182846)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "split" ADD "payee_id" integer[0m
+  ↳ db/migrate/20181029182846_add_user_to_splits.rb:3
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to AddUserToSplits (20181029182846)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "splits" ADD "payee_id" integer[0m
+  ↳ db/migrate/20181029182846_add_user_to_splits.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "splits" ADD "payor_id" integer[0m
+  ↳ db/migrate/20181029182846_add_user_to_splits.rb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20181029182846_add_user_to_splits.rb:5
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_splits_on_payee_id" ON "splits" ("payee_id")[0m
+  ↳ db/migrate/20181029182846_add_user_to_splits.rb:5
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_splits_on_payor_id" ON "splits" ("payor_id")[0m
+  ↳ db/migrate/20181029182846_add_user_to_splits.rb:6
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181029182846"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-10-30 00:05:13.585539"], ["updated_at", "2018-10-30 00:05:13.585539"]]
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heramiao/.rvm/gems/ruby-2.5.3/gems/rake-12.3.1/lib/rake/task.rb:271

@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 2018_10_29_182846) do
     t.integer "transactions_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.integer "payee_id"
+    t.integer "payor_id"
+    t.index ["payee_id"], name: "index_splits_on_payee_id"
+    t.index ["payor_id"], name: "index_splits_on_payor_id"
     t.index ["transactions_id"], name: "index_splits_on_transactions_id"
-    t.index ["user_id"], name: "index_splits_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
