@@ -24,7 +24,6 @@ class UserViewController: UIViewController {
   @IBOutlet weak var userSettingsButton: UIBarButtonItem!
   @IBOutlet weak var profilePic: UIImageView!
   @IBOutlet weak var friendsButton: UIButton!
-  @IBOutlet weak var newTransaction: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()

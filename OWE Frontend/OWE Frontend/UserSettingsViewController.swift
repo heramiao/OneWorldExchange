@@ -17,6 +17,41 @@ class UserSettingsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+  
+  // MARK: - Actions
+  @IBAction func cancel() {
+    delegate?.addContactControllerDidCancel(controller: self)
+  }
+  
+  @IBAction func done() {
+    let contact = Contact()
+    contact.name = nameField.text!
+    contact.email = emailField.text
+    contact.homePhone = homePhoneField.text
+    contact.workPhone = workPhoneField.text
+    contact.picture = picture
+    self.saveContact(contact: contact)
+    delegate?.addContactController(controller: self, didFinishAddingContact: contact)
+  }
+  
+  func saveContact(contact: Contact){
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(forEntityName: "Person", in: context)
+    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+    newUser.setValue(contact.email, forKey: "email")
+    newUser.setValue(contact.name, forKey: "name")
+    newUser.setValue(contact.homePhone, forKey: "home_phone")
+    newUser.setValue(contact.workPhone, forKey: "work_phone")
+    if let pic = contact.picture {
+      newUser.setValue(UIImagePNGRepresentation(pic), forKey: "photo")
+    }
+    do {
+      try context.save()
+    } catch {
+      print("Failed saving")
+    }
+  }
     
 
     /*

@@ -11,7 +11,6 @@
 		63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C81218AA9C900E06207 /* UserViewController.swift */; };
 		63C73C84218AB37F00E06207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C83218AB37F00E06207 /* User.swift */; };
 		D651A07F21879FC8001F6EFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D651A07E21879FC8001F6EFA /* AppDelegate.swift */; };
-		D651A08121879FC8001F6EFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D651A08021879FC8001F6EFA /* ViewController.swift */; };
 		D651A08421879FC8001F6EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D651A08221879FC8001F6EFA /* Main.storyboard */; };
 		D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D651A08521879FC8001F6EFA /* OWE_Frontend.xcdatamodeld */; };
 		D651A08921879FC9001F6EFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D651A08821879FC9001F6EFA /* Assets.xcassets */; };
@@ -35,7 +34,6 @@
 		63C73C83218AB37F00E06207 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D651A07B21879FC8001F6EFA /* OWE Frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OWE Frontend.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D651A07E21879FC8001F6EFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D651A08021879FC8001F6EFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D651A08321879FC8001F6EFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D651A08621879FC8001F6EFA /* OWE_Frontend.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OWE_Frontend.xcdatamodel; sourceTree = "<group>"; };
 		D651A08821879FC9001F6EFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				D651A07E21879FC8001F6EFA /* AppDelegate.swift */,
-				D651A08021879FC8001F6EFA /* ViewController.swift */,
 				D651A08221879FC8001F6EFA /* Main.storyboard */,
 				D651A08821879FC9001F6EFA /* Assets.xcassets */,
 				D651A08A21879FC9001F6EFA /* LaunchScreen.storyboard */,
@@ -212,7 +209,6 @@
 				63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */,
 				63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */,
 				63C73C84218AB37F00E06207 /* User.swift in Sources */,
-				D651A08121879FC8001F6EFA /* ViewController.swift in Sources */,
 				D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */,
 				D651A07F21879FC8001F6EFA /* AppDelegate.swift in Sources */,
 			);
