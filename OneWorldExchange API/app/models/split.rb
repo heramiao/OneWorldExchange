@@ -1,5 +1,5 @@
 class Split < ApplicationRecord
-  belongs_to :transaction
+  belongs_to :settlement, foreign_key: :transactions_id, class_name: 'Transaction'
   belongs_to :payee, foreign_key: :payee_id, class_name: 'User'
   belongs_to :payor, foreign_key: :payor_id, class_name: 'User'
 
@@ -9,6 +9,6 @@ class Split < ApplicationRecord
 
   # Validations
   validates_date :date_paid, on_or_after: :date_charged, allow_blank: true
-  validates :percent_owed, numericality { less_than_or_equal_to: 100, greater_than: 0}
+  validates_numericality_of :percent_owed, :less_than_or_equal_to => 100, :greater_than => 0 
   # validate payee and payor are different people 
 end
