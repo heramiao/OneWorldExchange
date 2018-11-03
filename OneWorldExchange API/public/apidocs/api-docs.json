@@ -12,10 +12,6 @@
       "description": "Travel Groups"
     },
     {
-      "path": "/apidocs/transactiondetail.{format}",
-      "description": "Transaction Details"
-    },
-    {
       "path": "/apidocs/trip.{format}",
       "description": "Trip"
     },
@@ -24,8 +20,8 @@
       "description": "Split"
     },
     {
-      "path": "/apidocs/conversion.{format}",
-      "description": "Conversion"
+      "path": "/apidocs/transaction.{format}",
+      "description": "Transaction"
     }
   ],
   "authorizations": null,
