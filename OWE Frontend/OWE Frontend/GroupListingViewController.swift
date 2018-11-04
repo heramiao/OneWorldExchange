@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
+class GroupListingViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+}
