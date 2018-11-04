@@ -91,19 +91,19 @@
 		D651A07D21879FC8001F6EFA /* OWE Frontend */ = {
 			isa = PBXGroup;
 			children = (
-				D651A07E21879FC8001F6EFA /* AppDelegate.swift */,
-				D651A08221879FC8001F6EFA /* Main.storyboard */,
 				D651A08821879FC9001F6EFA /* Assets.xcassets */,
 				D651A08A21879FC9001F6EFA /* LaunchScreen.storyboard */,
-				D651A08D21879FC9001F6EFA /* Info.plist */,
-				D651A08521879FC8001F6EFA /* OWE_Frontend.xcdatamodeld */,
+				D651A08221879FC8001F6EFA /* Main.storyboard */,
+				D651A07E21879FC8001F6EFA /* AppDelegate.swift */,
+				63C73C83218AB37F00E06207 /* User.swift */,
 				63C73C81218AA9C900E06207 /* UserViewController.swift */,
 				63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */,
+				D6FE2BA4218F58070038F54F /* Group.swift */,
 				D6FE2BA6218F5E960038F54F /* GroupHomeViewController.swift */,
 				D6FE2BA8218F60590038F54F /* GroupSettingsViewController.swift */,
 				D6FE2BAA218F60680038F54F /* GroupListingViewController.swift */,
-				63C73C83218AB37F00E06207 /* User.swift */,
-				D6FE2BA4218F58070038F54F /* Group.swift */,
+				D651A08D21879FC9001F6EFA /* Info.plist */,
+				D651A08521879FC8001F6EFA /* OWE_Frontend.xcdatamodeld */,
 			);
 			path = "OWE Frontend";
 			sourceTree = "<group>";

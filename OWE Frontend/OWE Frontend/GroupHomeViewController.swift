@@ -10,5 +10,6 @@ import Foundation
 import UIKit
 
 class GroupHomeViewController: UIViewController {
+    @IBOutlet weak var tripImage: UIImageView!
     
 }
