@@ -7,9 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
-class Group: {
-    var users: [User]()
+class Group {
+    var users: [User]
     var title: String
+    var image: UIImage
+    var startDate: Date
+    var endDate: Date
     
+    init(title: String, image: UIImage, users: [User], startDate: Date, endDate: Date) {
+        self.users = users
+        self.title = title
+        self.startDate = startDate
+        self.endDate = endDate
+        self.image = image
+    }
 }
