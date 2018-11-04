@@ -16,6 +16,7 @@
 		D651A08921879FC9001F6EFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D651A08821879FC9001F6EFA /* Assets.xcassets */; };
 		D651A08C21879FC9001F6EFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D651A08A21879FC9001F6EFA /* LaunchScreen.storyboard */; };
 		D651A09721879FCA001F6EFA /* OWE_FrontendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D651A09621879FCA001F6EFA /* OWE_FrontendTests.swift */; };
+		D6FE2BA5218F58070038F54F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BA4218F58070038F54F /* Group.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		D651A09221879FCA001F6EFA /* OWE FrontendTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OWE FrontendTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D651A09621879FCA001F6EFA /* OWE_FrontendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWE_FrontendTests.swift; sourceTree = "<group>"; };
 		D651A09821879FCA001F6EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6FE2BA4218F58070038F54F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */,
 				63C73C81218AA9C900E06207 /* UserViewController.swift */,
 				63C73C83218AB37F00E06207 /* User.swift */,
+				D6FE2BA4218F58070038F54F /* Group.swift */,
 			);
 			path = "OWE Frontend";
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */,
 				63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */,
 				63C73C84218AB37F00E06207 /* User.swift in Sources */,
+				D6FE2BA5218F58070038F54F /* Group.swift in Sources */,
 				D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */,
 				D651A07F21879FC8001F6EFA /* AppDelegate.swift in Sources */,
 			);
