@@ -145,9 +145,9 @@
 		D6FE2BB9219092CF0038F54F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D6FE2BB72190927A0038F54F /* SwiftyJSON.swift */,
 				D651A08D21879FC9001F6EFA /* Info.plist */,
 				D651A08521879FC8001F6EFA /* OWE_Frontend.xcdatamodeld */,
-				D6FE2BB72190927A0038F54F /* SwiftyJSON.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

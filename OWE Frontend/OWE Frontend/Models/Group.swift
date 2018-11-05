@@ -12,11 +12,11 @@ import UIKit
 class Group: NSObject, NSCoding {
     
     // MARK: - Properties
-    var users: [User]?
-    var title: String?
+//    var users: [User]?
+    var title: String
     var image: UIImage?
-    var startDate: Date?
-    var endDate: Date?
+    var startDate: Date
+    var endDate: Date
     
     // MARK: - General
     override init() {
@@ -25,11 +25,11 @@ class Group: NSObject, NSCoding {
     
     // MARK: - Encoding
     required init(coder aDecoder: NSCoder) {
-        self.users = aDecoder.decodeObject(forKey: "users") as? [User]
-        self.title = aDecoder.decodeObject(forKey: "title") as? String
+//        self.users = aDecoder.decodeObject(forKey: "users") as? [User]
+        self.title = aDecoder.decodeObject(forKey: "title") as! String
         self.image = aDecoder.decodeObject(forKey: "image") as? UIImage
-        self.startDate = aDecoder.decodeObject(forKey: "start_date") as? Date
-        self.endDate = aDecoder.decodeObject(forKey: "end_date") as? Date
+        self.startDate = aDecoder.decodeObject(forKey: "start_date") as! Date
+        self.endDate = aDecoder.decodeObject(forKey: "end_date") as! Date
         super.init()
     }
     
@@ -43,7 +43,7 @@ class Group: NSObject, NSCoding {
 //    }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(users, forKey: "users")
+//        aCoder.encode(users, forKey: "users")
         aCoder.encode(title, forKey: "title")
         aCoder.encode(image, forKey: "image")
         aCoder.encode(startDate, forKey: "start_date")
