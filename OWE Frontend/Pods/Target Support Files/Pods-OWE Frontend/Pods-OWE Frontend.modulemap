@@ -1,0 +1,6 @@
+framework module Pods_OWE_Frontend {
+  umbrella header "Pods-OWE Frontend-umbrella.h"
+
+  export *
+  module * { export * }
+}
