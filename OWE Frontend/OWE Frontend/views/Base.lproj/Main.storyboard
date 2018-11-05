@@ -102,8 +102,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="email" destination="hPq-Zo-3TH" id="vEM-KC-JWn"/>
+                        <outlet property="friendsButton" destination="EaS-xz-RKm" id="zLC-Yy-0gl"/>
                         <outlet property="name" destination="ybC-iB-TVK" id="hhV-Li-H0S"/>
                         <outlet property="phone" destination="9mj-0t-Pf3" id="dWy-Wy-cHc"/>
+                        <outlet property="profilePic" destination="6Hd-Xb-nMt" id="Ndp-b1-Gu4"/>
                         <outlet property="youOwe" destination="6tt-8C-P8o" id="aax-oS-pER"/>
                         <outlet property="yourHoldings" destination="vID-rr-Wly" id="xb9-O8-o1Z"/>
                         <outlet property="youreOwed" destination="l4q-xr-Lzb" id="w9i-5T-X4K"/>
@@ -245,6 +247,16 @@
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="RB5-Af-4fV"/>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="wtp-z1-5iQ"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="baseCurrField" destination="qUU-RS-a8Q" id="udC-DK-IbE"/>
+                        <outlet property="emailField" destination="hD2-db-VQD" id="H6o-Sm-Gon"/>
+                        <outlet property="fnameField" destination="9ta-iZ-pA0" id="p3S-Ng-gAg"/>
+                        <outlet property="lnameField" destination="6ry-qt-Vd3" id="hov-3c-QRc"/>
+                        <outlet property="newPassConField" destination="bcx-iO-F97" id="cma-5M-dnl"/>
+                        <outlet property="newPassField" destination="fac-XM-oVp" id="fAa-w5-4gT"/>
+                        <outlet property="oldPassField" destination="vO8-4r-wet" id="Fzj-Zj-c3O"/>
+                        <outlet property="phoneField" destination="0Kd-u0-Bej" id="Ogz-nC-bgh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbe-Vx-euj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -335,7 +347,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Who is going?" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="14" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="egB-l2-2Zf">
-                                <rect key="frame" x="106" y="315" width="198" height="30"/>
+                                <rect key="frame" x="106" y="315" width="166" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Who is part of the group going on this trip?" label="Members"/>
                                 <nil key="textColor"/>
@@ -396,6 +408,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kwf-7T-v1A">
+                                <rect key="frame" x="283" y="323" width="21" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="JGe-BK-XfA"/>
@@ -403,11 +422,15 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="UserTable" destination="Ztb-2u-QjR" id="gYT-74-iMC"/>
+                        <outlet property="endDateField" destination="wfZ-2i-Lhz" id="nWj-AX-TJR"/>
                         <outlet property="endDateName" destination="wfZ-2i-Lhz" id="9n7-8D-TbQ"/>
                         <outlet property="startDateField" destination="nNA-JM-XeW" id="ucd-ES-sXn"/>
                         <outlet property="tripImage" destination="ZIg-sO-H3H" id="Csv-9u-mE6"/>
                         <outlet property="tripName" destination="Fxu-AA-jDh" id="RVS-1Q-znu"/>
+                        <outlet property="tripNameField" destination="Fxu-AA-jDh" id="nTc-Ow-Rwo"/>
+                        <outlet property="userTable" destination="Ztb-2u-QjR" id="MT4-IH-CK4"/>
                         <outlet property="usersPicker" destination="egB-l2-2Zf" id="iM1-vF-ODZ"/>
+                        <outlet property="usersSelect" destination="egB-l2-2Zf" id="q1I-oW-1H4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HC4-ce-8SP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,10 +453,10 @@
             </objects>
             <point key="canvasLocation" x="122" y="868"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Group Listing View Controller-->
         <scene sceneID="AcC-ir-evj">
             <objects>
-                <tableViewController id="Srw-7x-aXo" sceneMemberID="viewController">
+                <tableViewController id="Srw-7x-aXo" customClass="GroupListingViewController" customModule="OWE_Frontend" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vdl-Rp-Ex3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,7 +470,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kdx-Gd-2Tr" kind="show" id="COB-OO-8zt"/>
+                                    <segue destination="kdx-Gd-2Tr" kind="show" identifier="showGroupDetails" id="COB-OO-8zt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -470,11 +493,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-aE-oWd">
-                                <rect key="frame" x="103" y="200" width="115" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-DE-FgJ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Transaction"/>
-                            </button>
+                            </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hud-XY-kMJ">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -482,14 +504,14 @@
                                     <navigationItem title="Group Home" id="OaT-uM-42n">
                                         <barButtonItem key="rightBarButtonItem" image="SettingsButton" style="plain" id="dwo-v1-cVX">
                                             <connections>
-                                                <segue destination="Psh-QP-qd3" kind="show" identifier="showGroupSettings" id="S7T-G9-bvd"/>
+                                                <segue destination="Psh-QP-qd3" kind="show" identifier="showGroupSettings" id="lhc-nZ-tt4"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gEo-fh-9dX">
-                                <rect key="frame" x="25" y="238" width="271" height="310"/>
+                                <rect key="frame" x="25" y="163" width="271" height="385"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -503,10 +525,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-DE-FgJ">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-aE-oWd">
+                                <rect key="frame" x="103" y="125" width="115" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <state key="normal" title="New Transaction"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="29c-NT-4Z3"/>

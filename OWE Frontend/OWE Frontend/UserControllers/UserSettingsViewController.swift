@@ -19,7 +19,7 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   @IBOutlet weak var lnameField: UITextField!
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var phoneField: UITextField!
-  @IBOutlet weak var baseCurrField: UITextField!
+  @IBOutlet weak var baseCurrField: UIPickerView!
   @IBOutlet weak var oldPassField: UITextField!
   @IBOutlet weak var newPassField: UITextField!
   @IBOutlet weak var newPassConField: UITextField!
