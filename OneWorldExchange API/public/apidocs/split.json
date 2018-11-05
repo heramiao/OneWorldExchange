@@ -16,74 +16,6 @@
       ]
     },
     {
-      "path": "/split.json",
-      "operations": [
-        {
-          "summary": "Creates a new split",
-          "parameters": [
-            {
-              "paramType": "form",
-              "name": "description",
-              "type": "string",
-              "description": "Description",
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "split_type",
-              "type": "string",
-              "description": "Split Type",
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "split_factor",
-              "type": "float",
-              "description": "Split Factor",
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "total_split_amount",
-              "type": "float",
-              "description": "Total Split Amount",
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "split_currency_type",
-              "type": "string",
-              "description": "Split Currency Type",
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "charge_date",
-              "type": "date",
-              "description": "Charge Date",
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "pay_date",
-              "type": "date",
-              "description": null,
-              "required": false
-            }
-          ],
-          "responseMessages": [
-            {
-              "code": 406,
-              "responseModel": null,
-              "message": "Not Acceptable"
-            }
-          ],
-          "nickname": "Split#create",
-          "method": "post"
-        }
-      ]
-    },
-    {
       "path": "/split/{id}.json",
       "operations": [
         {
@@ -125,51 +57,23 @@
             },
             {
               "paramType": "form",
-              "name": "description",
-              "type": "string",
-              "description": "Description",
-              "required": false
-            },
-            {
-              "paramType": "form",
-              "name": "split_type",
-              "type": "string",
-              "description": "Split Type",
-              "required": false
-            },
-            {
-              "paramType": "form",
-              "name": "split_factor",
+              "name": "percent_owed",
               "type": "float",
-              "description": "Split Factor",
+              "description": "Percent Owed",
               "required": false
             },
             {
               "paramType": "form",
-              "name": "total_split_amount",
+              "name": "amount_owed",
               "type": "float",
-              "description": "Total Split Amount",
+              "description": "Amount Owed",
               "required": false
             },
             {
               "paramType": "form",
-              "name": "split_currency_type",
-              "type": "string",
-              "description": "Split Currency Type",
-              "required": false
-            },
-            {
-              "paramType": "form",
-              "name": "charge_date",
+              "name": "date_paid",
               "type": "date",
-              "description": "Charge Date",
-              "required": false
-            },
-            {
-              "paramType": "form",
-              "name": "pay_date",
-              "type": "date",
-              "description": "Pay Date",
+              "description": "Date Paid",
               "required": false
             }
           ],

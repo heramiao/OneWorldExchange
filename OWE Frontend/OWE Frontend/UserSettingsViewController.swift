@@ -7,52 +7,110 @@
 //
 
 import UIKit
+import CoreData
 
-class UserSettingsViewController: UIViewController {
+class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
   
-  let user = User()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+  var profile: User?
   
-  // MARK: - Actions
-//  @IBAction func cancel() {
-//    delegate?.addContactControllerDidCancel(controller: self)
-//  }
-//
-//  @IBAction func done() {
-//    let contact = Contact()
-//    contact.name = nameField.text!
-//    contact.email = emailField.text
-//    contact.homePhone = homePhoneField.text
-//    contact.workPhone = workPhoneField.text
-//    contact.picture = picture
-//    self.saveContact(contact: contact)
-//    delegate?.addContactController(controller: self, didFinishAddingContact: contact)
-//  }
-//
-//  func saveContact(contact: Contact){
-//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    let context = appDelegate.persistentContainer.viewContext
-//    let entity = NSEntityDescription.entity(forEntityName: "Person", in: context)
-//    let newUser = NSManagedObject(entity: entity!, insertInto: context)
-//    newUser.setValue(contact.email, forKey: "email")
-//    newUser.setValue(contact.name, forKey: "name")
-//    newUser.setValue(contact.homePhone, forKey: "home_phone")
-//    newUser.setValue(contact.workPhone, forKey: "work_phone")
-//    if let pic = contact.picture {
-//      newUser.setValue(UIImagePNGRepresentation(pic), forKey: "photo")
-//    }
-//    do {
-//      try context.save()
-//    } catch {
-//      print("Failed saving")
-//    }
-//  }
+  // MARK: - Outlets
+  
+  @IBOutlet weak var fnameField: UITextField!
+  @IBOutlet weak var lnameField: UITextField!
+  @IBOutlet weak var emailField: UITextField!
+  @IBOutlet weak var phoneField: UITextField!
+  @IBOutlet weak var baseCurrField: UITextField!
+  @IBOutlet weak var oldPassField: UITextField!
+  @IBOutlet weak var newPassField: UITextField!
+  @IBOutlet weak var newPassConField: UITextField!
+  
+  // MARK: - General
+  
+  var pickerData = ["USD", "EUR", "GBP", "CHF", "AUD", "JPY", "TWD", "CNH"]
+  var picker = UIPickerView()
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
+    picker.delegate = self
+    picker.dataSource = self
+
+    if let user = profile {
+      fnameField.text = profile.firstName
+      lnameField.text = profile.lastName
+      emailField.text = profile.email
+      phoneField.text = profile.phone
+      baseCurrField.text = profile.baseCurrency
+    }
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  // MARK: - UIPickerView
+  
+  // Number of columns of data
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  // The number of rows of data
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return pickerData.count
+  }
+  
+  // The data to return for the row and component (column) that's being passed in
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return pickerData[row]
+  }
+  
+  // Capture the picker view selection
+  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    baseCurrField.text = pickerData[row]
+    self.view.endEditing(false)
+  }
+
+  // MARK: - Actions
+  
+  @IBAction func cancel() {
+    dismiss(animated: true, completion: nil)
+  }
+  
+  @IBAction func save() {
+    user.firstName = fnameField.text
+    user.lastName = lnameField.text
+    user.email = emailField.text
+    user.phone = phoneField.text
+    user.baseCurrency = baseCurrField.text
+    // user.password = new password or old password if newPassField not filled in
+    // user.passwordConfirmation =
+    self.saveUser(user: user) // saving to Core Data
+    dismiss(animated: true, completion: nil)
+  }
+  
+  // MARK: - Core Data
+  
+  func saveUser(user: User){
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(forEntityName: "User", in: context)
+    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+    newUser.setValue(user.firstName, forKey: "first_name")
+    newUser.setValue(user.lastName, forKey: "last_name")
+    newUser.setValue(user.email, forKey: "email")
+    newUser.setValue(user.phone, forKey: "phone")
+    newUser.setValue(user.baseCurrency, forKey: "base_currency")
+    newUser.setValue(user.password, forKey: "password")
+    newUser.setValue(user.passwordConfirmation, forKey: "password_confirmation")
+    do {
+      try context.save()
+    } catch {
+      print("Failed saving")
+    }
+  }
+  
 
     /*
     // MARK: - Navigation
@@ -63,5 +121,5 @@ class UserSettingsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+  
 }

@@ -1,0 +1,207 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000",
+  "resourcePath": "transaction",
+  "apis": [
+    {
+      "path": "/transaction.json",
+      "operations": [
+        {
+          "summary": "Fetches all transactions",
+          "notes": "This lists all the transactions",
+          "nickname": "Transaction#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/transaction.json",
+      "operations": [
+        {
+          "summary": "Creates a new transaction",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "date_charged",
+              "type": "date",
+              "description": "Date Charged",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "description",
+              "type": "string",
+              "description": "Description",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "currency_type",
+              "type": "string",
+              "description": "Currency Type",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "total_charged",
+              "type": "float",
+              "description": "Total Charged",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "country",
+              "type": "string",
+              "description": "Country",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "expense_type",
+              "type": "string",
+              "description": "Expense Type",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Transaction#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/transaction/{id}.json",
+      "operations": [
+        {
+          "summary": "Shows one transaction",
+          "notes": "This lists details of one transaction",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Transaction ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Transaction#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/transaction/{id}.json",
+      "operations": [
+        {
+          "summary": "Updates an existing transaction",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Transaction ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "date_charged",
+              "type": "date",
+              "description": "Date Charged",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "description",
+              "type": "string",
+              "description": "Description",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "currency_type",
+              "type": "string",
+              "description": "Currency Type",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "total_charged",
+              "type": "float",
+              "description": "Total Charged",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "country",
+              "type": "string",
+              "description": "Country",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "expense_type",
+              "type": "string",
+              "description": "Expense Type",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Transaction#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/transaction/{id}.json",
+      "operations": [
+        {
+          "summary": "Deletes an existing transaction",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Transaction ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Transaction#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

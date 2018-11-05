@@ -10,7 +10,7 @@ import UIKit
 
 class UserViewController: UIViewController {
   
-  let user = User()
+  var user: User?
   
   // MARK: - Outlets
   @IBOutlet weak var name: UILabel!
@@ -21,24 +21,28 @@ class UserViewController: UIViewController {
   @IBOutlet weak var youOwe: UILabel!
   @IBOutlet weak var youreOwed: UILabel!
   
-  @IBOutlet weak var userSettingsButton: UIBarButtonItem!
   @IBOutlet weak var profilePic: UIImageView!
   @IBOutlet weak var friendsButton: UIButton!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    if let user = getUser() {
+      name.text = user.firstName + user.lastName
+      email.text = user.email
+      phone.text = user.phone
     }
     
+  }
+    
 
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      if segue.identifier == "showUserSettings" {
-        let showUserSettings:UserSettingsViewController = segue.destination as! UserSettingsViewController
-        showUserSettings.user = self.user
-      }
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showUserSettings" {
+      let showUserSettings:UserSettingsViewController = segue.destination as! UserSettingsViewController
+      showUserSettings.profile = self.user
     }
+  }
   
 
 }
