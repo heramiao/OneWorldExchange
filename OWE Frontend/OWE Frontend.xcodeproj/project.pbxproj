@@ -137,11 +137,7 @@
 			children = (
 				D6FE2BBA2190A2F50038F54F /* Delegate */,
 				D6FE2BBF2190A33A0038F54F /* views */,
-				D651A08821879FC9001F6EFA /* Assets.xcassets */,
-				D651A08221879FC8001F6EFA /* Main.storyboard */,
-				63C73C83218AB37F00E06207 /* User.swift */,
-				63C73C81218AA9C900E06207 /* UserViewController.swift */,
-				63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */,
+				D6FE2BC02190E7000038F54F /* UserControllers */,
 				D6FE2BB6219016690038F54F /* GroupControllers */,
 				D6FE2BB5219016590038F54F /* Models */,
 				D6FE2BB9219092CF0038F54F /* Resources */,
@@ -161,6 +157,7 @@
 		D6FE2BB5219016590038F54F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				63C73C83218AB37F00E06207 /* User.swift */,
 				D6FE2BAE219015FC0038F54F /* DataManager.swift */,
 				D6FE2BA4218F58070038F54F /* Group.swift */,
 			);
@@ -181,6 +178,7 @@
 		D6FE2BB9219092CF0038F54F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D651A08821879FC9001F6EFA /* Assets.xcassets */,
 				D6FE2BB72190927A0038F54F /* SwiftyJSON.swift */,
 				D651A08D21879FC9001F6EFA /* Info.plist */,
 				D651A08521879FC8001F6EFA /* OWE_Frontend.xcdatamodeld */,
@@ -200,9 +198,19 @@
 			isa = PBXGroup;
 			children = (
 				D651A08A21879FC9001F6EFA /* LaunchScreen.storyboard */,
+				D651A08221879FC8001F6EFA /* Main.storyboard */,
 				D6FE2BBC2190A32A0038F54F /* GroupTableViewCell.xib */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		D6FE2BC02190E7000038F54F /* UserControllers */ = {
+			isa = PBXGroup;
+			children = (
+				63C73C81218AA9C900E06207 /* UserViewController.swift */,
+				63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */,
+			);
+			path = UserControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
