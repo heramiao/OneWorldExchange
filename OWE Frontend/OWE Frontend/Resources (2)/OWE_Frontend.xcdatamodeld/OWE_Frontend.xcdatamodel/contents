@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Groups" representedClassName="Groups" syncable="YES" codeGenerationType="class">
+        <attribute name="end_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="start_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user_group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User_Group" inverseName="group" inverseEntity="User_Group" syncable="YES"/>
+    </entity>
+    <entity name="User_Group" representedClassName="User_Group" syncable="YES" codeGenerationType="class">
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Groups" inverseName="user_group" inverseEntity="Groups" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="user_group" inverseEntity="Users" syncable="YES"/>
+    </entity>
+    <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="class">
+        <attribute name="base_currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user_group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User_Group" inverseName="user" inverseEntity="User_Group" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Users" positionX="-366.1328125" positionY="104.6875" width="128" height="163"/>
+        <element name="Groups" positionX="-368.01171875" positionY="-148.4609375" width="128" height="133"/>
+        <element name="User_Group" positionX="-18" positionY="27" width="128" height="75"/>
+    </elements>
+</model>
