@@ -20,6 +20,8 @@
 		D6FE2BA7218F5E960038F54F /* GroupHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BA6218F5E960038F54F /* GroupHomeViewController.swift */; };
 		D6FE2BA9218F60590038F54F /* GroupSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BA8218F60590038F54F /* GroupSettingsViewController.swift */; };
 		D6FE2BAB218F60680038F54F /* GroupListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BAA218F60680038F54F /* GroupListingViewController.swift */; };
+		D6FE2BAF219015FC0038F54F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BAE219015FC0038F54F /* DataManager.swift */; };
+		D6FE2BB82190927A0038F54F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BB72190927A0038F54F /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		D6FE2BA6218F5E960038F54F /* GroupHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHomeViewController.swift; sourceTree = "<group>"; };
 		D6FE2BA8218F60590038F54F /* GroupSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsViewController.swift; sourceTree = "<group>"; };
 		D6FE2BAA218F60680038F54F /* GroupListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListingViewController.swift; sourceTree = "<group>"; };
+		D6FE2BAE219015FC0038F54F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D6FE2BB72190927A0038F54F /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,10 +102,9 @@
 				63C73C83218AB37F00E06207 /* User.swift */,
 				63C73C81218AA9C900E06207 /* UserViewController.swift */,
 				63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */,
-				D6FE2BA4218F58070038F54F /* Group.swift */,
-				D6FE2BA6218F5E960038F54F /* GroupHomeViewController.swift */,
-				D6FE2BA8218F60590038F54F /* GroupSettingsViewController.swift */,
-				D6FE2BAA218F60680038F54F /* GroupListingViewController.swift */,
+				D6FE2BB6219016690038F54F /* GroupControllers */,
+				D6FE2BB5219016590038F54F /* Models */,
+				D6FE2BB9219092CF0038F54F /* Resources */,
 				D651A08D21879FC9001F6EFA /* Info.plist */,
 				D651A08521879FC8001F6EFA /* OWE_Frontend.xcdatamodeld */,
 			);
@@ -115,6 +118,33 @@
 				D651A09821879FCA001F6EFA /* Info.plist */,
 			);
 			path = "OWE FrontendTests";
+			sourceTree = "<group>";
+		};
+		D6FE2BB5219016590038F54F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D6FE2BA4218F58070038F54F /* Group.swift */,
+				D6FE2BAE219015FC0038F54F /* DataManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D6FE2BB6219016690038F54F /* GroupControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D6FE2BA6218F5E960038F54F /* GroupHomeViewController.swift */,
+				D6FE2BA8218F60590038F54F /* GroupSettingsViewController.swift */,
+				D6FE2BAA218F60680038F54F /* GroupListingViewController.swift */,
+			);
+			path = GroupControllers;
+			sourceTree = "<group>";
+		};
+		D6FE2BB9219092CF0038F54F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D6FE2BB72190927A0038F54F /* SwiftyJSON.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +249,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6FE2BAB218F60680038F54F /* GroupListingViewController.swift in Sources */,
+				D6FE2BAF219015FC0038F54F /* DataManager.swift in Sources */,
 				63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */,
+				D6FE2BB82190927A0038F54F /* SwiftyJSON.swift in Sources */,
 				63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */,
 				63C73C84218AB37F00E06207 /* User.swift in Sources */,
 				D6FE2BA9218F60590038F54F /* GroupSettingsViewController.swift in Sources */,
