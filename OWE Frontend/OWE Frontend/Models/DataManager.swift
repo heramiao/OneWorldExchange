@@ -74,10 +74,10 @@ class DataManager {
   
   func getGroups() {
     let data = NSData(contentsOf: backendURL as URL)!
-//    let swiftyjson = try JSON(data: data as Data)
+    let swiftyjson = try? JSON(data: data as Data)
   
-//    if let groups = swiftyjson["group"]["temp"].float {
-//        print("Temp is: \(temp_data)")
+//    if let groups = swiftyjson[""][""].float {
+//        print("\(groups)")
 //    }
   }
   

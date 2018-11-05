@@ -16,18 +16,18 @@ class GroupListingViewController: UITableViewController, UINavigationControllerD
     var dataManager = DataManager()
     
     // MARK: - Delegate protocols
-    func addGroupControllerDidCancel(controller: AddGroupController) {
+    func GroupSettingsViewControllerDidCancel(controller: GroupSettingsViewController) {
         dismiss(animated: true, completion: nil)
     }
     
-    func addGroupController(controller: AddGroupController, didFinishAddingGroup group: Groups) {
+    func addGroupController(controller: GroupSettingsViewController, didFinishCreatingGroup group: Group) {
         let newRowIndex = groups.count
         
         groups.append(group)
         
         let indexPath = NSIndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
-        userTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+        groupTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
         
         dismiss(animated: true, completion: nil)
     }

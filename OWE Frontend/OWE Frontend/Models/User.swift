@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 let userURL: NSURL = NSURL(string: "https://oneworldexchange.herokuapp.com/user/1")!
 let data = NSData(contentsOf: userURL as URL)!
-let json = try JSON(data: data as Data)
+let json = try? JSON(data: data as Data)
 
 class User {
   var firstName: String

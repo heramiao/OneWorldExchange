@@ -37,7 +37,7 @@ class GroupSettingsViewController: UIViewController {
     private var startDatePicker: UIDatePicker?
     private var userPicker: UIPickerView?
     
-    var groups = [Groups]()
+    var groups = [Group]()
     var dataManager = DataManager()
     private var startDate: Date?
     private var endDate: Date?
@@ -90,9 +90,9 @@ class GroupSettingsViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func cancel() {
-        delegate?.addGroupControllerDidCancel(controller: self)
-    }
+//    @IBAction func cancel() {
+//        delegate?.addGroupControllerDidCancel(controller: self)
+//    }
     
     @IBAction func done() {
         let group = Group()
