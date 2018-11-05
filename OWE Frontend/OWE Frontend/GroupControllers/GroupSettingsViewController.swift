@@ -37,6 +37,8 @@ class GroupSettingsViewController: UIViewController {
     private var startDatePicker: UIDatePicker?
     private var userPicker: UIPickerView?
     
+    var groups = [Groups]()
+    var dataManager = DataManager()
     private var startDate: Date?
     private var endDate: Date?
     private var users = [User]()
@@ -96,29 +98,13 @@ class GroupSettingsViewController: UIViewController {
         let group = Group()
         group.title = tripNameField.text!
         group.image = tripImage.image!
-        group.users = users
-        group.startDate = startDate
-        group.endDate = endDate
+//        group.users = users
+        group.startDate = startDate!
+        group.endDate = endDate!
         
         if group.title.count > 0 {
             delegate?.addGroupController(controller: self, didFinishCreatingGroup: group)
         }
     }
     
-    // MARK: - Delegate protocols
-    func addGroupControllerDidCancel(controller: AddGroupController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func addGroupController(controller: AddGroupController, didFinishAddingGroup group: Group) {
-        let newRowIndex = Group.count
-        
-        group.append(group)
-        
-        let indexPath = NSIndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        userTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
-        
-        dismiss(animated: true, completion: nil)
-    }
 }

@@ -33,7 +33,7 @@ extension String {
 
 // MARK: - Data Manager Class
 
-class Datamanager {
+class DataManager {
   
   // MARK: - General
   
@@ -74,7 +74,7 @@ class Datamanager {
   
   func getGroups() {
     let data = NSData(contentsOf: backendURL as URL)!
-    let swiftyjson = try JSON(data: data as Data)
+//    let swiftyjson = try JSON(data: data as Data)
   
 //    if let groups = swiftyjson["group"]["temp"].float {
 //        print("Temp is: \(temp_data)")
