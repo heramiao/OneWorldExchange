@@ -13,6 +13,8 @@
 		63C73C86218E66F200E06207 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C73C85218E66F200E06207 /* SwiftyJSON.framework */; };
 		63C73C9121928A3A00E06207 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C9021928A3A00E06207 /* Transaction.swift */; };
 		63C73C9321928B5F00E06207 /* Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C9221928B5F00E06207 /* Split.swift */; };
+		63C73C9621928EE600E06207 /* Transaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C73C9521928EE600E06207 /* Transaction.storyboard */; };
+		63C73C9A21928F6F00E06207 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C9921928F6F00E06207 /* TransactionViewController.swift */; };
 		919155831E790B87EFD29682 /* Pods_OWE_FrontendTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D601B027E01427F58C7C63 /* Pods_OWE_FrontendTests.framework */; };
 		AD1B65B435BAA44A8D4D6B48 /* Pods_OWE_Frontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8030B7AA8E8AEAB87915BD35 /* Pods_OWE_Frontend.framework */; };
 		D651A07F21879FC8001F6EFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D651A07E21879FC8001F6EFA /* AppDelegate.swift */; };
@@ -51,6 +53,8 @@
 		63C73C85218E66F200E06207 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C73C9021928A3A00E06207 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		63C73C9221928B5F00E06207 /* Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Split.swift; sourceTree = "<group>"; };
+		63C73C9521928EE600E06207 /* Transaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transaction.storyboard; sourceTree = "<group>"; };
+		63C73C9921928F6F00E06207 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		8030B7AA8E8AEAB87915BD35 /* Pods_OWE_Frontend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OWE_Frontend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9831073FCBFF1FF921FC6A2A /* Pods-OWE FrontendTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OWE FrontendTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OWE FrontendTests/Pods-OWE FrontendTests.release.xcconfig"; sourceTree = "<group>"; };
 		C0D601B027E01427F58C7C63 /* Pods_OWE_FrontendTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OWE_FrontendTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63C73C9821928F3600E06207 /* TransactionControllers */ = {
+			isa = PBXGroup;
+			children = (
+				63C73C9921928F6F00E06207 /* TransactionViewController.swift */,
+			);
+			path = TransactionControllers;
+			sourceTree = "<group>";
+		};
 		AB1D194D69D7D2E3C13C29EB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +151,7 @@
 		D651A07D21879FC8001F6EFA /* OWE Frontend */ = {
 			isa = PBXGroup;
 			children = (
+				63C73C9821928F3600E06207 /* TransactionControllers */,
 				D6FE2BBA2190A2F50038F54F /* Delegate */,
 				D6FE2BBF2190A33A0038F54F /* Views */,
 				D6FE2BC02190E7000038F54F /* UserControllers */,
@@ -206,6 +219,7 @@
 				D651A08A21879FC9001F6EFA /* LaunchScreen.storyboard */,
 				D651A08221879FC8001F6EFA /* Main.storyboard */,
 				D6FE2BBC2190A32A0038F54F /* GroupTableViewCell.xib */,
+				63C73C9521928EE600E06207 /* Transaction.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63C73C9621928EE600E06207 /* Transaction.storyboard in Resources */,
 				D651A08C21879FC9001F6EFA /* LaunchScreen.storyboard in Resources */,
 				D651A08921879FC9001F6EFA /* Assets.xcassets in Resources */,
 				D651A08421879FC8001F6EFA /* Main.storyboard in Resources */,
@@ -403,6 +418,7 @@
 				63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */,
 				63C73C84218AB37F00E06207 /* User.swift in Sources */,
 				D6FE2BA9218F60590038F54F /* GroupSettingsViewController.swift in Sources */,
+				63C73C9A21928F6F00E06207 /* TransactionViewController.swift in Sources */,
 				D6FE2BA5218F58070038F54F /* Group.swift in Sources */,
 				D6FE2BA7218F5E960038F54F /* GroupHomeViewController.swift in Sources */,
 				D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */,
