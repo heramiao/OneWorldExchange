@@ -10,6 +10,7 @@ import Foundation
 //import SwiftyJSON
 
 class User {
+  var id: Int
   var firstName: String
   var lastName: String
   var email: String
@@ -18,7 +19,8 @@ class User {
   var passwordConfirmation: String
   var baseCurrency: String
   
-  init(firstName: String, lastName: String, email: String, phone: String, password: String, passwordConfirmation: String, baseCurrency: String) {
+  init(id: Int, firstName: String, lastName: String, email: String, phone: String, password: String, passwordConfirmation: String, baseCurrency: String) {
+    self.id = id
     self.firstName = firstName
     self.lastName = lastName
     self.email = email

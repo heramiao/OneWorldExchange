@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E82137273B00B88D28374B4 /* Pods_OWE_Frontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BFE04CD19CF0053BC89AD5 /* Pods_OWE_Frontend.framework */; };
 		63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */; };
 		63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C81218AA9C900E06207 /* UserViewController.swift */; };
 		63C73C84218AB37F00E06207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C83218AB37F00E06207 /* User.swift */; };
@@ -15,8 +16,6 @@
 		63C73C9321928B5F00E06207 /* Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C9221928B5F00E06207 /* Split.swift */; };
 		63C73C9621928EE600E06207 /* Transaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C73C9521928EE600E06207 /* Transaction.storyboard */; };
 		63C73C9A21928F6F00E06207 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C9921928F6F00E06207 /* TransactionViewController.swift */; };
-		919155831E790B87EFD29682 /* Pods_OWE_FrontendTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D601B027E01427F58C7C63 /* Pods_OWE_FrontendTests.framework */; };
-		AD1B65B435BAA44A8D4D6B48 /* Pods_OWE_Frontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8030B7AA8E8AEAB87915BD35 /* Pods_OWE_Frontend.framework */; };
 		D651A07F21879FC8001F6EFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D651A07E21879FC8001F6EFA /* AppDelegate.swift */; };
 		D651A08421879FC8001F6EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D651A08221879FC8001F6EFA /* Main.storyboard */; };
 		D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D651A08521879FC8001F6EFA /* OWE_Frontend.xcdatamodeld */; };
@@ -34,6 +33,55 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		63C73CAA21935EFF00E06207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		63C73CAC21935EFF00E06207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS Tests";
+		};
+		63C73CAE21935EFF00E06207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "Alamofire macOS";
+		};
+		63C73CB021935EFF00E06207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
+			remoteInfo = "Alamofire macOS Tests";
+		};
+		63C73CB221935EFF00E06207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS";
+		};
+		63C73CB421935EFF00E06207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS Tests";
+		};
+		63C73CB621935EFF00E06207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4202FE01B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
+		};
 		D651A09321879FCA001F6EFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D651A07321879FC8001F6EFA /* Project object */;
@@ -44,9 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0CD4787A01294E1207A6920F /* Pods-OWE Frontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OWE Frontend.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OWE Frontend/Pods-OWE Frontend.debug.xcconfig"; sourceTree = "<group>"; };
-		1BF68067BEC128CEA52FE178 /* Pods-OWE FrontendTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OWE FrontendTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OWE FrontendTests/Pods-OWE FrontendTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4F900AB3D66D8A46EEA12F53 /* Pods-OWE Frontend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OWE Frontend.release.xcconfig"; path = "Pods/Target Support Files/Pods-OWE Frontend/Pods-OWE Frontend.release.xcconfig"; sourceTree = "<group>"; };
+		35BFE04CD19CF0053BC89AD5 /* Pods_OWE_Frontend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OWE_Frontend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		63C73C81218AA9C900E06207 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		63C73C83218AB37F00E06207 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -55,9 +101,8 @@
 		63C73C9221928B5F00E06207 /* Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Split.swift; sourceTree = "<group>"; };
 		63C73C9521928EE600E06207 /* Transaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transaction.storyboard; sourceTree = "<group>"; };
 		63C73C9921928F6F00E06207 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
-		8030B7AA8E8AEAB87915BD35 /* Pods_OWE_Frontend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OWE_Frontend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9831073FCBFF1FF921FC6A2A /* Pods-OWE FrontendTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OWE FrontendTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OWE FrontendTests/Pods-OWE FrontendTests.release.xcconfig"; sourceTree = "<group>"; };
-		C0D601B027E01427F58C7C63 /* Pods_OWE_FrontendTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OWE_FrontendTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		647D82082CB015D478F02ABD /* Pods-OWE Frontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OWE Frontend.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OWE Frontend/Pods-OWE Frontend.debug.xcconfig"; sourceTree = "<group>"; };
 		D651A07B21879FC8001F6EFA /* OWE Frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OWE Frontend.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D651A07E21879FC8001F6EFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D651A08321879FC8001F6EFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,6 +121,7 @@
 		D6FE2BB72190927A0038F54F /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D6FE2BBB2190A32A0038F54F /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		D6FE2BBC2190A32A0038F54F /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
+		E1435A41872F816637642B6D /* Pods-OWE Frontend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OWE Frontend.release.xcconfig"; path = "Pods/Target Support Files/Pods-OWE Frontend/Pods-OWE Frontend.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C73C86218E66F200E06207 /* SwiftyJSON.framework in Frameworks */,
-				AD1B65B435BAA44A8D4D6B48 /* Pods_OWE_Frontend.framework in Frameworks */,
+				0E82137273B00B88D28374B4 /* Pods_OWE_Frontend.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +138,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				919155831E790B87EFD29682 /* Pods_OWE_FrontendTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,13 +152,25 @@
 			path = TransactionControllers;
 			sourceTree = "<group>";
 		};
-		AB1D194D69D7D2E3C13C29EB /* Pods */ = {
+		63C73CA021935EFF00E06207 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0CD4787A01294E1207A6920F /* Pods-OWE Frontend.debug.xcconfig */,
-				4F900AB3D66D8A46EEA12F53 /* Pods-OWE Frontend.release.xcconfig */,
-				1BF68067BEC128CEA52FE178 /* Pods-OWE FrontendTests.debug.xcconfig */,
-				9831073FCBFF1FF921FC6A2A /* Pods-OWE FrontendTests.release.xcconfig */,
+				63C73CAB21935EFF00E06207 /* Alamofire.framework */,
+				63C73CAD21935EFF00E06207 /* Alamofire iOS Tests.xctest */,
+				63C73CAF21935EFF00E06207 /* Alamofire.framework */,
+				63C73CB121935EFF00E06207 /* Alamofire macOS Tests.xctest */,
+				63C73CB321935EFF00E06207 /* Alamofire.framework */,
+				63C73CB521935EFF00E06207 /* Alamofire tvOS Tests.xctest */,
+				63C73CB721935EFF00E06207 /* Alamofire.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF1D2DA27814C7A7C5CCF81C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				647D82082CB015D478F02ABD /* Pods-OWE Frontend.debug.xcconfig */,
+				E1435A41872F816637642B6D /* Pods-OWE Frontend.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -122,8 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				63C73C85218E66F200E06207 /* SwiftyJSON.framework */,
-				8030B7AA8E8AEAB87915BD35 /* Pods_OWE_Frontend.framework */,
-				C0D601B027E01427F58C7C63 /* Pods_OWE_FrontendTests.framework */,
+				35BFE04CD19CF0053BC89AD5 /* Pods_OWE_Frontend.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -131,11 +187,12 @@
 		D651A07221879FC8001F6EFA = {
 			isa = PBXGroup;
 			children = (
+				63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */,
 				D651A07D21879FC8001F6EFA /* OWE Frontend */,
 				D651A09521879FCA001F6EFA /* OWE FrontendTests */,
 				D651A07C21879FC8001F6EFA /* Products */,
 				BFB31FF29A5356E3AA08CC28 /* Frameworks */,
-				AB1D194D69D7D2E3C13C29EB /* Pods */,
+				AF1D2DA27814C7A7C5CCF81C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,10 +297,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D651A09B21879FCA001F6EFA /* Build configuration list for PBXNativeTarget "OWE Frontend" */;
 			buildPhases = (
-				FD8B93B8AA513E76D05AAFA3 /* [CP] Check Pods Manifest.lock */,
+				CEAA2527B28224A2EEB1DDC9 /* [CP] Check Pods Manifest.lock */,
 				D651A07721879FC8001F6EFA /* Sources */,
 				D651A07821879FC8001F6EFA /* Frameworks */,
 				D651A07921879FC8001F6EFA /* Resources */,
+				40518AC47C91E976AACEC9CF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -258,11 +316,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D651A09E21879FCA001F6EFA /* Build configuration list for PBXNativeTarget "OWE FrontendTests" */;
 			buildPhases = (
-				979C9113B87D1D1EC888B46E /* [CP] Check Pods Manifest.lock */,
 				D651A08E21879FCA001F6EFA /* Sources */,
 				D651A08F21879FCA001F6EFA /* Frameworks */,
 				D651A09021879FCA001F6EFA /* Resources */,
-				8DC583B21272C075F4FBF2D3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,6 +360,12 @@
 			mainGroup = D651A07221879FC8001F6EFA;
 			productRefGroup = D651A07C21879FC8001F6EFA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 63C73CA021935EFF00E06207 /* Products */;
+					ProjectRef = 63C73C9F21935EFF00E06207 /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D651A07A21879FC8001F6EFA /* OWE Frontend */,
@@ -311,6 +373,58 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		63C73CAB21935EFF00E06207 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 63C73CAA21935EFF00E06207 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63C73CAD21935EFF00E06207 /* Alamofire iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire iOS Tests.xctest";
+			remoteRef = 63C73CAC21935EFF00E06207 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63C73CAF21935EFF00E06207 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 63C73CAE21935EFF00E06207 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63C73CB121935EFF00E06207 /* Alamofire macOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire macOS Tests.xctest";
+			remoteRef = 63C73CB021935EFF00E06207 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63C73CB321935EFF00E06207 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 63C73CB221935EFF00E06207 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63C73CB521935EFF00E06207 /* Alamofire tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire tvOS Tests.xctest";
+			remoteRef = 63C73CB421935EFF00E06207 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63C73CB721935EFF00E06207 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 63C73CB621935EFF00E06207 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D651A07921879FC8001F6EFA /* Resources */ = {
@@ -335,7 +449,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8DC583B21272C075F4FBF2D3 /* [CP] Embed Pods Frameworks */ = {
+		40518AC47C91E976AACEC9CF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -343,43 +457,23 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OWE FrontendTests/Pods-OWE FrontendTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-OWE Frontend/Pods-OWE Frontend-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OWE FrontendTests/Pods-OWE FrontendTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OWE Frontend/Pods-OWE Frontend-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		979C9113B87D1D1EC888B46E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OWE FrontendTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FD8B93B8AA513E76D05AAFA3 /* [CP] Check Pods Manifest.lock */ = {
+		CEAA2527B28224A2EEB1DDC9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -582,11 +676,11 @@
 		};
 		D651A09C21879FCA001F6EFA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0CD4787A01294E1207A6920F /* Pods-OWE Frontend.debug.xcconfig */;
+			baseConfigurationReference = 647D82082CB015D478F02ABD /* Pods-OWE Frontend.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UM7RW2TAM7;
+				DEVELOPMENT_TEAM = D6ZKNBRUK5;
 				INFOPLIST_FILE = "OWE Frontend/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -601,11 +695,11 @@
 		};
 		D651A09D21879FCA001F6EFA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F900AB3D66D8A46EEA12F53 /* Pods-OWE Frontend.release.xcconfig */;
+			baseConfigurationReference = E1435A41872F816637642B6D /* Pods-OWE Frontend.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UM7RW2TAM7;
+				DEVELOPMENT_TEAM = D6ZKNBRUK5;
 				INFOPLIST_FILE = "OWE Frontend/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -620,7 +714,6 @@
 		};
 		D651A09F21879FCA001F6EFA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BF68067BEC128CEA52FE178 /* Pods-OWE FrontendTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -642,7 +735,6 @@
 		};
 		D651A0A021879FCA001F6EFA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9831073FCBFF1FF921FC6A2A /* Pods-OWE FrontendTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

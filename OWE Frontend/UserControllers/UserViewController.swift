@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 let userURL: NSURL = NSURL(string: "https://oneworldexchange.herokuapp.com/user/1")!
 let data = NSData(contentsOf: userURL as URL)!
@@ -40,7 +41,7 @@ class UserViewController: UIViewController, UserSettingsDelegate {
   }
   
   func getUser(swiftyjson: JSON) -> User? {
-    
+    let id = swiftyjson["id"].intValue
     let fname = swiftyjson["first_name"].stringValue
     let lname = swiftyjson["last_name"].stringValue
     let email = swiftyjson["email"].stringValue
@@ -49,7 +50,7 @@ class UserViewController: UIViewController, UserSettingsDelegate {
     let passwordConfirmation = swiftyjson["password_confirmation"].stringValue
     let baseCurrency = swiftyjson["base_currency"].stringValue
     
-    let user = User(firstName: fname, lastName: lname, email: email, phone: phone, password: password, passwordConfirmation: passwordConfirmation, baseCurrency: baseCurrency)
+    let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, password: password, passwordConfirmation: passwordConfirmation, baseCurrency: baseCurrency)
     
     return user
   }
@@ -60,17 +61,33 @@ class UserViewController: UIViewController, UserSettingsDelegate {
   
   func UserSettingsSave(controller: UserSettingsViewController, didFinishAddingSettings user: User) {
     // send post request
-    // call view did load 
+    let params = [
+      "id": user.id,
+      "first_name": user.firstName,
+      "last_name": user.lastName,
+      "email": user.email,
+      "phone": user.phone,
+      "password": user.password,
+      "password_confirmation": user.passwordConfirmation,
+      "base_currency": user.baseCurrency
+      ] as [String : Any]
+    
+    //Alamofire.request(.POST, "https://oneworldexchange.herokuapp.com/user/1", parameters: params, encoding: .JSON)
+    Alamofire.request("https://oneworldexchange.herokuapp.com/user/1", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil)
+    
+    // call view did load to reload user page with new info
+    viewDidLoad()
   }
     
 
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showUserSettings" {
-      let showUserSettings:UserSettingsViewController = segue.destination as! UserSettingsViewController
-      showUserSettings.profile = self.user
+      let navigationController = segue.destination as! UINavigationController
+      let controller = navigationController.topViewController as! UserSettingsViewController
+      controller.profile = self.user
       
-      showUserSettings.delegate = self as UserSettingsDelegate
+      controller.delegate = self as UserSettingsDelegate
     }
   }
   
