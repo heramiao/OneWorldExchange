@@ -60,6 +60,7 @@ class UserViewController: UIViewController, UserSettingsDelegate {
   
   func UserSettingsSave(controller: UserSettingsViewController, didFinishAddingSettings user: User) {
     // send post request
+    // call view did load 
   }
     
 
