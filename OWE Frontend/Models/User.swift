@@ -7,11 +7,7 @@
 //
 
 import Foundation
-import SwiftyJSON
-
-let userURL: NSURL = NSURL(string: "https://oneworldexchange.herokuapp.com/user/1")!
-let data = NSData(contentsOf: userURL as URL)!
-let json = try JSON(data: data as Data)
+//import SwiftyJSON
 
 class User {
   var firstName: String
@@ -34,17 +30,3 @@ class User {
   
 }
 
-func getUser(swiftyjson: JSON) -> User? {
-  
-  let fname = json["first_name"].stringValue
-  let lname = json["last_name"].stringValue
-  let email = json["email"].stringValue
-  let phone = json["phone"].stringValue
-  let password = json["password"].stringValue
-  let passwordConfirmation = json["password_confirmation"].stringValue
-  let baseCurrency = json["base_currency"].stringValue
-  
-  let user = User(firstName: fname, lastName: lname, email: email, phone: phone, password: password, passwordConfirmation: passwordConfirmation, baseCurrency: baseCurrency)
-  
-  return user
-}

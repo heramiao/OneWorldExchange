@@ -9,9 +9,18 @@
 import UIKit
 import CoreData
 
+// MARK: Protocol Methods
+
+protocol UserSettingsDelegate: class {
+  func UserSettingsCancel(controller: UserSettingsViewController)
+  
+  func UserSettingsSave(controller: UserSettingsViewController, didFinishAddingSettings user: User)
+}
+
 class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
   
   var profile: User?
+  var delegate: UserSettingsDelegate?
   
   // MARK: - Outlets
   
@@ -36,11 +45,11 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
     picker.dataSource = self
 
     if let user = profile {
-      fnameField.text = profile.firstName
-      lnameField.text = profile.lastName
-      emailField.text = profile.email
-      phoneField.text = profile.phone
-      baseCurrField.text = profile.baseCurrency
+      fnameField.text = profile!.firstName
+      lnameField.text = profile!.lastName
+      emailField.text = profile!.email
+      phoneField.text = profile!.phone
+      baseCurrField.text = profile!.baseCurrency
     }
   }
   
@@ -75,19 +84,19 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   // MARK: - Actions
   
   @IBAction func cancel() {
-    dismiss(animated: true, completion: nil)
+    delegate?.UserSettingsCancel(controller: self)
   }
   
   @IBAction func save() {
-    user.firstName = fnameField.text
-    user.lastName = lnameField.text
-    user.email = emailField.text
-    user.phone = phoneField.text
-    user.baseCurrency = baseCurrField.text
+    profile!.firstName = fnameField.text!
+    profile!.lastName = lnameField.text!
+    profile!.email = emailField.text!
+    profile!.phone = phoneField.text!
+    profile!.baseCurrency = baseCurrField.text!
     // user.password = new password or old password if newPassField not filled in
     // user.passwordConfirmation =
-    self.saveUser(user: user) // saving to Core Data
-    dismiss(animated: true, completion: nil)
+    self.saveUser(user: profile!) // saving to Core Data
+    delegate?.UserSettingsSave(controller: self, didFinishAddingSettings: profile!)
   }
   
   // MARK: - Core Data
