@@ -28,17 +28,22 @@ class UserViewController: UIViewController, UserSettingsDelegate {
   
   @IBOutlet weak var profilePic: UIImageView!
   @IBOutlet weak var friendsButton: UIButton!
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    print("view has loaded")
+    
     if let user = getUser(swiftyjson: json) {
       self.user = user
-      name.text = user.firstName + user.lastName
+      name.text = user.firstName + " " + user.lastName
       email.text = user.email
       phone.text = user.phone
     }
-    
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
   }
   
   func getUser(swiftyjson: JSON) -> User? {
@@ -76,11 +81,16 @@ class UserViewController: UIViewController, UserSettingsDelegate {
     //Alamofire.request(.POST, "https://oneworldexchange.herokuapp.com/user/1", parameters: params, encoding: .JSON)
     Alamofire.request("https://oneworldexchange.herokuapp.com/user/1", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil)
     
-    // call view did load to reload user page with new info
-    viewDidLoad()
-  }
+    dismiss(animated: true, completion: nil)
     
-
+    self.user = user
+    name.text = user.firstName + " " + user.lastName
+    email.text = user.email
+    phone.text = user.phone
+    
+  }
+  
+  
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showUserSettings" {
@@ -92,5 +102,5 @@ class UserViewController: UIViewController, UserSettingsDelegate {
     }
   }
   
-
 }
+
