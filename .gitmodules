@@ -1,3 +1,6 @@
 [submodule "public/api"]
 	path = public/api
 	url = https://github.com/cmu-is-projects/RailsSwaggerUI
+[submodule "Alamofire"]
+	path = Alamofire
+	url = https://github.com/Alamofire/Alamofire.git
