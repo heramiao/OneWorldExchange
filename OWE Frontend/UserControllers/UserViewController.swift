@@ -33,6 +33,7 @@ class UserViewController: UIViewController, UserSettingsDelegate {
     super.viewDidLoad()
     
     if let user = getUser(swiftyjson: json) {
+      self.user = user
       name.text = user.firstName + user.lastName
       email.text = user.email
       phone.text = user.phone

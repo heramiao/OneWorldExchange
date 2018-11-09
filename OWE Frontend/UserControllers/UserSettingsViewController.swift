@@ -37,19 +37,19 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   
   var pickerData = ["USD", "EUR", "GBP", "CHF", "AUD", "JPY", "TWD", "CNH"]
   var picker = UIPickerView()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     picker.delegate = self
     picker.dataSource = self
-
+    
     if let user = profile {
-      fnameField.text = profile!.firstName
-      lnameField.text = profile!.lastName
-      emailField.text = profile!.email
-      phoneField.text = profile!.phone
-      baseCurrField.text = profile!.baseCurrency
+      fnameField.text = user.firstName
+      lnameField.text = user.lastName
+      emailField.text = user.email
+      phoneField.text = user.phone
+      // baseCurrField.text = user.baseCurrency
     }
   }
   
@@ -80,7 +80,7 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
     baseCurrField.text = pickerData[row]
     self.view.endEditing(false)
   }
-
+  
   // MARK: - Actions
   
   @IBAction func cancel() {
@@ -92,7 +92,7 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
     profile!.lastName = lnameField.text!
     profile!.email = emailField.text!
     profile!.phone = phoneField.text!
-    profile!.baseCurrency = baseCurrField.text!
+    // profile!.baseCurrency = baseCurrField.text!
     // user.password = new password or old password if newPassField not filled in
     // user.passwordConfirmation =
     self.saveUser(user: profile!) // saving to Core Data
@@ -104,15 +104,15 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   func saveUser(user: User){
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = appDelegate.persistentContainer.viewContext
-    let entity = NSEntityDescription.entity(forEntityName: "User", in: context)
+    let entity = NSEntityDescription.entity(forEntityName: "Users", in: context)
     let newUser = NSManagedObject(entity: entity!, insertInto: context)
     newUser.setValue(user.firstName, forKey: "first_name")
     newUser.setValue(user.lastName, forKey: "last_name")
     newUser.setValue(user.email, forKey: "email")
     newUser.setValue(user.phone, forKey: "phone")
-    newUser.setValue(user.baseCurrency, forKey: "base_currency")
-    newUser.setValue(user.password, forKey: "password")
-    newUser.setValue(user.passwordConfirmation, forKey: "password_confirmation")
+    // newUser.setValue(user.baseCurrency, forKey: "base_currency")
+    // newUser.setValue(user.password, forKey: "password")
+    // newUser.setValue(user.passwordConfirmation, forKey: "password_confirmation")
     do {
       try context.save()
     } catch {
@@ -120,15 +120,16 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
   }
   
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
+  /*
+   // MARK: - Navigation
+   
+   // In a storyboard-based application, you will often want to do a little preparation before navigation
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   // Get the new view controller using segue.destination.
+   // Pass the selected object to the new view controller.
+   }
+   */
   
 }
+
