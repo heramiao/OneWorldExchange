@@ -77,7 +77,7 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   
   // Capture the picker view selection
   func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    baseCurrField.text = pickerData[row]
+//    baseCurrField.text = pickerData[row]
     self.view.endEditing(false)
   }
   
