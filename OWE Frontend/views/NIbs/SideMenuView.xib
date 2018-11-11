@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuView" customModule="OWE_Frontend" customModuleProvider="target">
+            <connections>
+                <outlet property="constraintMenuLeft" destination="O98-u2-Kmw" id="LfC-ff-wRP"/>
+                <outlet property="constraintMenuWidth" destination="fcU-t3-lIW" id="NTs-hX-nfB"/>
+                <outlet property="gestureScreenEdgePan" destination="Vfo-XN-loR" id="HdG-7t-eEM"/>
+                <outlet property="viewBlack" destination="NIK-hx-jJW" id="1Fg-ev-kOd"/>
+                <outlet property="viewMenu" destination="8Ti-2a-dNL" id="Jcd-kU-OPG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-hx-jJW" userLabel="viewBlack">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="ubD-Pj-0VM" appends="YES" id="1OA-ue-52b"/>
+                        <outletCollection property="gestureRecognizers" destination="R2S-Dj-qbL" appends="YES" id="njg-6a-cAr"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ti-2a-dNL" userLabel="viewMenu">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="fcU-t3-lIW"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="Om3-S1-52x"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Vfo-XN-loR" appends="YES" id="BwP-No-XZ0"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="8Ti-2a-dNL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="O98-u2-Kmw"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="Vfo-XN-loR" appends="YES" id="Uu0-ya-Sff"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="154.27286356821591"/>
+        </view>
+        <tapGestureRecognizer id="ubD-Pj-0VM"/>
+        <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="Vfo-XN-loR">
+            <rectEdge key="edges" left="YES"/>
+        </screenEdgePanGestureRecognizer>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="R2S-Dj-qbL"/>
+    </objects>
+</document>
