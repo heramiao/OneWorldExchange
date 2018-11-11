@@ -113,12 +113,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="25.637181409295355"/>
+            <point key="canvasLocation" x="978.75" y="25.35211267605634"/>
         </scene>
         <!--Edit Account-->
         <scene sceneID="tSP-Cc-9wU">
             <objects>
-                <viewController id="vmh-86-qMK" customClass="UserSettingsViewController" customModule="OWE_Frontend" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vmh-86-qMK" customClass="UserSettingsViewController" customModule="OWE_Frontend" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n8E-RL-hjd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
