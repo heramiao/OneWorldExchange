@@ -11,7 +11,7 @@ import Photos
 import UIKit
 import os.log
 
-class GroupListingViewController: UITableViewController, GroupSettingsControllerDelegate {
+class GroupListingViewController: BaseTableViewController, GroupSettingsControllerDelegate {
     
     // MARK: - Properties
     var groups = [Group]()
@@ -19,7 +19,9 @@ class GroupListingViewController: UITableViewController, GroupSettingsController
     // MARK: - General
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        addSlideMenuButton()
+        
+//        self.navigationItem.leftBarButtonItem = self.editButtonItem
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
         // Again set up the stack to interface with CoreData

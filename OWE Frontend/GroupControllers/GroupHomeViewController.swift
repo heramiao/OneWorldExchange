@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GroupHomeViewController: UIViewController {
+class GroupHomeViewController: BaseViewController {
     @IBOutlet weak var tripImage: UIImageView!
     @IBOutlet var youOweTable: UITableView!
     @IBOutlet var newTransactionButton: UIButton!
@@ -33,6 +33,7 @@ class GroupHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSlideMenuButton()
         self.configureView()
     }
     

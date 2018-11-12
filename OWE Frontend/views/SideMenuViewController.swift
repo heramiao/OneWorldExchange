@@ -38,8 +38,10 @@ class SideMenuViewController: UIViewController , UITableViewDataSource, UITableV
     }
     
     func updateArrayMenuOptions(){
-        arrayMenuOptions.append(["title":"Home", "icon":"HomeIcon"])
-        arrayMenuOptions.append(["title":"Play", "icon":"PlayIcon"])
+        arrayMenuOptions.append(["title":"Profile"])
+        arrayMenuOptions.append(["title":"Groups"])
+        arrayMenuOptions.append(["title":"History"])
+        arrayMenuOptions.append(["title":"Settings"])
         
         tblMenuOptions.reloadData()
     }
@@ -74,9 +76,7 @@ class SideMenuViewController: UIViewController , UITableViewDataSource, UITableV
         cell.backgroundColor = UIColor.clear
         
         let lblTitle : UILabel = cell.contentView.viewWithTag(101) as! UILabel
-        let imgIcon : UIImageView = cell.contentView.viewWithTag(100) as! UIImageView
         
-        imgIcon.image = UIImage(named: arrayMenuOptions[indexPath.row]["icon"]!)
         lblTitle.text = arrayMenuOptions[indexPath.row]["title"]!
         
         return cell

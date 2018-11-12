@@ -25,13 +25,23 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         print("View Controller is : \(topViewController) \n", terminator: "")
         switch(index){
         case 0:
-            print("Home\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("Home")
+            print("Profile\n", terminator: "")
+            self.openViewControllerBasedOnIdentifier("Profile", "Main")
             break
             
         case 1:
-            print("Play\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("PlayVC")
+            print("Groups\n", terminator: "")
+            self.openViewControllerBasedOnIdentifier("Groups", "GroupViews")
+            break
+            
+        case 2:
+            print("History\n", terminator: "")
+            self.openViewControllerBasedOnIdentifier("History", "HistoryVC")
+            break
+            
+        case 3:
+            print("Settings\n", terminator: "")
+            self.openViewControllerBasedOnIdentifier("Settings", "SettingsVC")
             break
             
         default:
@@ -39,8 +49,9 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         }
     }
     
-    func openViewControllerBasedOnIdentifier(_ strIdentifier:String){
-        let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: strIdentifier)
+    func openViewControllerBasedOnIdentifier(_ strIdentifier:String, _ board:String){
+        let storyboard = UIStoryboard(name: board, bundle: nil)
+        let destViewController : UIViewController = storyboard.instantiateViewController(withIdentifier: strIdentifier)
         
         let topViewController : UIViewController = self.navigationController!.topViewController!
         
@@ -108,7 +119,8 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         sender.isEnabled = false
         sender.tag = 10
         
-        let menuVC : SideMenuViewController = self.storyboard!.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let menuVC : SideMenuViewController = storyboard.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
         menuVC.btnMenu = sender
         menuVC.delegate = self
         self.view.addSubview(menuVC.view)
