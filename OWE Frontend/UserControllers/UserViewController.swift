@@ -13,7 +13,7 @@ let userURL: NSURL = NSURL(string: "https://oneworldexchange.herokuapp.com/user/
 let data = NSData(contentsOf: userURL as URL)!
 let json = try! JSON(data: data as Data)
 
-class UserViewController: UIViewController, UserSettingsDelegate {
+class UserViewController: BaseViewController, UserSettingsDelegate {
   
   var user: User?
   
@@ -31,6 +31,7 @@ class UserViewController: UIViewController, UserSettingsDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    addSlideMenuButton()
     
     print("view has loaded")
     
