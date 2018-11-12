@@ -78,8 +78,16 @@ class UserViewController: UIViewController, UserSettingsDelegate {
       "base_currency": user.baseCurrency
       ] as [String : Any]
     
-    //Alamofire.request(.POST, "https://oneworldexchange.herokuapp.com/user/1", parameters: params, encoding: .JSON)
-    Alamofire.request("https://oneworldexchange.herokuapp.com/user/1", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil)
+    Alamofire.request("https://oneworldexchange.herokuapp.com/user", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+      
+      print(response.error)
+      if let status = response.response?.statusCode {
+        print(status)
+      }
+      if let result = response.result.value {
+        print(result)
+      }
+    }
     
     dismiss(animated: true, completion: nil)
     
@@ -103,4 +111,3 @@ class UserViewController: UIViewController, UserSettingsDelegate {
   }
   
 }
-
