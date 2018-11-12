@@ -78,10 +78,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="groupEndDate" destination="OYe-gK-fIB" id="EKN-IZ-jM1"/>
                 <outlet property="groupImage" destination="9bR-3F-e7W" id="EKo-OI-4Cu"/>
-                <outlet property="groupStartDate" destination="Lul-Rf-XJV" id="17A-NX-5FF"/>
-                <outlet property="groupTitle" destination="ojP-Hu-35S" id="bEH-5g-dAK"/>
+                <outlet property="groupTitle" destination="ojP-Hu-35S" id="BHc-V7-eAx"/>
                 <outlet property="tripEndDate" destination="OYe-gK-fIB" id="bx5-US-Jef"/>
                 <outlet property="tripStartDate" destination="Lul-Rf-XJV" id="MNc-rh-Oet"/>
             </connections>
