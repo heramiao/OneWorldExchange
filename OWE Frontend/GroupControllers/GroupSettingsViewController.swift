@@ -203,12 +203,19 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func updateGroup(group: Group) {
-        // Connect to the context for the container stack
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        // Specifically select the Group entity to save this object to
-        let entity = NSEntityDescription.entity(forEntityName: "Groups", in: context)
-        //        if let data =
+//        // Connect to the context for the container stack
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = appDelegate.persistentContainer.viewContext
+//        // Specifically select the Group entity to save this object to
+//        let moc = ...
+//        let title = self.tripNameField.text
+//        let entitiesRequest = NSFetchRequest(entityName: "Groups").predicate = NSPredicate(format: "title == %@", title)
+//        do {
+//            let trip = try moc.executeFetchRequest(employeesFetch) as! [EmployeeMO]
+//        } catch {
+//            fatalError("Failed to fetch trip: \(error)")
+//        }
+        
     }
     
 }
