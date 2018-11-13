@@ -9,7 +9,46 @@
 import Foundation
 import UIKit
 
-class GroupHomeViewController: UIViewController {
+class GroupHomeViewController: BaseViewController {
     @IBOutlet weak var tripImage: UIImageView!
+    @IBOutlet var youOweTable: UITableView!
+    @IBOutlet var newTransactionButton: UIButton!
+    
+    var detailItem: Group? {
+        didSet {
+            // Update the view.
+            self.configureView()
+        }
+    }
+    
+    func configureView() {
+        // Update the user interface for the detail item.
+        if let detail: Group = self.detailItem {
+            if let tripImage = self.tripImage {
+                tripImage.image = detail.image
+            }
+            self.navigationItem.title = detail.title
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addSlideMenuButton()
+        self.configureView()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editGroup" {
+            let navController = segue.destination as! UINavigationController
+            let controller = navController.topViewController as! GroupSettingsController
+            controller.detailItem = detailItem
+        }
+    }
     
 }
