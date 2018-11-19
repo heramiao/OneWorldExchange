@@ -11,7 +11,7 @@ import UIKit
 class MemberTableCell: UITableViewCell {
   
   @IBOutlet weak var name: UILabel!
-  @IBOutlet weak var addMember: UIButton!
+  @IBOutlet weak var addMember: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -20,10 +20,6 @@ class MemberTableCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     // Configure the view for the selected state
-  }
-  
-  @IBAction func addMember() {
-  
   }
   
 }

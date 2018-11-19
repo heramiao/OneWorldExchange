@@ -99,16 +99,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <searchBar contentMode="redraw" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XvR-0F-pBK">
-                                <rect key="frame" x="106" y="329" width="172" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="rQX-rU-5jT"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Psh-QP-qd3" id="94p-iE-L38"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3k5-9B-zLD">
                                 <rect key="frame" x="0.0" y="385" width="320" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -148,7 +138,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="endDateField" destination="wfZ-2i-Lhz" id="g7p-zd-egg"/>
-                        <outlet property="memberSearch" destination="XvR-0F-pBK" id="0YK-7T-Uek"/>
                         <outlet property="startDateField" destination="nNA-JM-XeW" id="ucd-ES-sXn"/>
                         <outlet property="tripImage" destination="ZIg-sO-H3H" id="Csv-9u-mE6"/>
                         <outlet property="tripNameField" destination="Fxu-AA-jDh" id="sZD-rQ-BMd"/>
