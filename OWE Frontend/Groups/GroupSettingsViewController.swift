@@ -22,16 +22,13 @@ extension GroupSettingsController: UISearchResultsUpdating {
 
 // MARK: GroupSettingsViewController
 class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
-  
-  let viewModel = GroupSettingsViewModel()
-  let searchController = UISearchController(searchResultsController: nil)
-  var filteredUsers = [User]()
     
   // MARK: - Outlets
   @IBOutlet weak var tripImage: UIImageView!
   @IBOutlet weak var tripNameField: UITextField!
   @IBOutlet weak var startDateField: UITextField!
   @IBOutlet weak var endDateField: UITextField!
+  @IBOutlet weak var memberTable: UITableView!
   @IBOutlet weak var userTable: UITableView!
   
   // MARK: - Properties
@@ -49,13 +46,17 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   private var endDate: Date?
   //    private var users = [User]()
   
+  let viewModel = GroupSettingsViewModel()
+  let searchController = UISearchController(searchResultsController: nil)
+  var filteredUsers = [User]()
+  
   // MARK: - General
   override func viewDidLoad() {
     super.viewDidLoad()
     dateFormatter.dateFormat = "MM/dd/yy"
     self.configureView()
     
-    let cellNib = UINib(nibName: "MemberTableCell", bundle: nil)
+    let cellNib = UINib(nibName: "AddMemberTableCell", bundle: nil)
     userTable.register(cellNib, forCellReuseIdentifier: "addmember")
     
     setupSearchBar()
@@ -233,18 +234,25 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     
   }
   
+  // MARK: - Search User Table Views
+  func beginSearch() -> Bool {
+    return searchController.isActive
+  }
+  
   func isFiltering() -> Bool {
     return searchController.isActive && !searchBarIsEmpty()
   }
-
-  // MARK: - Table Views
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if isFiltering() {
       return filteredUsers.count
+    } else if beginSearch() {
+      return viewModel.numberOfRows()
+    } else {
+      return 0
     }
-    return viewModel.numberOfRows()
   }
-
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "addmember", for: indexPath) as! MemberTableCell
     let user: User
@@ -261,11 +269,12 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     // if member selected, remove from search table and add to members table
   }
   
-   //MARK: - Search Methods
+  //MARK: - Search Methods
   func setupSearchBar() {
     searchController.searchResultsUpdater = self
-    searchController.dimsBackgroundDuringPresentation = true
+    searchController.dimsBackgroundDuringPresentation = false
     definesPresentationContext = true
+    searchController.searchBar.placeholder = "Add New Members"
     userTable.tableHeaderView = searchController.searchBar
     searchController.searchBar.barTintColor = UIColor(red:0.98, green:0.48, blue:0.24, alpha:1.0)
   }
@@ -273,13 +282,15 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   func searchBarIsEmpty() -> Bool {
     return searchController.searchBar.text?.isEmpty ?? true
   }
-
+  
   func filterContentForSearchText(_ searchText: String, scope: String = "All") {
     filteredUsers = viewModel.users.filter { user in
       return user.name.lowercased().contains(searchText.lowercased())
     }
     userTable.reloadData()
   }
+  
+  
   
 }
 
