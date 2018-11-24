@@ -2,16 +2,16 @@
 //  MemberTableCell.swift
 //  OWE Frontend
 //
-//  Created by Hera Miao on 11/23/18.
+//  Created by Hera Miao on 11/17/18.
 //  Copyright © 2018 Juliann Fields. All rights reserved.
 //
 
 import UIKit
 
-class MemberTableCell: UITableViewCell {
+class AddMemberTableCell: UITableViewCell {
   
   @IBOutlet weak var name: UILabel!
-  @IBOutlet weak var remove: UILabel!
+  @IBOutlet weak var addMember: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()

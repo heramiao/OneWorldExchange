@@ -16,10 +16,11 @@ class User {
   var email: String
   var phone: String
   var password: String
-  var passwordConfirmation: String
+  //var passwordConfirmation: String
   var baseCurrency: String
   
-  init(id: Int, firstName: String, lastName: String, email: String, phone: String, password: String, passwordConfirmation: String, baseCurrency: String) {
+  init(id: Int, firstName: String, lastName: String, email: String, phone: String, password: String, baseCurrency: String) {
+    // passwordConfirmation: String, 
     self.id = id
     self.firstName = firstName
     self.lastName = lastName
@@ -27,7 +28,7 @@ class User {
     self.email = email
     self.phone = phone
     self.password = password
-    self.passwordConfirmation = passwordConfirmation
+    //self.passwordConfirmation = passwordConfirmation
     self.baseCurrency = baseCurrency
   }
   

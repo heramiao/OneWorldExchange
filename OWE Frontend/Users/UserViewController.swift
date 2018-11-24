@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-let userURL: NSURL = NSURL(string: "https://oneworldexchange.herokuapp.com/user/1")!
+let userURL: NSURL = NSURL(string: "https://oneworldexchange.herokuapp.com/users/1")!
 let data = NSData(contentsOf: userURL as URL)!
 let json = try! JSON(data: data as Data)
 
@@ -58,7 +58,7 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     let baseCurrency = swiftyjson["base_currency"].stringValue
     
     let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, password: password, baseCurrency: baseCurrency)
-    // passwordConfirmation: passwordConfirmation, add into creating User instance
+    // passwordConfirmation: passwordConfirmation,
     
     return user
   }
@@ -80,7 +80,7 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
       "base_currency": user.baseCurrency
       ] as [String : Any]
     
-    Alamofire.request("https://oneworldexchange.herokuapp.com/user", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+    Alamofire.request("https://oneworldexchange.herokuapp.com/users/1", method: .patch, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData{ response in
       
       print(response)
       if let status = response.response?.statusCode {

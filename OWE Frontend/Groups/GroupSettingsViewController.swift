@@ -47,6 +47,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   //    private var users = [User]()
   
   let viewModel = GroupSettingsViewModel()
+  let viewModel1 = GroupSettingsViewModel()
   let searchController = UISearchController(searchResultsController: nil)
   var filteredUsers = [User]()
   
@@ -59,13 +60,22 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     let cellNib = UINib(nibName: "AddMemberTableCell", bundle: nil)
     userTable.register(cellNib, forCellReuseIdentifier: "addmember")
     
+    let cellNib1 = UINib(nibName: "MemberTableCell", bundle: nil)
+    memberTable.register(cellNib1, forCellReuseIdentifier: "member")
+    
     setupSearchBar()
     
-    viewModel.refresh { [unowned self] in
+    viewModel.refresh ({ [unowned self] in
       DispatchQueue.main.async {
         self.userTable.reloadData()
       }
-    }
+      }, url: "https://oneworldexchange.herokuapp.com/users")
+    
+    viewModel1.refresh ({ [unowned self] in
+      DispatchQueue.main.async {
+        self.memberTable.reloadData()
+      }
+      }, url: "https://oneworldexchange.herokuapp.com/travel_group/1/members")
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -244,25 +254,36 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if isFiltering() {
-      return filteredUsers.count
-    } else if beginSearch() {
-      return viewModel.numberOfRows()
+    if tableView == self.userTable {
+      if isFiltering() {
+        return filteredUsers.count
+      } else if beginSearch() {
+        return viewModel.numberOfRows()
+      } else {
+        return 0
+      }
     } else {
-      return 0
+      return viewModel1.numberOfRows()
     }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "addmember", for: indexPath) as! MemberTableCell
     let user: User
-    if isFiltering() {
-      user = filteredUsers[indexPath.row]
+    if tableView == self.userTable {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "addmember", for: indexPath) as! AddMemberTableCell
+      if isFiltering() {
+        user = filteredUsers[indexPath.row]
+      } else {
+        user = viewModel.users[indexPath.row]
+      }
+      cell.name.text = user.name
+      return cell
     } else {
-      user = viewModel.users[indexPath.row]
+      let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MemberTableCell
+      user = viewModel1.users[indexPath.row]
+      cell.name.text = user.name
+      return cell
     }
-    cell.name.text = user.name
-    return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -275,7 +296,14 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     searchController.dimsBackgroundDuringPresentation = false
     definesPresentationContext = true
     searchController.searchBar.placeholder = "Add New Members"
-    userTable.tableHeaderView = searchController.searchBar
+    //navigationItem.searchController = searchController
+    //userTable.tableHeaderView = searchController.searchBar
+    if #available(iOS 11.0, *) {
+      navigationItem.searchController = searchController
+      navigationItem.hidesSearchBarWhenScrolling = false
+    } else {
+      userTable.tableHeaderView = searchController.searchBar
+    }
     searchController.searchBar.barTintColor = UIColor(red:0.98, green:0.48, blue:0.24, alpha:1.0)
   }
   

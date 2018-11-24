@@ -8,16 +8,14 @@
 
 import Foundation
 
-typealias JSONDictionary = [String: AnyObject]
-
 class GroupSettingsViewModel {
+  
+  typealias JSONDictionary = [String: AnyObject]
   
   let client = SearchClient()
   var users = [User]()
   
-  let url = "https://oneworldexchange.herokuapp.com/user"
-  
-  func refresh(_ completion: @escaping () -> Void) {
+  func refresh(_ completion: @escaping () -> Void, url: String) {
     client.fetchRepositories ({ [unowned self] data in
       if let allUsers = self.repositoriesFromSearchResponse(data) {
         self.users = allUsers
@@ -73,8 +71,10 @@ class GroupSettingsViewModel {
       let email = dict["email"] as? String,
       let phone = dict["phone"] as? String,
       let password = dict["password"] as? String,
+      //let passwordConfirmation = dict["password_confirmation" ]
       let baseCurr = dict["base_currency"] as? String {
       let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, password: password, baseCurrency: baseCurr)
+      // passwordConfirmation: passwordConfirmation,
       return user
     } else {
       print("Error: couldn't parse JSON dictionary: \(dict)")
