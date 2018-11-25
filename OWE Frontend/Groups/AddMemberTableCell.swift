@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol AddMemberDelegate: class {
+  func addMember(class: AddMemberTableCell, didFinishAdding member: User)
+}
+
 class AddMemberTableCell: UITableViewCell {
   
-  @IBOutlet weak var name: UILabel!
-  @IBOutlet weak var addMember: UILabel!
+  @IBOutlet weak var nameLabel: UILabel!
+  
+  var member: User?
+  var delegate: AddMemberDelegate?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -20,6 +26,10 @@ class AddMemberTableCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     // Configure the view for the selected state
+  }
+  
+  @IBAction func addMemberTapped(_ sender: UIButton) {
+    delegate?.addMember(class: self, didFinishAdding: member!)
   }
   
 }

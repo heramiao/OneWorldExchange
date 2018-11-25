@@ -11,11 +11,11 @@ import UIKit
 
 struct Group {
     
-    // MARK: - Properties
-    //    var users: [User]?
-    var title: String = ""
-    var image: UIImage?
-    var startDate: Date?
-    var endDate: Date?
+  // MARK: - Properties
+  //var id: Int
+  var title: String
+  var image: UIImage
+  var startDate: Date
+  var endDate: Date
     
 }

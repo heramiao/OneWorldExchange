@@ -24,18 +24,18 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TU-zF-wdS">
-                        <rect key="frame" x="227" y="20" width="11" height="21"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7b1-Pv-QrW">
+                        <rect key="frame" x="215" y="15" width="41" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <state key="normal" title="+ Add"/>
+                        <connections>
+                            <action selector="addMemberTapped:" destination="Bdi-37-oHh" eventType="touchUpInside" id="TOB-iG-6Ea"/>
+                        </connections>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="addMember" destination="4TU-zF-wdS" id="CUU-X6-bwI"/>
-                <outlet property="name" destination="icx-QG-Gih" id="y6h-Qb-RUb"/>
+                <outlet property="nameLabel" destination="icx-QG-Gih" id="t7T-Hf-ynU"/>
             </connections>
             <point key="canvasLocation" x="520" y="21.589205397301352"/>
         </tableViewCell>

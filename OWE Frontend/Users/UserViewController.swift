@@ -68,7 +68,7 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
   }
   
   func UserSettingsSave(controller: UserSettingsViewController, didFinishAddingSettings user: User) {
-    // send post request
+    // send update/patch request
     let params = [
       "id": user.id,
       "first_name": user.firstName,

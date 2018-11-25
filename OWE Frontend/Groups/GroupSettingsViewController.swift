@@ -21,7 +21,7 @@ extension GroupSettingsController: UISearchResultsUpdating {
 }
 
 // MARK: GroupSettingsViewController
-class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, AddMemberDelegate {
     
   // MARK: - Outlets
   @IBOutlet weak var tripImage: UIImageView!
@@ -46,8 +46,8 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   private var endDate: Date?
   //    private var users = [User]()
   
-  let viewModel = GroupSettingsViewModel()
-  let viewModel1 = GroupSettingsViewModel()
+  let viewModelUser = GroupSettingsViewModel()
+  let viewModelMember = GroupSettingsViewModel()
   let searchController = UISearchController(searchResultsController: nil)
   var filteredUsers = [User]()
   
@@ -59,19 +59,22 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     
     let cellNib = UINib(nibName: "AddMemberTableCell", bundle: nil)
     userTable.register(cellNib, forCellReuseIdentifier: "addmember")
+    //let addMemberTableCell = AddMemberTableCell()
+    //addMemberTableCell.delegate = self as AddMemberDelegate
+    
     
     let cellNib1 = UINib(nibName: "MemberTableCell", bundle: nil)
     memberTable.register(cellNib1, forCellReuseIdentifier: "member")
     
     setupSearchBar()
     
-    viewModel.refresh ({ [unowned self] in
+    viewModelUser.refresh ({ [unowned self] in
       DispatchQueue.main.async {
         self.userTable.reloadData()
       }
       }, url: "https://oneworldexchange.herokuapp.com/users")
     
-    viewModel1.refresh ({ [unowned self] in
+    viewModelMember.refresh ({ [unowned self] in
       DispatchQueue.main.async {
         self.memberTable.reloadData()
       }
@@ -244,6 +247,16 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     
   }
   
+  func addMember(class: AddMemberTableCell, didFinishAdding member: User) {
+    let newRowIndex = viewModelMember.users.count
+    viewModelMember.users.append(member)
+    viewModelMember.addMemberToGroup(member: member)
+    
+    let indexPath = NSIndexPath(row: newRowIndex, section: 0)
+    let indexPaths = [indexPath]
+    memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+  }
+  
   // MARK: - Search User Table Views
   func beginSearch() -> Bool {
     return searchController.isActive
@@ -258,12 +271,12 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       if isFiltering() {
         return filteredUsers.count
       } else if beginSearch() {
-        return viewModel.numberOfRows()
+        return viewModelUser.numberOfRows()
       } else {
         return 0
       }
     } else {
-      return viewModel1.numberOfRows()
+      return viewModelMember.numberOfRows()
     }
   }
   
@@ -271,24 +284,36 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     let user: User
     if tableView == self.userTable {
       let cell = tableView.dequeueReusableCell(withIdentifier: "addmember", for: indexPath) as! AddMemberTableCell
+      cell.delegate = self as AddMemberDelegate
       if isFiltering() {
         user = filteredUsers[indexPath.row]
       } else {
-        user = viewModel.users[indexPath.row]
+        user = viewModelUser.users[indexPath.row]
       }
-      cell.name.text = user.name
+      cell.member = user
+      cell.nameLabel.text = user.name
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MemberTableCell
-      user = viewModel1.users[indexPath.row]
+      user = viewModelMember.users[indexPath.row]
       cell.name.text = user.name
       return cell
     }
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    // if member selected, remove from search table and add to members table
-  }
+//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    // if member selected, remove from search table and add to members table
+//    // viewModel1.users.append(indexPath.row)
+//    //let newRowIndex = viewModel1.numberOfRows()
+//    //if tableView == self.userTable {
+////      let user: User
+////      user = viewModel.users[indexPath.row]
+////      print(user.name)
+////      let indexPath = NSIndexPath(row: newRowIndex, section: 0)
+////      let indexPaths = [indexPath]
+////      memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+//    //}
+//  }
   
   //MARK: - Search Methods
   func setupSearchBar() {
@@ -312,7 +337,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-    filteredUsers = viewModel.users.filter { user in
+    filteredUsers = viewModelUser.users.filter { user in
       return user.name.lowercased().contains(searchText.lowercased())
     }
     userTable.reloadData()

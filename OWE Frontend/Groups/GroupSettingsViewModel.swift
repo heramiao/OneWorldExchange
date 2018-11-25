@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class GroupSettingsViewModel {
   
@@ -80,6 +81,26 @@ class GroupSettingsViewModel {
       print("Error: couldn't parse JSON dictionary: \(dict)")
     }
     return nil
+  }
+  
+  func addMemberToGroup(member: User) {
+    // , group: Group
+    // send post request to create new instance of group member
+    let params = [
+      "travel_group_id": 1,
+      "user_id": member.id
+      ] as [String : Any]
+    
+    Alamofire.request("https://oneworldexchange.herokuapp.com/group_members", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+      
+      print(response)
+      if let status = response.response?.statusCode {
+        print(status)
+      }
+      if let result = response.result.value {
+        print(result)
+      }
+    }
   }
   
 }
