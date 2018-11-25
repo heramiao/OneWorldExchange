@@ -63,6 +63,7 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     return user
   }
   
+  
   func UserSettingsCancel(controller: UserSettingsViewController) {
     dismiss(animated: true, completion: nil)
   }
@@ -99,7 +100,6 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     phone.text = user.phone
     
   }
-  
   
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

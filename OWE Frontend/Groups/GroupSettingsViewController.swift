@@ -7,10 +7,9 @@ import Photos
 import UIKit
 
 // MARK: Protocol Methods
-
 protocol GroupSettingsControllerDelegate: class {
-    func groupSettingsControllerDidCancel(controller: GroupSettingsController)
-    func groupSettingsController(controller: GroupSettingsController, didFinishCreatingGroup group: Group)
+    func groupSettingsCancel(controller: GroupSettingsController)
+    func groupSettingsSave(controller: GroupSettingsController, didFinishChangingGroup group: Group)
 }
 
 // MARK: - UISearch extension
@@ -32,19 +31,15 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   @IBOutlet weak var userTable: UITableView!
   
   // MARK: - Properties
+  var group: Group?
   weak var delegate: GroupSettingsControllerDelegate?
   
   var picture: UIImage?
   let imagePicker = UIImagePickerController()
   let dateFormatter = DateFormatter()
   
-  private var endDatePicker: UIDatePicker?
   private var startDatePicker: UIDatePicker?
-  private var userPicker: UIPickerView?
-  
-  private var startDate: Date?
-  private var endDate: Date?
-  //    private var users = [User]()
+  private var endDatePicker: UIDatePicker?
   
   let viewModelUser = GroupSettingsViewModel()
   let viewModelMember = GroupSettingsViewModel()
@@ -55,13 +50,11 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   override func viewDidLoad() {
     super.viewDidLoad()
     dateFormatter.dateFormat = "MM/dd/yy"
-    self.configureView()
+    configureDatePickers()
+    configureControls()
     
     let cellNib = UINib(nibName: "AddMemberTableCell", bundle: nil)
     userTable.register(cellNib, forCellReuseIdentifier: "addmember")
-    //let addMemberTableCell = AddMemberTableCell()
-    //addMemberTableCell.delegate = self as AddMemberDelegate
-    
     
     let cellNib1 = UINib(nibName: "MemberTableCell", bundle: nil)
     memberTable.register(cellNib1, forCellReuseIdentifier: "member")
@@ -83,43 +76,9 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   
   override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
-      tripNameField.becomeFirstResponder()
-      //    doneBarButton.isEnabled = false
   }
   
   // MARK: - Configurations
-  var detailItem: Group? {
-      didSet {
-          // Update the view.
-          self.configureView()
-      }
-  }
-  
-  func configureView() {
-      let dateFormatter = DateFormatter()
-      configureDatePickers()
-      configureControls()
-    
-      // Update the user interface for the detail item.
-      if let detail: Group = self.detailItem {
-          if let picture = self.tripImage {
-              picture.image = detail.image
-          }
-          if let tripNameField = self.tripNameField {
-              tripNameField.text = detail.title
-          }
-          if let startDateField = self.startDateField {
-              self.startDate = detail.startDate!
-              startDateField.text = dateFormatter.string(from: startDate!)
-          }
-          if let endDateField = self.endDateField {
-              self.endDate = detail.endDate!
-              endDateField.text = dateFormatter.string(from: endDate!)
-          }
-          self.navigationItem.title = detail.title
-      }
-  }
-  
   func configureDatePickers() {
       // Configure datepickers
       endDatePicker = UIDatePicker()
@@ -182,69 +141,26 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   @IBAction func cancel() {
-      delegate?.groupSettingsControllerDidCancel(controller: self)
+      delegate?.groupSettingsCancel(controller: self)
   }
   
-  @IBAction func done() {
-      if let group = self.detailItem {
-          updateGroup(group:group)
-          //            delegate?.groupSettingsController(controller: self, didFinishUpdatingGroup: group)
-      }
-      else {
-          let group = makeGroup()
-          saveGroup(group: group)
-          if group.title.count > 0 {
-              delegate?.groupSettingsController(controller: self, didFinishCreatingGroup: group)
-          }
-      }
-  }
-  
-  func makeGroup() -> Group {
-      var group = Group()
-      group.title = tripNameField.text!
-      group.image = tripImage.image!
-      //        group.users = users
-      group.startDate = startDate!
-      group.endDate = endDate!
-      return group
-  }
-  
-  func saveGroup(group: Group) {
-      // Connect to the context for the container stack
-      let appDelegate = UIApplication.shared.delegate as! AppDelegate
-      let context = appDelegate.persistentContainer.viewContext
-      // Specifically select the Group entity to save this object to
-      let entity = NSEntityDescription.entity(forEntityName: "Groups", in: context)
-      let newGroup = NSManagedObject(entity: entity!, insertInto: context)
-      // Set values one at a time and save
-      newGroup.setValue(group.title, forKey: "title")
-      newGroup.setValue(group.startDate, forKey: "start_date")
-      newGroup.setValue(group.endDate, forKey: "end_date")
-      // Safely unwrap the picture
-      if let pic = group.image {
-          newGroup.setValue(UIImagePNGRepresentation(pic), forKey: "picture")
-      }
-      do {
-          try context.save()
-      } catch {
-          print("Failed saving")
-      }
-  }
-  
-  func updateGroup(group: Group) {
-//        // Connect to the context for the container stack
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let context = appDelegate.persistentContainer.viewContext
-//        // Specifically select the Group entity to save this object to
-//        let moc = ...
-//        let title = self.tripNameField.text
-//        let entitiesRequest = NSFetchRequest(entityName: "Groups").predicate = NSPredicate(format: "title == %@", title)
-//        do {
-//            let trip = try moc.executeFetchRequest(employeesFetch) as! [EmployeeMO]
-//        } catch {
-//            fatalError("Failed to fetch trip: \(error)")
-//        }
-    
+  @IBAction func save() {
+//      if let group = self.detailItem {
+//          updateGroup(group:group)
+//          //            delegate?.groupSettingsController(controller: self, didFinishUpdatingGroup: group)
+//      }
+//      else {
+//          let group = makeGroup()
+//          saveGroup(group: group)
+//          if group.title.count > 0 {
+//              delegate?.groupSettingsSave(controller: self, didFinishChangingGroup: group)
+//          }
+//      }
+    group!.tripName = tripNameField.text!
+    group!.startDate = startDateField.text!
+    group!.endDate = endDateField.text!
+    // group!.users =
+    delegate?.groupSettingsSave(controller: self, didFinishChangingGroup: group!)
   }
   
   func addMember(class: AddMemberTableCell, didFinishAdding member: User) {
@@ -301,20 +217,6 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     }
   }
   
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    // if member selected, remove from search table and add to members table
-//    // viewModel1.users.append(indexPath.row)
-//    //let newRowIndex = viewModel1.numberOfRows()
-//    //if tableView == self.userTable {
-////      let user: User
-////      user = viewModel.users[indexPath.row]
-////      print(user.name)
-////      let indexPath = NSIndexPath(row: newRowIndex, section: 0)
-////      let indexPaths = [indexPath]
-////      memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
-//    //}
-//  }
-  
   //MARK: - Search Methods
   func setupSearchBar() {
     searchController.searchResultsUpdater = self
@@ -342,8 +244,6 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     }
     userTable.reloadData()
   }
-  
-  
   
 }
 

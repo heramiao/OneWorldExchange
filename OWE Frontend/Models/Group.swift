@@ -12,10 +12,9 @@ import UIKit
 struct Group {
     
   // MARK: - Properties
-  //var id: Int
-  var title: String
-  var image: UIImage
+  var id: Int
+  var tripName: String
   var startDate: Date
   var endDate: Date
-    
+  var image: UIImage
 }
