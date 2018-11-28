@@ -9,13 +9,22 @@
 import Foundation
 import UIKit
 
-struct Group {
+class Group {
     
-    // MARK: - Properties
-    //    var users: [User]?
-    var title: String = ""
-    var image: UIImage?
-    var startDate: Date?
-    var endDate: Date?
-    
+  // MARK: - Properties
+  var id: Int
+  var tripName: String
+  var startDate: Date
+  var endDate: Date
+  var image: UIImage?
+  var members = [User]()
+  
+  init(id: Int, tripName: String, startDate: Date, endDate: Date, members: [User]) {
+    self.id = id
+    self.tripName = tripName
+    self.startDate = startDate
+    self.endDate = endDate
+    self.members = members 
+  }
+  
 }
