@@ -10,33 +10,30 @@ import Foundation
 import UIKit
 import Alamofire
 
-class GroupHomeViewController: BaseViewController, GroupSettingsControllerDelegate {
+class GroupHomeViewController: UIViewController, GroupSettingsControllerDelegate {
   
   @IBOutlet weak var tripImage: UIImageView!
   @IBOutlet var youOweTable: UITableView!
   @IBOutlet var newTransactionButton: UIButton!
   
-  var detailItem: Group? {
-      didSet {
-          // Update the view.
-          self.configureView()
-      }
-  }
-  
-  func configureView() {
-      // Update the user interface for the detail item.
-      if let detail: Group = self.detailItem {
-          if let tripImage = self.tripImage {
-              tripImage.image = detail.image
-          }
-          self.navigationItem.title = detail.title
-      }
-  }
+  var group: Group?
+  let viewModelMembers = GroupUsersViewModel()
   
   override func viewDidLoad() {
-      super.viewDidLoad()
-      addSlideMenuButton()
-      self.configureView()
+    super.viewDidLoad()
+    //addSlideMenuButton()
+    self.navigationItem.title = group!.tripName
+//    if let tripImage = group.tripImage {
+//      tripImage.image = group.image
+//    }
+    
+    viewModelMembers.refresh ({ [unowned self] in
+      DispatchQueue.main.async {
+        self.group!.members = self.viewModelMembers.users
+        print(self.group!.members.count)
+        // update wherever user contact photo is added
+      }
+      }, url: "https://oneworldexchange.herokuapp.com/travel_group/\(group!.id)/members")
   }
   
   override func didReceiveMemoryWarning() {
@@ -66,15 +63,16 @@ class GroupHomeViewController: BaseViewController, GroupSettingsControllerDelega
       if let result = response.result.value {
         print(result)
       }
+    }
   }
   
   // MARK: - Segues
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      if segue.identifier == "editGroup" {
-          let navController = segue.destination as! UINavigationController
-          let controller = navController.topViewController as! GroupSettingsController
-          controller.detailItem = detailItem
-      }
+    if segue.identifier == "editGroup" {
+        let navController = segue.destination as! UINavigationController
+        let controller = navController.topViewController as! GroupSettingsController
+        controller.group = self.group
+    }
   }
-    
+
 }

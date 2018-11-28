@@ -36,13 +36,18 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   
   var picture: UIImage?
   let imagePicker = UIImagePickerController()
+  
   let dateFormatter = DateFormatter()
   
   private var startDatePicker: UIDatePicker?
   private var endDatePicker: UIDatePicker?
+  private var userPicker: UIPickerView?
   
-  let viewModelUser = GroupSettingsViewModel()
-  let viewModelMember = GroupSettingsViewModel()
+  private var startDate: Date?
+  private var endDate: Date?
+  
+  let viewModelUser = GroupUsersViewModel()
+  let viewModelMember = GroupUsersViewModel()
   let searchController = UISearchController(searchResultsController: nil)
   var filteredUsers = [User]()
   
@@ -60,6 +65,12 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     memberTable.register(cellNib1, forCellReuseIdentifier: "member")
     
     setupSearchBar()
+    
+    if let group = group {
+      tripNameField.text = group.tripName
+      startDateField.text = dateFormatter.string(from: group.startDate)
+      endDateField.text = dateFormatter.string(from: group.endDate)
+    }
     
     viewModelUser.refresh ({ [unowned self] in
       DispatchQueue.main.async {
@@ -85,7 +96,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       endDatePicker?.datePickerMode = .date
       endDatePicker?.addTarget(self, action: #selector(GroupSettingsController.endDateChanged(datePicker:)), for: .valueChanged)
       endDateField?.inputView = endDatePicker
-    
+
       startDatePicker = UIDatePicker()
       startDatePicker?.datePickerMode = .date
       startDatePicker?.addTarget(self, action: #selector(GroupSettingsController.startDateChanged(datePicker:)), for: .valueChanged)
@@ -95,14 +106,14 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   func configureControls() {
       // request image permission
       PHPhotoLibrary.requestAuthorization({_ in return})
-    
+
       // configure image picker
       imagePicker.delegate = (self as UIImagePickerControllerDelegate & UINavigationControllerDelegate)
-    
+
       // configure screen tap
       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GroupSettingsController.viewTapped(gestureRecognizer:)) )
       view.addGestureRecognizer(tapGesture)
-    
+
       // Configure User Selector
       userPicker = UIPickerView()
   }
@@ -112,12 +123,12 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       endDateField.text = dateFormatter.string(from: datePicker.date)
       endDate = (endDatePicker?.date)!
   }
-  
+
   @objc func startDateChanged(datePicker: UIDatePicker) {
       startDateField.text = dateFormatter.string(from: datePicker.date)
       startDate = (startDatePicker?.date)!
   }
-  
+
   @objc func viewTapped(gestureRecognizer: UIGestureRecognizer) {
       view.endEditing(true)
       endDate = (endDatePicker?.date)!
@@ -157,8 +168,8 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
 //          }
 //      }
     group!.tripName = tripNameField.text!
-    group!.startDate = startDateField.text!
-    group!.endDate = endDateField.text!
+    group!.startDate = dateFormatter.date(from: startDateField.text!)!
+    group!.endDate = dateFormatter.date(from: endDateField.text!)!
     // group!.users =
     delegate?.groupSettingsSave(controller: self, didFinishChangingGroup: group!)
   }

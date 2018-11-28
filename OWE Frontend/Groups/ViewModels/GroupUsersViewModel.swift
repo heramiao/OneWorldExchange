@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class GroupSettingsViewModel {
+class GroupUsersViewModel {
   
   typealias JSONDictionary = [String: AnyObject]
   
