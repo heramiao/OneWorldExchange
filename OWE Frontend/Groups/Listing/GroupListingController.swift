@@ -10,7 +10,7 @@ import CoreData
 import Photos
 import UIKit
 
-class GroupListingViewController: BaseTableViewController {
+class GroupListingController: BaseTableViewController, AddGroupDelegate {
  // , GroupSettingsControllerDelegate
   
   // MARK: - Outlets
@@ -124,30 +124,23 @@ class GroupListingViewController: BaseTableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showGroup" {
       if let indexPath = self.tableView.indexPathForSelectedRow {
-        (segue.destination as! GroupHomeViewController).group = viewModel.groups[indexPath.row]
+        (segue.destination as! GroupHomeController).group = viewModel.groups[indexPath.row]
       }
     } else if segue.identifier == "addGroup" {
         let navigationController = segue.destination as! UINavigationController
         let controller = navigationController.topViewController as! GroupSettingsController
         //controller.doneBarButton.isEnabled = false
-        //controller.delegate = self
+        controller.addDelegate = self as AddGroupDelegate
+        controller.segue = "addGroup"
     }
   }
   
   // MARK: - Delegate protocols
-//  func groupSettingsControllerDidCancel(controller: GroupSettingsController) {
-//      dismiss(animated: true, completion: nil)
-//  }
-//
-//  func groupSettingsController(controller: GroupSettingsController, didFinishCreatingGroup group: Group) {
-//      let newRowIndex = groups.count
-//
-//      groups.append(group)
-//
-//      let indexPath = NSIndexPath(row: newRowIndex, section: 0)
-//      let indexPaths = [indexPath]
-//      tableView.insertRows(at: indexPaths as [IndexPath], with: .automatic)
-//
-//      dismiss(animated: true, completion: nil)
-//  }
+  func AddGroupCancel(controller: GroupSettingsController) {
+      dismiss(animated: true, completion: nil)
+  }
+
+  func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User], segue: String) {
+    
+  }
 }

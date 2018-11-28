@@ -59,7 +59,7 @@
                                                 </connections>
                                             </tableView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3k5-9B-zLD">
-                                                <rect key="frame" x="0.0" y="426" width="320" height="163"/>
+                                                <rect key="frame" x="0.0" y="467" width="320" height="163"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
@@ -77,6 +77,14 @@
                                                     <outlet property="delegate" destination="Psh-QP-qd3" id="a5Y-az-jNN"/>
                                                 </connections>
                                             </tableView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLx-6d-SRa">
+                                                <rect key="frame" x="8" y="429" width="144" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="+ Add New Members"/>
+                                                <connections>
+                                                    <action selector="addNewMembers" destination="Psh-QP-qd3" eventType="touchUpInside" id="oGE-2i-dwA"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -168,15 +176,15 @@
                         <viewLayoutGuide key="safeArea" id="JGe-BK-XfA"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Edit Group" id="0ut-29-TWM">
+                    <navigationItem key="navigationItem" id="0ut-29-TWM">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Map-u2-ud2">
                             <connections>
-                                <action selector="cancel" destination="Psh-QP-qd3" id="YgR-hp-ufG"/>
+                                <action selector="cancel" destination="Psh-QP-qd3" id="B8f-8Q-2px"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="yb6-Mj-2er">
                             <connections>
-                                <action selector="save" destination="Psh-QP-qd3" id="GnO-Sg-vc0"/>
+                                <action selector="save" destination="Psh-QP-qd3" id="fDp-F7-mHY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -214,7 +222,7 @@
         <!--Travel Groups-->
         <scene sceneID="AcC-ir-evj">
             <objects>
-                <tableViewController storyboardIdentifier="Groups" title="Travel Groups" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Srw-7x-aXo" customClass="GroupListingViewController" customModule="OWE_Frontend" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Groups" title="Travel Groups" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Srw-7x-aXo" customClass="GroupListingController" customModule="OWE_Frontend" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vdl-Rp-Ex3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -256,7 +264,7 @@
         <!--Group Home-->
         <scene sceneID="acg-KD-7BL">
             <objects>
-                <viewController title="Group Home" id="zoB-jv-Bmo" customClass="GroupHomeViewController" customModule="OWE_Frontend" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Group Home" id="zoB-jv-Bmo" customClass="GroupHomeController" customModule="OWE_Frontend" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f6c-ew-ebZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -325,6 +333,6 @@
         <image name="SettingsButton" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EyB-qD-JxF"/>
+        <segue reference="mHe-IU-hXS"/>
     </inferredMetricsTieBreakers>
 </document>

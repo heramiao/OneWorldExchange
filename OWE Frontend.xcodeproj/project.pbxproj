@@ -16,7 +16,6 @@
 		6330385221A917E70089B620 /* MemberTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6330385121A917E70089B620 /* MemberTableCell.xib */; };
 		6330385421A918440089B620 /* MemberTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330385321A918440089B620 /* MemberTableCell.swift */; };
 		6330385621AA50430089B620 /* GroupTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330385521AA50420089B620 /* GroupTripViewModel.swift */; };
-		6330385D21AE20250089B620 /* GroupMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330385C21AE20250089B620 /* GroupMemberViewModel.swift */; };
 		63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */; };
 		63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C81218AA9C900E06207 /* UserViewController.swift */; };
 		63C73C84218AB37F00E06207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C83218AB37F00E06207 /* User.swift */; };
@@ -38,9 +37,9 @@
 		D6F717AE219901BD009ED62B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F717AD219901BC009ED62B /* SideMenuViewController.swift */; };
 		D6F717B021993C3A009ED62B /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F717AF21993C3A009ED62B /* BaseTableViewController.swift */; };
 		D6FE2BA5218F58070038F54F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BA4218F58070038F54F /* Group.swift */; };
-		D6FE2BA7218F5E960038F54F /* GroupHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BA6218F5E960038F54F /* GroupHomeViewController.swift */; };
-		D6FE2BA9218F60590038F54F /* GroupSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BA8218F60590038F54F /* GroupSettingsViewController.swift */; };
-		D6FE2BAB218F60680038F54F /* GroupListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BAA218F60680038F54F /* GroupListingViewController.swift */; };
+		D6FE2BA7218F5E960038F54F /* GroupHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BA6218F5E960038F54F /* GroupHomeController.swift */; };
+		D6FE2BA9218F60590038F54F /* GroupSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BA8218F60590038F54F /* GroupSettingsController.swift */; };
+		D6FE2BAB218F60680038F54F /* GroupListingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BAA218F60680038F54F /* GroupListingController.swift */; };
 		D6FE2BBD2190A32A0038F54F /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE2BBB2190A32A0038F54F /* GroupTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +63,6 @@
 		6330385121A917E70089B620 /* MemberTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MemberTableCell.xib; path = "OWE Frontend/Groups/Settings/MemberTableCell.xib"; sourceTree = SOURCE_ROOT; };
 		6330385321A918440089B620 /* MemberTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableCell.swift; sourceTree = "<group>"; };
 		6330385521AA50420089B620 /* GroupTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTripViewModel.swift; sourceTree = "<group>"; };
-		6330385C21AE20250089B620 /* GroupMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMemberViewModel.swift; sourceTree = "<group>"; };
 		63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		63C73C81218AA9C900E06207 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		63C73C83218AB37F00E06207 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -91,9 +89,9 @@
 		D6F717AD219901BC009ED62B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideMenuViewController.swift; path = "OWE Frontend/SideMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D6F717AF21993C3A009ED62B /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = "OWE Frontend/BaseTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D6FE2BA4218F58070038F54F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		D6FE2BA6218F5E960038F54F /* GroupHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHomeViewController.swift; sourceTree = "<group>"; };
-		D6FE2BA8218F60590038F54F /* GroupSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsViewController.swift; sourceTree = "<group>"; };
-		D6FE2BAA218F60680038F54F /* GroupListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListingViewController.swift; sourceTree = "<group>"; };
+		D6FE2BA6218F5E960038F54F /* GroupHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHomeController.swift; sourceTree = "<group>"; };
+		D6FE2BA8218F60590038F54F /* GroupSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsController.swift; sourceTree = "<group>"; };
+		D6FE2BAA218F60680038F54F /* GroupListingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListingController.swift; sourceTree = "<group>"; };
 		D6FE2BBB2190A32A0038F54F /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		E1435A41872F816637642B6D /* Pods-OWE Frontend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OWE Frontend.release.xcconfig"; path = "Pods/Target Support Files/Pods-OWE Frontend/Pods-OWE Frontend.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +119,7 @@
 		6330385821AB129B0089B620 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D6FE2BA8218F60590038F54F /* GroupSettingsViewController.swift */,
+				D6FE2BA8218F60590038F54F /* GroupSettingsController.swift */,
 				6330384421A0F0DF0089B620 /* AddMemberTableCell.swift */,
 				6330384621A1F1FC0089B620 /* AddMemberTableCell.xib */,
 				6330385321A918440089B620 /* MemberTableCell.swift */,
@@ -133,7 +131,7 @@
 		6330385921AB12E80089B620 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				D6FE2BA6218F5E960038F54F /* GroupHomeViewController.swift */,
+				D6FE2BA6218F5E960038F54F /* GroupHomeController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -141,7 +139,7 @@
 		6330385A21AB13230089B620 /* Listing */ = {
 			isa = PBXGroup;
 			children = (
-				D6FE2BAA218F60680038F54F /* GroupListingViewController.swift */,
+				D6FE2BAA218F60680038F54F /* GroupListingController.swift */,
 				D6FE2BBB2190A32A0038F54F /* GroupTableViewCell.swift */,
 				D6EE7F55219610B700D15CB2 /* GroupTableViewCell.xib */,
 			);
@@ -153,7 +151,6 @@
 			children = (
 				6330385521AA50420089B620 /* GroupTripViewModel.swift */,
 				6330383C219DC5880089B620 /* GroupUsersViewModel.swift */,
-				6330385C21AE20250089B620 /* GroupMemberViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -451,7 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C73C9321928B5F00E06207 /* Split.swift in Sources */,
-				D6FE2BAB218F60680038F54F /* GroupListingViewController.swift in Sources */,
+				D6FE2BAB218F60680038F54F /* GroupListingController.swift in Sources */,
 				D6EE7F5421960FD800D15CB2 /* SwiftyJSON.swift in Sources */,
 				63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */,
 				6330385421A918440089B620 /* MemberTableCell.swift in Sources */,
@@ -462,13 +459,12 @@
 				63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */,
 				63303843219F53970089B620 /* SearchClient.swift in Sources */,
 				63C73C84218AB37F00E06207 /* User.swift in Sources */,
-				D6FE2BA9218F60590038F54F /* GroupSettingsViewController.swift in Sources */,
+				D6FE2BA9218F60590038F54F /* GroupSettingsController.swift in Sources */,
 				63C73C9A21928F6F00E06207 /* TransactionViewController.swift in Sources */,
 				D6FE2BA5218F58070038F54F /* Group.swift in Sources */,
-				D6FE2BA7218F5E960038F54F /* GroupHomeViewController.swift in Sources */,
+				D6FE2BA7218F5E960038F54F /* GroupHomeController.swift in Sources */,
 				6330385621AA50430089B620 /* GroupTripViewModel.swift in Sources */,
 				D6DD62FF219A27AB00D28B2B /* BaseViewController copy.swift in Sources */,
-				6330385D21AE20250089B620 /* GroupMemberViewModel.swift in Sources */,
 				D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */,
 				D6F717B021993C3A009ED62B /* BaseTableViewController.swift in Sources */,
 				D6F717AE219901BD009ED62B /* SideMenuViewController.swift in Sources */,

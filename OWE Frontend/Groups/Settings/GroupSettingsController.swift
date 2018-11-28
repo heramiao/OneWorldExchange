@@ -7,9 +7,14 @@ import Photos
 import UIKit
 
 // MARK: Protocol Methods
-protocol GroupSettingsControllerDelegate: class {
-    func groupSettingsCancel(controller: GroupSettingsController)
-    func groupSettingsSave(controller: GroupSettingsController, didFinishChangingGroup group: Group)
+protocol EditGroupDelegate: class {
+  func EditGroupCancel(controller: GroupSettingsController)
+  func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User], segue: String)
+}
+
+protocol AddGroupDelegate: class {
+  func AddGroupCancel(controller: GroupSettingsController)
+  func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User], segue: String)
 }
 
 // MARK: - UISearch extension
@@ -32,7 +37,9 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   
   // MARK: - Properties
   var group: Group?
-  weak var delegate: GroupSettingsControllerDelegate?
+  weak var editDelegate: EditGroupDelegate?
+  weak var addDelegate: AddGroupDelegate?
+  var segue: String? // either comes from "addGroup" in GroupListingController or "editGroup" in GroupHomeController
   
   var picture: UIImage?
   let imagePicker = UIImagePickerController()
@@ -41,7 +48,6 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   
   private var startDatePicker: UIDatePicker?
   private var endDatePicker: UIDatePicker?
-  private var userPicker: UIPickerView?
   
   private var startDate: Date?
   private var endDate: Date?
@@ -50,10 +56,18 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   let viewModelMember = GroupUsersViewModel()
   let searchController = UISearchController(searchResultsController: nil)
   var filteredUsers = [User]()
+  var newMembers = [User]()
   
   // MARK: - General
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    if segue == "addGroup" {
+      self.navigationItem.title = "New Group"
+    } else if segue == "editGroup" {
+      self.navigationItem.title = "Edit Group"
+    }
+    
     dateFormatter.dateFormat = "MM/dd/yy"
     configureDatePickers()
     configureControls()
@@ -64,13 +78,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     let cellNib1 = UINib(nibName: "MemberTableCell", bundle: nil)
     memberTable.register(cellNib1, forCellReuseIdentifier: "member")
     
-    setupSearchBar()
-    
-    if let group = group {
-      tripNameField.text = group.tripName
-      startDateField.text = dateFormatter.string(from: group.startDate)
-      endDateField.text = dateFormatter.string(from: group.endDate)
-    }
+    memberTable.tableFooterView = UIView()
     
     viewModelUser.refresh ({ [unowned self] in
       DispatchQueue.main.async {
@@ -78,11 +86,19 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       }
       }, url: "https://oneworldexchange.herokuapp.com/users")
     
-    viewModelMember.refresh ({ [unowned self] in
-      DispatchQueue.main.async {
-        self.memberTable.reloadData()
+    if segue == "editGroup" {
+      if let group = group {
+        tripNameField.text = group.tripName
+        startDateField.text = dateFormatter.string(from: group.startDate)
+        endDateField.text = dateFormatter.string(from: group.endDate)
       }
-      }, url: "https://oneworldexchange.herokuapp.com/travel_group/1/members")
+      
+      viewModelMember.refresh ({ [unowned self] in
+        DispatchQueue.main.async {
+          self.memberTable.reloadData()
+        }
+        }, url: "https://oneworldexchange.herokuapp.com/travel_group/1/members")
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -113,9 +129,6 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       // configure screen tap
       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GroupSettingsController.viewTapped(gestureRecognizer:)) )
       view.addGestureRecognizer(tapGesture)
-
-      // Configure User Selector
-      userPicker = UIPickerView()
   }
   
   // MARK: - Handlers
@@ -151,8 +164,16 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       dismiss(animated: true, completion: nil)
   }
   
+  @IBAction func addNewMembers() {
+    setupSearchBar()
+  }
+  
   @IBAction func cancel() {
-      delegate?.groupSettingsCancel(controller: self)
+    if segue == "editGroup" {
+      editDelegate?.EditGroupCancel(controller: self)
+    } else if segue == "addGroup" {
+      addDelegate?.AddGroupCancel(controller: self)
+    }
   }
   
   @IBAction func save() {
@@ -170,15 +191,21 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     group!.tripName = tripNameField.text!
     group!.startDate = dateFormatter.date(from: startDateField.text!)!
     group!.endDate = dateFormatter.date(from: endDateField.text!)!
-    // group!.users =
-    delegate?.groupSettingsSave(controller: self, didFinishChangingGroup: group!)
+    // group!.members = viewModelMember.users
+    
+    if segue == "editGroup" {
+      editDelegate?.EditGroupSave(controller: self, didFinishEditingGroup: group!, newMembers: newMembers, segue: segue!)
+    } else if segue == "addGroup" {
+      addDelegate?.AddGroupSave(controller: self, didFinishAddingGroup: group!, newMembers: newMembers, segue: segue!)
+    }
   }
   
   func addMember(class: AddMemberTableCell, didFinishAdding member: User) {
     let newRowIndex = viewModelMember.users.count
     viewModelMember.users.append(member)
+    newMembers.append(member)
     viewModelMember.addMemberToGroup(member: member)
-    
+
     let indexPath = NSIndexPath(row: newRowIndex, section: 0)
     let indexPaths = [indexPath]
     memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
