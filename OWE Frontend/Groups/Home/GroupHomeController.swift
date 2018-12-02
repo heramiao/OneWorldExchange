@@ -14,7 +14,6 @@ class GroupHomeController: UIViewController, EditGroupDelegate {
   
   @IBOutlet weak var tripImage: UIImageView!
   @IBOutlet var youOweTable: UITableView!
-  @IBOutlet var newTransactionButton: UIButton!
   
   var group: Group?
   let viewModelMembers = GroupUsersViewModel()
@@ -30,7 +29,6 @@ class GroupHomeController: UIViewController, EditGroupDelegate {
     viewModelMembers.refresh ({ [unowned self] in
       DispatchQueue.main.async {
         self.group!.members = self.viewModelMembers.users
-        print(self.group!.members.count)
         // update wherever user contact photo is added
       }
       }, url: "https://oneworldexchange.herokuapp.com/travel_group/\(group!.id)/members")
@@ -45,15 +43,8 @@ class GroupHomeController: UIViewController, EditGroupDelegate {
     dismiss(animated: true, completion: nil)
   }
   
-  func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User], segue: String) {
-    // send update/patch request or create/post request
-    let paramsGroup = [
-      "id": group.id,
-      "trip_name": group.tripName,
-      "start_date": group.startDate,
-      "end_date": group.endDate,
-      ] as [String : Any]
-    
+  func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User]) {
+    // send update/patch request
     for member in newMembers {
       let paramsMember = [
         "travel_group_id": group.id,
@@ -72,27 +63,21 @@ class GroupHomeController: UIViewController, EditGroupDelegate {
       }
     }
     
-    if segue == "editGroup" {
-      Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups/1", method: .patch, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
-        
-        print(response)
-        if let status = response.response?.statusCode {
-          print(status)
-        }
-        if let result = response.result.value {
-          print(result)
-        }
+    let paramsGroup = [
+      "id": group.id,
+      "trip_name": group.tripName,
+      "start_date": group.startDate,
+      "end_date": group.endDate,
+    ] as [String : Any]
+    
+    Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups/1", method: .patch, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+      
+      print(response)
+      if let status = response.response?.statusCode {
+        print(status)
       }
-    } else if segue == "addGroup" {
-      Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups", method: .post, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
-        
-        print(response)
-        if let status = response.response?.statusCode {
-          print(status)
-        }
-        if let result = response.result.value {
-          print(result)
-        }
+      if let result = response.result.value {
+        print(result)
       }
     }
     dismiss(animated: true, completion: nil)
@@ -106,6 +91,13 @@ class GroupHomeController: UIViewController, EditGroupDelegate {
       controller.group = self.group
       controller.segue = "editGroup"
       controller.editDelegate = self as EditGroupDelegate
+    }
+    if segue.identifier == "newTransaction" {
+      let navigationController = segue.destination as! UINavigationController
+      let controller = navigationController.topViewController as! TransactionController
+      controller.group = self.group
+
+      //controller.delegate = self as UserSettingsDelegate
     }
   }
 

@@ -28,28 +28,28 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   @IBOutlet weak var lnameField: UITextField!
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var phoneField: UITextField!
-  @IBOutlet weak var baseCurrField: UIPickerView!
-  @IBOutlet weak var oldPassField: UITextField!
-  @IBOutlet weak var newPassField: UITextField!
-  @IBOutlet weak var newPassConField: UITextField!
+  @IBOutlet weak var baseCurrField: UITextField!
+//  @IBOutlet weak var oldPassField: UITextField!
+//  @IBOutlet weak var newPassField: UITextField!
+//  @IBOutlet weak var newPassConField: UITextField!
   
   // MARK: - General
-  
   var pickerData = ["USD", "EUR", "GBP", "CHF", "AUD", "JPY", "TWD", "CNH"]
-  var picker = UIPickerView()
+  var pickerView = UIPickerView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    picker.delegate = self
-    picker.dataSource = self
+    pickerView.delegate = self
+    pickerView.dataSource = self
+    baseCurrField.inputView = pickerView
     
     if let user = profile {
       fnameField.text = user.firstName
       lnameField.text = user.lastName
       emailField.text = user.email
       phoneField.text = user.phone
-      // baseCurrField.text = user.baseCurrency
+      baseCurrField.text = user.baseCurrency
     }
   }
   
@@ -76,9 +76,9 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   }
   
   // Capture the picker view selection
-  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//    baseCurrField.text = pickerData[row]
-    self.view.endEditing(false)
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    baseCurrField.text = pickerData[row]
+    self.view.endEditing(true)
   }
   
   // MARK: - Actions
@@ -92,7 +92,7 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
     profile!.lastName = lnameField.text!
     profile!.email = emailField.text!
     profile!.phone = phoneField.text!
-    // profile!.baseCurrency = baseCurrField.text!
+    profile!.baseCurrency = baseCurrField.text!
     // user.password = new password or old password if newPassField not filled in
     // user.passwordConfirmation =
     self.saveUser(user: profile!) // saving to Core Data

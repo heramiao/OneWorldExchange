@@ -74,8 +74,8 @@ class GroupUsersViewModel {
       let password = dict["password"] as? String,
       //let passwordConfirmation = dict["password_confirmation" ]
       let baseCurr = dict["base_currency"] as? String {
-      let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, password: password, baseCurrency: baseCurr)
-      // passwordConfirmation: passwordConfirmation,
+      let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, baseCurrency: baseCurr)
+      // password: password, passwordConfirmation: passwordConfirmation,
       return user
     } else {
       print("Error: couldn't parse JSON dictionary: \(dict)")

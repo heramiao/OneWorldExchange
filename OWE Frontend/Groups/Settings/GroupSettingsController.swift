@@ -9,12 +9,12 @@ import UIKit
 // MARK: Protocol Methods
 protocol EditGroupDelegate: class {
   func EditGroupCancel(controller: GroupSettingsController)
-  func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User], segue: String)
+  func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User])
 }
 
 protocol AddGroupDelegate: class {
   func AddGroupCancel(controller: GroupSettingsController)
-  func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User], segue: String)
+  func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User])
 }
 
 // MARK: - UISearch extension
@@ -194,9 +194,9 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     // group!.members = viewModelMember.users
     
     if segue == "editGroup" {
-      editDelegate?.EditGroupSave(controller: self, didFinishEditingGroup: group!, newMembers: newMembers, segue: segue!)
+      editDelegate?.EditGroupSave(controller: self, didFinishEditingGroup: group!, newMembers: newMembers)
     } else if segue == "addGroup" {
-      addDelegate?.AddGroupSave(controller: self, didFinishAddingGroup: group!, newMembers: newMembers, segue: segue!)
+      addDelegate?.AddGroupSave(controller: self, didFinishAddingGroup: group!, newMembers: newMembers)
     }
   }
   

@@ -53,12 +53,12 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     let lname = swiftyjson["last_name"].stringValue
     let email = swiftyjson["email"].stringValue
     let phone = swiftyjson["phone"].stringValue
-    let password = swiftyjson["password"].stringValue
-    // let passwordConfirmation = swiftyjson["password_confirmation"].stringValue
     let baseCurrency = swiftyjson["base_currency"].stringValue
+    // let password = swiftyjson["password"].stringValue
+    // let passwordConfirmation = swiftyjson["password_confirmation"].stringValue
     
-    let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, password: password, baseCurrency: baseCurrency)
-    // passwordConfirmation: passwordConfirmation,
+    let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, baseCurrency: baseCurrency)
+    // password: password, passwordConfirmation: passwordConfirmation,
     
     return user
   }
@@ -76,9 +76,9 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
       "last_name": user.lastName,
       "email": user.email,
       "phone": user.phone,
-      "password": user.password,
-      // "password_confirmation": user.passwordConfirmation,
       "base_currency": user.baseCurrency
+      // "password": user.password,
+      // "password_confirmation": user.passwordConfirmation,
       ] as [String : Any]
     
     Alamofire.request("https://oneworldexchange.herokuapp.com/users/1", method: .patch, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData{ response in
@@ -93,12 +93,11 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     }
     
     dismiss(animated: true, completion: nil)
-    
+
     self.user = user
     name.text = user.name
     email.text = user.email
     phone.text = user.phone
-    
   }
   
   // MARK: - Navigation

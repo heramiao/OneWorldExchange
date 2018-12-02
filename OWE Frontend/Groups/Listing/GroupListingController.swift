@@ -9,6 +9,7 @@
 import CoreData
 import Photos
 import UIKit
+import Alamofire
 
 class GroupListingController: BaseTableViewController, AddGroupDelegate {
  // , GroupSettingsControllerDelegate
@@ -140,7 +141,42 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
       dismiss(animated: true, completion: nil)
   }
 
-  func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User], segue: String) {
-    
+  func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User]) {
+    for member in newMembers {
+      let paramsMember = [
+        "travel_group_id": group.id,
+        "user_id": member.id
+      ]
+
+      Alamofire.request("https://oneworldexchange.herokuapp.com/group_members", method: .post, parameters: paramsMember, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+
+        print(response)
+        if let status = response.response?.statusCode {
+          print(status)
+        }
+        if let result = response.result.value {
+          print(result)
+        }
+      }
+    }
+
+    let paramsGroup = [
+      "id": group.id,
+      "trip_name": group.tripName,
+      "start_date": group.startDate,
+      "end_date": group.endDate,
+      ] as [String : Any]
+
+    Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups", method: .post, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+
+      print(response)
+      if let status = response.response?.statusCode {
+        print(status)
+      }
+      if let result = response.result.value {
+        print(result)
+      }
+    }
+    dismiss(animated: true, completion: nil)
   }
 }
