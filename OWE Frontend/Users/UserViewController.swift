@@ -93,9 +93,10 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     }
     
     dismiss(animated: true, completion: nil)
-
-    self.user = user
-    name.text = user.name
+    
+    //self.user = user
+    //name.text = user.name
+    name.text = user.firstName + " " + user.lastName
     email.text = user.email
     phone.text = user.phone
   }

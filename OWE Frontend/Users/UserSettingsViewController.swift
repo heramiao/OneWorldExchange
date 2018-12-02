@@ -34,7 +34,7 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
 //  @IBOutlet weak var newPassConField: UITextField!
   
   // MARK: - General
-  var pickerData = ["USD", "EUR", "GBP", "CHF", "AUD", "JPY", "TWD", "CNH"]
+  var pickerData = ["AUD", "CAD", "CHF", "CNY", "EUR", "GBP", "JPY", "MXN", "SEK", "USD"]
   var pickerView = UIPickerView()
   
   override func viewDidLoad() {
