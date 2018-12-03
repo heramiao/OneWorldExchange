@@ -19,6 +19,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   var group: Group?
   var transaction: Transaction?
   var delegate: NewTransactionDelegate?
+  let viewModel = TransactionViewModel()
   
   // MARK: - Outlets
   @IBOutlet weak var currencyTypeField: UITextField!
@@ -60,6 +61,9 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
     let cellNib = UINib(nibName: "WhoOwesTableCell", bundle: nil)
     whoOwesTable.register(cellNib, forCellReuseIdentifier: "whoowes")
     
+    self.whoOwesTable.allowsMultipleSelection = true
+    self.whoOwesTable.allowsMultipleSelectionDuringEditing = true
+    
   }
   
   @IBAction func cancel() {
@@ -81,8 +85,8 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   // The number of rows of data
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     if pickerView == pickerCurrType {
-      return currType.count }
-    if pickerView == pickerExpType {
+      return currType.count
+    } else if pickerView == pickerExpType {
       return expType.count
     } else {
       return members.count
@@ -92,8 +96,8 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   // The data to return for the row and component (column) that's being passed in
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     if pickerView == pickerCurrType {
-      return currType[row] }
-    if pickerView == pickerExpType {
+      return currType[row]
+    } else if pickerView == pickerExpType {
       return expType[row]
     } else {
       return members[row]
@@ -103,8 +107,13 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   // Capture the picker view selection
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     if pickerView == pickerCurrType {
-      currencyTypeField.text = currType[row] }
-    if pickerView == pickerExpType {
+      currencyTypeField.text = currType[row]
+      for i in 0...members.count-1 {
+        let indexPath = NSIndexPath(row: i, section: 0)
+        let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell
+        cell.currLabel!.text = viewModel.currToSymbol(currType: currType[row])
+      }
+    } else if pickerView == pickerExpType {
       expenseTypeField.text = expType[row]
     } else {
       paidByField.text = members[row]
@@ -122,6 +131,11 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
     let member = members[indexPath.row]
     cell.nameLabel!.text = member
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    let selectedMember = members[indexPath.row]
+    print(selectedMember)
   }
 
 }

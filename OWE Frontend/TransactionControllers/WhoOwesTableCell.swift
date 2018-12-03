@@ -12,16 +12,24 @@ class WhoOwesTableCell: UITableViewCell {
 
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var currLabel: UILabel!
-  @IBOutlet weak var amtLabel: UILabel!
-  @IBOutlet weak var changeSwitch: UISwitch!
+  @IBOutlet weak var amtField: UITextField!
   
   override func awakeFromNib() {
     super.awakeFromNib()
   }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-    // Configure the view for the selected state
-  }
+
+//  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+//    super.init(style: style, reuseIdentifier: reuseIdentifier)
+//    self.selectionStyle = .none
+//  }
+//  
+//  required init?(coder aDecoder: NSCoder) {
+//    super.init(coder: aDecoder)
+//  }
+//  
+//  override func setSelected(_ selected: Bool, animated: Bool) {
+//    super.setSelected(selected, animated: animated)
+//    self.accessoryType = selected ? .checkmark : .none
+//  }
 
 }

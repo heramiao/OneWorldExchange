@@ -18,6 +18,7 @@
 		6330385621AA50430089B620 /* GroupTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330385521AA50420089B620 /* GroupTripViewModel.swift */; };
 		63630B4321B4B5A000D2A064 /* WhoOwesTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63630B4221B4B5A000D2A064 /* WhoOwesTableCell.xib */; };
 		63630B4821B4DE6D00D2A064 /* WhoOwesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63630B4721B4DE6D00D2A064 /* WhoOwesTableCell.swift */; };
+		63630B4A21B57C7800D2A064 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63630B4921B57C7800D2A064 /* TransactionViewModel.swift */; };
 		63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */; };
 		63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C81218AA9C900E06207 /* UserViewController.swift */; };
 		63C73C84218AB37F00E06207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C83218AB37F00E06207 /* User.swift */; };
@@ -66,6 +67,7 @@
 		6330385521AA50420089B620 /* GroupTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTripViewModel.swift; sourceTree = "<group>"; };
 		63630B4221B4B5A000D2A064 /* WhoOwesTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhoOwesTableCell.xib; sourceTree = "<group>"; };
 		63630B4721B4DE6D00D2A064 /* WhoOwesTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoOwesTableCell.swift; sourceTree = "<group>"; };
+		63630B4921B57C7800D2A064 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		63C73C81218AA9C900E06207 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		63C73C83218AB37F00E06207 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				63C73C9921928F6F00E06207 /* TransactionController.swift */,
 				63630B4221B4B5A000D2A064 /* WhoOwesTableCell.xib */,
 				63630B4721B4DE6D00D2A064 /* WhoOwesTableCell.swift */,
+				63630B4921B57C7800D2A064 /* TransactionViewModel.swift */,
 			);
 			path = TransactionControllers;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				D6FE2BA7218F5E960038F54F /* GroupHomeController.swift in Sources */,
 				6330385621AA50430089B620 /* GroupTripViewModel.swift in Sources */,
 				D6DD62FF219A27AB00D28B2B /* BaseViewController copy.swift in Sources */,
+				63630B4A21B57C7800D2A064 /* TransactionViewModel.swift in Sources */,
 				D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */,
 				D6F717B021993C3A009ED62B /* BaseTableViewController.swift in Sources */,
 				D6F717AE219901BD009ED62B /* SideMenuViewController.swift in Sources */,
