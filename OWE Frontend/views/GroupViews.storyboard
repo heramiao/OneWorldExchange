@@ -484,13 +484,16 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="v0y-ky-0Rs">
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="v0y-ky-0Rs">
                                                 <rect key="frame" x="160" y="303" width="137" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <segments>
                                                     <segment title="Manually"/>
                                                     <segment title="Evenly"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="splitTypeChanged:" destination="QJX-VS-xSA" eventType="valueChanged" id="RFe-5F-fkX"/>
+                                                </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOG-ej-SSR">
                                                 <rect key="frame" x="245" y="591" width="11" height="21"/>
@@ -556,7 +559,7 @@
                         <outlet property="expenseTypeField" destination="7hT-U5-IdD" id="cG4-cE-naI"/>
                         <outlet property="paidByField" destination="KRQ-oU-hbb" id="AJW-Ul-6l0"/>
                         <outlet property="remainingAmt" destination="J6d-zs-hsK" id="w6u-Z5-tMf"/>
-                        <outlet property="splitTypeField" destination="v0y-ky-0Rs" id="vha-7X-Jwx"/>
+                        <outlet property="splitType" destination="v0y-ky-0Rs" id="hHA-HO-Q8g"/>
                         <outlet property="whoOwesTable" destination="xN6-wL-2Uf" id="qJR-Z3-YSM"/>
                     </connections>
                 </viewController>

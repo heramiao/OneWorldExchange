@@ -7,6 +7,7 @@
 ////
 //
 import UIKit
+import Foundation
 
 protocol NewTransactionDelegate: class {
   func NewTransactionCancel(controller: TransactionController)
@@ -28,7 +29,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   @IBOutlet weak var descriptionField: UITextField!
   @IBOutlet weak var countryField: UITextField!
   @IBOutlet weak var expenseTypeField: UITextField!
-  @IBOutlet weak var splitTypeField: UISegmentedControl!
+  @IBOutlet weak var splitType: UISegmentedControl!
   @IBOutlet weak var whoOwesTable: UITableView!
   @IBOutlet weak var currSymbol: UILabel!
   @IBOutlet weak var remainingAmt: UILabel!
@@ -58,12 +59,30 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
     expenseTypeField.inputView = pickerExpType
     paidByField.inputView = pickerMembers
     
+    //self.splitType.setSelectedSegmentIndex:UISegmentedControlNoSegment
+    
     let cellNib = UINib(nibName: "WhoOwesTableCell", bundle: nil)
     whoOwesTable.register(cellNib, forCellReuseIdentifier: "whoowes")
     
     self.whoOwesTable.allowsMultipleSelection = true
     self.whoOwesTable.allowsMultipleSelectionDuringEditing = true
     
+  }
+  
+  @IBAction func splitTypeChanged(_ sender: Any) {
+    if splitType.selectedSegmentIndex == 0 {
+      
+    }
+    if splitType.selectedSegmentIndex == 1 {
+      for i in 0...members.count-1 {
+        let indexPath = NSIndexPath(row: i, section: 0)
+        let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell
+        let numberFormatter = NumberFormatter() // use to format currencyAmountField to a float
+        let amt = numberFormatter.number(from: currencyAmountField!.text!)
+        let amtFloatValue = amt!.floatValue
+        cell.amtField!.text = String(format: "%0.2f", (amtFloatValue / Float(members.count)))
+      }
+    }
   }
   
   @IBAction func cancel() {
