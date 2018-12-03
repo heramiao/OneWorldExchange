@@ -16,6 +16,8 @@
 		6330385221A917E70089B620 /* MemberTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6330385121A917E70089B620 /* MemberTableCell.xib */; };
 		6330385421A918440089B620 /* MemberTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330385321A918440089B620 /* MemberTableCell.swift */; };
 		6330385621AA50430089B620 /* GroupTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330385521AA50420089B620 /* GroupTripViewModel.swift */; };
+		63630B4321B4B5A000D2A064 /* WhoOwesTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63630B4221B4B5A000D2A064 /* WhoOwesTableCell.xib */; };
+		63630B4821B4DE6D00D2A064 /* WhoOwesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63630B4721B4DE6D00D2A064 /* WhoOwesTableCell.swift */; };
 		63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */; };
 		63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C81218AA9C900E06207 /* UserViewController.swift */; };
 		63C73C84218AB37F00E06207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C83218AB37F00E06207 /* User.swift */; };
@@ -62,6 +64,8 @@
 		6330385121A917E70089B620 /* MemberTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MemberTableCell.xib; path = "OWE Frontend/Groups/Settings/MemberTableCell.xib"; sourceTree = SOURCE_ROOT; };
 		6330385321A918440089B620 /* MemberTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableCell.swift; sourceTree = "<group>"; };
 		6330385521AA50420089B620 /* GroupTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTripViewModel.swift; sourceTree = "<group>"; };
+		63630B4221B4B5A000D2A064 /* WhoOwesTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhoOwesTableCell.xib; sourceTree = "<group>"; };
+		63630B4721B4DE6D00D2A064 /* WhoOwesTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoOwesTableCell.swift; sourceTree = "<group>"; };
 		63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		63C73C81218AA9C900E06207 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		63C73C83218AB37F00E06207 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				63C73C9921928F6F00E06207 /* TransactionController.swift */,
+				63630B4221B4B5A000D2A064 /* WhoOwesTableCell.xib */,
+				63630B4721B4DE6D00D2A064 /* WhoOwesTableCell.swift */,
 			);
 			path = TransactionControllers;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 				D6EE7F5B2197DF4300D15CB2 /* GroupViews.storyboard in Resources */,
 				D6DD6300219A392000D28B2B /* GroupTableViewCell.xib in Resources */,
 				6330385221A917E70089B620 /* MemberTableCell.xib in Resources */,
+				63630B4321B4B5A000D2A064 /* WhoOwesTableCell.xib in Resources */,
 				D651A08C21879FC9001F6EFA /* LaunchScreen.storyboard in Resources */,
 				D6EE7F58219610F900D15CB2 /* Assets.xcassets in Resources */,
 				D651A08421879FC8001F6EFA /* Main.storyboard in Resources */,
@@ -449,6 +456,7 @@
 				63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */,
 				6330385421A918440089B620 /* MemberTableCell.swift in Sources */,
 				6330384521A0F0DF0089B620 /* AddMemberTableCell.swift in Sources */,
+				63630B4821B4DE6D00D2A064 /* WhoOwesTableCell.swift in Sources */,
 				D6FE2BBD2190A32A0038F54F /* GroupTableViewCell.swift in Sources */,
 				6330383D219DC5880089B620 /* GroupUsersViewModel.swift in Sources */,
 				63C73C9121928A3A00E06207 /* Transaction.swift in Sources */,

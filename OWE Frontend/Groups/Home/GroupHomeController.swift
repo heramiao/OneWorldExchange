@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 
-class GroupHomeController: UIViewController, EditGroupDelegate {
+class GroupHomeController: UIViewController, EditGroupDelegate, NewTransactionDelegate {
   
   @IBOutlet weak var tripImage: UIImageView!
   @IBOutlet var youOweTable: UITableView!
@@ -83,6 +83,14 @@ class GroupHomeController: UIViewController, EditGroupDelegate {
     dismiss(animated: true, completion: nil)
   }
   
+  func NewTransactionCancel(controller: TransactionController) {
+    dismiss(animated: true, completion: nil)
+  }
+  
+  func NewTransactionSave(controller: TransactionController, didFinishCreatingTransaction transaction: Transaction) {
+    
+  }
+  
   // MARK: - Segues
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "editGroup" {
@@ -96,8 +104,7 @@ class GroupHomeController: UIViewController, EditGroupDelegate {
       let navigationController = segue.destination as! UINavigationController
       let controller = navigationController.topViewController as! TransactionController
       controller.group = self.group
-
-      //controller.delegate = self as UserSettingsDelegate
+      controller.delegate = self as NewTransactionDelegate
     }
   }
 
