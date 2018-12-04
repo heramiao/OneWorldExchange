@@ -192,13 +192,37 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     group!.startDate = dateFormatter.date(from: startDateField.text!)!
     group!.endDate = dateFormatter.date(from: endDateField.text!)!
     // group!.members = viewModelMember.users
-    
+    // group!.image = picture
+    //self.saveGroup(group: group!)
     if segue == "editGroup" {
       editDelegate?.EditGroupSave(controller: self, didFinishEditingGroup: group!, newMembers: newMembers)
     } else if segue == "addGroup" {
       addDelegate?.AddGroupSave(controller: self, didFinishAddingGroup: group!, newMembers: newMembers)
     }
   }
+  
+//  func saveGroup(group: Group) {
+//    // Connect to the context for the container stack
+//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//    let context = appDelegate.persistentContainer.viewContext
+//    // Specifically select the Group entity to save this object to
+//    let entity = NSEntityDescription.entity(forEntityName: "Groups", in: context)
+//    let newGroup = NSManagedObject(entity: entity!, insertInto: context)
+//    // Set values one at a time and save
+//    newGroup.setValue(group.tripName, forKey: "title")
+//    newGroup.setValue(group.startDate, forKey: "start_date")
+//    newGroup.setValue(group.endDate, forKey: "end_date")
+//    // Safely unwrap the picture
+//    if let pic = group.image {
+//      newGroup.setValue(UIImagePNGRepresentation(pic), forKey: "picture")
+//    }
+//    do {
+//      try context.save()
+//      print("Success saving")
+//    } catch {
+//      print("Failed saving")
+//    }
+//  }
   
   func addMember(class: AddMemberTableCell, didFinishAdding member: User) {
     let newRowIndex = viewModelMember.users.count

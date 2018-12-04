@@ -271,21 +271,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-DE-FgJ">
-                                <rect key="frame" x="0.0" y="-65" width="320" height="569"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <viewLayoutGuide key="safeArea" id="txN-ca-j5J"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GroupHome" translatesAutoresizingMaskIntoConstraints="NO" id="e0v-c5-WJV" userLabel="TripImage">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="165"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gEo-fh-9dX">
-                                <rect key="frame" x="25" y="162" width="270" height="325"/>
+                                <rect key="frame" x="0.0" y="162" width="320" height="342"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="53" id="NWB-IL-maa">
-                                        <rect key="frame" x="0.0" y="28" width="270" height="53"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" id="NWB-IL-maa">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NWB-IL-maa" id="6fX-Kk-6kf">
-                                            <rect key="frame" x="0.0" y="0.0" width="270" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -295,14 +294,6 @@
                                     <outlet property="delegate" destination="zoB-jv-Bmo" id="CZQ-IJ-bI0"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-aE-oWd">
-                                <rect key="frame" x="103" y="124" width="115" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Transaction"/>
-                                <connections>
-                                    <segue destination="JIv-D9-92w" kind="show" identifier="newTransaction" id="oic-XO-hur"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dw-QK-RWY">
                                 <rect key="frame" x="293" y="4" width="19" height="22"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -311,6 +302,24 @@
                                 </state>
                                 <connections>
                                     <segue destination="wy9-eG-pzk" kind="show" identifier="editGroup" id="EyB-qD-JxF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-aE-oWd">
+                                <rect key="frame" x="91" y="116" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="   New Transaction   ">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="JIv-D9-92w" kind="show" identifier="newTransaction" id="oic-XO-hur"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -326,7 +335,6 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Wa4-lb-ied"/>
                     </toolbarItems>
                     <connections>
-                        <outlet property="tripImage" destination="qB1-DE-FgJ" id="LR9-CR-emw"/>
                         <outlet property="youOweTable" destination="gEo-fh-9dX" id="Tah-zo-3gT"/>
                     </connections>
                 </viewController>
@@ -571,6 +579,7 @@
     </scenes>
     <resources>
         <image name="CameraButton" width="28" height="25"/>
+        <image name="GroupHome" width="2296" height="1724"/>
         <image name="LoadImage" width="375" height="157"/>
         <image name="SettingsButton" width="19" height="19"/>
     </resources>

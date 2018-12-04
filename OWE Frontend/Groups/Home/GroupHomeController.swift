@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 import Alamofire
+import CoreData
 
 class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditGroupDelegate, NewTransactionDelegate {
   
-  @IBOutlet weak var tripImage: UIImageView!
+  //@IBOutlet weak var tripImage: UIImageView!
   @IBOutlet var youOweTable: UITableView!
   
   var group: Group?
@@ -23,8 +24,11 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     super.viewDidLoad()
     //addSlideMenuButton()
     self.navigationItem.title = group!.tripName
-//    if let tripImage = group.tripImage {
-//      tripImage.image = group.image
+//    if let tripImage = group!.image {
+//      tripImage.image = group!.image
+//    }
+//    if let image = self.tripImage {
+//      image.image = group!.image
 //    }
     
     let cellNib = UINib(nibName: "SplitsTableCell", bundle: nil)
@@ -49,41 +53,41 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   
   func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User]) {
     // send update/patch request
-    for member in newMembers {
-      let paramsMember = [
-        "travel_group_id": group.id,
-        "user_id": member.id
-      ]
-      
-      Alamofire.request("https://oneworldexchange.herokuapp.com/group_members", method: .post, parameters: paramsMember, encoding: JSONEncoding.default, headers: nil).responseData{ response in
-        
-        print(response)
-        if let status = response.response?.statusCode {
-          print(status)
-        }
-        if let result = response.result.value {
-          print(result)
-        }
-      }
-    }
-    
-    let paramsGroup = [
-      "id": group.id,
-      "trip_name": group.tripName,
-      "start_date": group.startDate,
-      "end_date": group.endDate,
-    ] as [String : Any]
-    
-    Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups/1", method: .patch, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
-      
-      print(response)
-      if let status = response.response?.statusCode {
-        print(status)
-      }
-      if let result = response.result.value {
-        print(result)
-      }
-    }
+//    for member in newMembers {
+//      let paramsMember = [
+//        "travel_group_id": group.id,
+//        "user_id": member.id
+//      ]
+//
+//      Alamofire.request("https://oneworldexchange.herokuapp.com/group_members", method: .post, parameters: paramsMember, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+//
+//        print(response)
+//        if let status = response.response?.statusCode {
+//          print(status)
+//        }
+//        if let result = response.result.value {
+//          print(result)
+//        }
+//      }
+//    }
+//
+//    let paramsGroup = [
+//      "id": group.id,
+//      "trip_name": group.tripName,
+//      "start_date": group.startDate,
+//      "end_date": group.endDate,
+//    ] as [String : Any]
+//
+//    Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups/1", method: .patch, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+//
+//      print(response)
+//      if let status = response.response?.statusCode {
+//        print(status)
+//      }
+//      if let result = response.result.value {
+//        print(result)
+//      }
+//    }
     dismiss(animated: true, completion: nil)
   }
   
@@ -116,14 +120,23 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "split", for: indexPath) as! SplitsTableCell
     split = splits[indexPath.row]
-    cell.payorName!.text = split.payor
-    cell.payeeName!.text = split.payee
+    
+    let payorFName = split.payor!.components(separatedBy: " ")
+    let payeeFName = split.payee!.components(separatedBy: " ")
+    
+    cell.payorName!.text = payorFName[0]
+    cell.payeeName!.text = payeeFName[0]
     cell.date!.text = split.datePaid
     cell.descript!.text = split.descript
     cell.orgCurrSymbol!.text = split.currencySymb
     cell.orgAmt!.text = split.amountOwed
     // cell.baseCurrSymbol!.text = get the base currency of payor
     cell.convertedAmt!.text = transactionVM.convert(currAbrev: split.currencyAbrev!, amount: split.amountOwed!)
+    
+    if cell.payorName!.text != "Hera" {
+      cell.payBtn!.isHidden = true
+    }
+    
     return cell
   }
   

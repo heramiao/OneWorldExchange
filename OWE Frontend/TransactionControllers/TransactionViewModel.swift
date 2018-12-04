@@ -57,8 +57,8 @@ class TransactionViewModel {
   func convert(currAbrev: String, amount: String) -> String {
     let doubleAmt = Double(amount)
     let USDAmt: Double
-    USDAmt = rates[currAbrev]! * doubleAmt!
-    return String(USDAmt)
+    USDAmt = doubleAmt!/rates[currAbrev]!
+    return String(format: "%0.2f", USDAmt)
   }
   
 }

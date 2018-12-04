@@ -18,6 +18,7 @@ class SplitsTableCell: UITableViewCell {
   @IBOutlet weak var orgAmt: UILabel!
   @IBOutlet weak var baseCurrSymbol: UILabel!
   @IBOutlet weak var convertedAmt: UILabel!
+  @IBOutlet weak var payBtn: UIButton!
   
   override func awakeFromNib() {
     super.awakeFromNib()
