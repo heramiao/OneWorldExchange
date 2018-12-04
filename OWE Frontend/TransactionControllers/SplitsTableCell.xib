@@ -87,6 +87,15 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="convertedAmt" destination="DmZ-3K-QRe" id="8nG-QQ-aC9"/>
+                <outlet property="date" destination="j4y-2G-4LR" id="gvw-vc-qUx"/>
+                <outlet property="descript" destination="8Mz-2N-o5n" id="9gY-y9-KMb"/>
+                <outlet property="orgAmt" destination="5CX-vc-SWp" id="5kp-nZ-AMd"/>
+                <outlet property="orgCurrSymbol" destination="ejO-ZN-sW2" id="Gdb-gq-myS"/>
+                <outlet property="payeeName" destination="H2A-bD-HOY" id="DNd-3s-Txu"/>
+                <outlet property="payorName" destination="bot-bW-kaI" id="Kx3-sV-DHn"/>
+            </connections>
             <point key="canvasLocation" x="-315.19999999999999" y="38.680659670164921"/>
         </tableViewCell>
     </objects>

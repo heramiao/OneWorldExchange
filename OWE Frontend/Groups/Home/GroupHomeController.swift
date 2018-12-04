@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 
-class GroupHomeController: UIViewController, EditGroupDelegate, NewTransactionDelegate {
+class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditGroupDelegate, NewTransactionDelegate {
   
   @IBOutlet weak var tripImage: UIImageView!
   @IBOutlet var youOweTable: UITableView!
@@ -123,7 +123,7 @@ class GroupHomeController: UIViewController, EditGroupDelegate, NewTransactionDe
     cell.orgCurrSymbol!.text = split.currencySymb
     cell.orgAmt!.text = split.amountOwed
     // cell.baseCurrSymbol!.text = get the base currency of payor
-    cell.convertedAmt!.text = transactionVM.convert(currType: split.currencyAbrev!, amount: split.amountOwed!)
+    cell.convertedAmt!.text = transactionVM.convert(currAbrev: split.currencyAbrev!, amount: split.amountOwed!)
     return cell
   }
   

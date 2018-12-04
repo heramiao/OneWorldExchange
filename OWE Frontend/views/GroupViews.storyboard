@@ -290,6 +290,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zoB-jv-Bmo" id="VU3-Qd-5Kv"/>
+                                    <outlet property="delegate" destination="zoB-jv-Bmo" id="CZQ-IJ-bI0"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-aE-oWd">
                                 <rect key="frame" x="103" y="124" width="115" height="30"/>

@@ -130,7 +130,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
         split.datePaid = dateFormatter.string(from: Date())
         split.descript = descriptionField.text!
         split.currencyAbrev = currencyTypeField.text!
-        split.currencySymbol = cell.currLabel.text!
+        split.currencySymb = cell.currLabel.text!
         split.amountOwed = cell.amtField.text!
         delegate?.NewTransactionSave(controller: self, didFinishCreatingSplit: split)
       } else {
