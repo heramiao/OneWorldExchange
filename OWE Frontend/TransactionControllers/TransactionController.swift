@@ -12,7 +12,7 @@ import Foundation
 protocol NewTransactionDelegate: class {
   func NewTransactionCancel(controller: TransactionController)
   
-  func NewTransactionSave(controller: TransactionController, didFinishCreatingTransaction transaction: Transaction)
+  func NewTransactionSave(controller: TransactionController, didFinishCreatingSplit split: Split)
 }
 
 class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate {
@@ -21,6 +21,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   var transaction: Transaction?
   var delegate: NewTransactionDelegate?
   let viewModel = TransactionViewModel()
+  let dateFormatter = DateFormatter()
   
   // MARK: - Outlets
   @IBOutlet weak var currencyTypeField: UITextField!
@@ -33,7 +34,6 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   @IBOutlet weak var whoOwesTable: UITableView!
   @IBOutlet weak var currSymbol: UILabel!
   @IBOutlet weak var remainingAmt: UILabel!
-  
   
   var currType = ["AUD", "CAD", "CHF", "CNY", "EUR", "GBP", "JPY", "MXN", "SEK", "USD"]
   var expType = ["Entertainment", "Food", "Lodging", "Shopping", "Transportation", "Other"]
@@ -48,6 +48,8 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
     for member in group!.members {
       members.append(member.name)
     }
+    
+    dateFormatter.dateFormat = "MM/dd/yy"
 
     pickerCurrType.delegate = self
     pickerCurrType.dataSource = self
@@ -64,14 +66,42 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
     let cellNib = UINib(nibName: "WhoOwesTableCell", bundle: nil)
     whoOwesTable.register(cellNib, forCellReuseIdentifier: "whoowes")
     
-    self.whoOwesTable.allowsMultipleSelection = true
-    self.whoOwesTable.allowsMultipleSelectionDuringEditing = true
+    //self.whoOwesTable.allowsMultipleSelection = true
+    //self.whoOwesTable.allowsMultipleSelectionDuringEditing = true
     
+    currencyAmountField!.addTarget(self, action: #selector(amtPaidDidChange(_:)), for: .editingChanged)
   }
+  
+  @objc func amtPaidDidChange(_ textField: UITextField) {
+    remainingAmt!.text = currencyAmountField!.text
+  }
+  
+//  var totalAssigned = Float(0.00)
+//  @objc func splitAmtDidChange(_ textField: UITextField) {
+//    for i in 0...members.count-1 {
+//      let indexPath = NSIndexPath(row: i, section: 0)
+//      let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell
+//      if cell.amtField!.text! != nil {
+//        let numberFormatter = NumberFormatter()
+//        let amt = numberFormatter.number(from: cell.amtField!.text!)
+//        let amtFloatValue = amt!.floatValue
+//        totalAssigned += amtFloatValue
+//        let currAmtField = numberFormatter.number(from: currencyAmountField!.text!)
+//        let currAmtFloatValue = currAmtField!.floatValue
+//        self.remainingAmt!.text = String(format: "%0.2f", currAmtFloatValue - totalAssigned)
+//      } else {
+//        return
+//      }
+//    }
+//  }
   
   @IBAction func splitTypeChanged(_ sender: Any) {
     if splitType.selectedSegmentIndex == 0 {
-      
+      for i in 0...members.count-1 {
+        let indexPath = NSIndexPath(row: i, section: 0)
+        let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell
+        cell.amtField!.text = "0.00"
+      }
     }
     if splitType.selectedSegmentIndex == 1 {
       for i in 0...members.count-1 {
@@ -90,8 +120,23 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   }
   
   @IBAction func save() {
-    
-    //delegate?.NewTransactionSave(controller: self, didFinishCreatingTransaction: transaction!)
+    for i in 0...members.count-1 {
+      let indexPath = NSIndexPath(row: i, section: 0)
+      let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell
+      if cell.amtField.text != "0.00" {
+        let split = Split()
+        split.payee = paidByField.text!
+        split.payor = cell.nameLabel.text!
+        split.datePaid = dateFormatter.string(from: Date())
+        split.descript = descriptionField.text!
+        split.currencyAbrev = currencyTypeField.text!
+        split.currencySymbol = cell.currLabel.text!
+        split.amountOwed = cell.amtField.text!
+        delegate?.NewTransactionSave(controller: self, didFinishCreatingSplit: split)
+      } else {
+        continue
+      }
+    }
   }
 
   // MARK: - UIPickerView
@@ -127,6 +172,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     if pickerView == pickerCurrType {
       currencyTypeField.text = currType[row]
+      currSymbol.text = viewModel.currToSymbol(currType: currType[row])
       for i in 0...members.count-1 {
         let indexPath = NSIndexPath(row: i, section: 0)
         let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell
@@ -149,6 +195,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
     let cell = tableView.dequeueReusableCell(withIdentifier: "whoowes", for: indexPath) as! WhoOwesTableCell
     let member = members[indexPath.row]
     cell.nameLabel!.text = member
+    //cell.amtField!.addTarget(self, action: #selector(splitAmtDidChange(_:)), for: .editingChanged)
     return cell
   }
   

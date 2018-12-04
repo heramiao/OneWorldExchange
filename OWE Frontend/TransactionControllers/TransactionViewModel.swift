@@ -27,4 +27,10 @@ class TransactionViewModel {
     return symbols[currType]![0] as! String
   }
   
+  func convert(currType: String, amount: String) -> String {
+    let floatAmt = Float(amount)
+    let USDAmt = symbols[currType]![1] * floatAmt
+    return String(USDAmt)
+  }
+  
 }

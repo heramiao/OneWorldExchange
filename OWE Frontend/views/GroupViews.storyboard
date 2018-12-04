@@ -355,10 +355,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdf-wC-fgR">
-                                <rect key="frame" x="0.0" y="65" width="320" height="735"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qW-VP-ooT" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="735"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="736"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Who Paid?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4E6-iX-3OY">
                                                 <rect key="frame" x="7" y="8" width="82" height="21"/>
@@ -478,7 +478,7 @@
                                                 </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remaining Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPJ-pD-uY6">
-                                                <rect key="frame" x="95" y="591" width="145" height="21"/>
+                                                <rect key="frame" x="63" y="591" width="145" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -496,14 +496,14 @@
                                                 </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOG-ej-SSR">
-                                                <rect key="frame" x="245" y="591" width="11" height="21"/>
+                                                <rect key="frame" x="226" y="591" width="11" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6d-zs-hsK">
-                                                <rect key="frame" x="262" y="591" width="35" height="21"/>
+                                                <rect key="frame" x="245" y="591" width="35" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -511,15 +511,16 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="736" id="coK-cB-aKF"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="1qW-VP-ooT" secondAttribute="bottom" id="Hhf-gN-eFF"/>
-                                    <constraint firstAttribute="bottom" secondItem="1qW-VP-ooT" secondAttribute="bottom" id="HiP-x7-eEW"/>
                                     <constraint firstItem="1qW-VP-ooT" firstAttribute="top" secondItem="sdf-wC-fgR" secondAttribute="top" id="TRs-4S-ZU7"/>
                                     <constraint firstItem="1qW-VP-ooT" firstAttribute="leading" secondItem="sdf-wC-fgR" secondAttribute="leading" id="kCj-Tr-I0N"/>
                                     <constraint firstItem="1qW-VP-ooT" firstAttribute="centerX" secondItem="sdf-wC-fgR" secondAttribute="centerX" id="sNw-sQ-aCS"/>
-                                    <constraint firstItem="1qW-VP-ooT" firstAttribute="centerY" secondItem="sdf-wC-fgR" secondAttribute="centerY" id="uWs-Fb-uQo"/>
                                     <constraint firstAttribute="trailing" secondItem="1qW-VP-ooT" secondAttribute="trailing" id="yq9-4f-EuU"/>
                                 </constraints>
                             </scrollView>
@@ -529,11 +530,7 @@
                             <constraint firstItem="sdf-wC-fgR" firstAttribute="bottom" secondItem="NZP-IP-Avi" secondAttribute="bottom" id="ClQ-wh-bgY"/>
                             <constraint firstItem="sdf-wC-fgR" firstAttribute="leading" secondItem="NZP-IP-Avi" secondAttribute="leading" id="MZh-dh-ILh"/>
                             <constraint firstItem="sdf-wC-fgR" firstAttribute="trailing" secondItem="NZP-IP-Avi" secondAttribute="trailing" id="Sc4-qe-3FD"/>
-                            <constraint firstItem="sdf-wC-fgR" firstAttribute="top" secondItem="NZP-IP-Avi" secondAttribute="top" constant="1" id="Z0c-Dp-s96"/>
-                            <constraint firstItem="sdf-wC-fgR" firstAttribute="top" secondItem="NZP-IP-Avi" secondAttribute="top" constant="1" id="b4h-9N-UdX"/>
-                            <constraint firstItem="sdf-wC-fgR" firstAttribute="trailing" secondItem="NZP-IP-Avi" secondAttribute="trailing" id="gH0-wN-CnN"/>
-                            <constraint firstItem="sdf-wC-fgR" firstAttribute="bottom" secondItem="NZP-IP-Avi" secondAttribute="bottom" id="rvE-UW-P2Q"/>
-                            <constraint firstItem="sdf-wC-fgR" firstAttribute="leading" secondItem="NZP-IP-Avi" secondAttribute="leading" id="uTn-FE-ZPy"/>
+                            <constraint firstItem="sdf-wC-fgR" firstAttribute="top" secondItem="NZP-IP-Avi" secondAttribute="top" id="Z0c-Dp-s96"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NZP-IP-Avi"/>
                     </view>

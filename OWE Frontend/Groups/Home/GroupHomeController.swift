@@ -16,6 +16,7 @@ class GroupHomeController: UIViewController, EditGroupDelegate, NewTransactionDe
   @IBOutlet var youOweTable: UITableView!
   
   var group: Group?
+  var splits = [Split]()
   let viewModelMembers = GroupUsersViewModel()
   
   override func viewDidLoad() {
@@ -25,6 +26,9 @@ class GroupHomeController: UIViewController, EditGroupDelegate, NewTransactionDe
 //    if let tripImage = group.tripImage {
 //      tripImage.image = group.image
 //    }
+    
+    let cellNib = UINib(nibName: "SplitsTableCell", bundle: nil)
+    youOweTable.register(cellNib, forCellReuseIdentifier: "split")
     
     viewModelMembers.refresh ({ [unowned self] in
       DispatchQueue.main.async {
@@ -87,8 +91,40 @@ class GroupHomeController: UIViewController, EditGroupDelegate, NewTransactionDe
     dismiss(animated: true, completion: nil)
   }
   
-  func NewTransactionSave(controller: TransactionController, didFinishCreatingTransaction transaction: Transaction) {
+  func NewTransactionSave(controller: TransactionController, didFinishCreatingSplit split: Split) {
+    let newRowIndex = splits.count
     
+    splits.append(split)
+    
+    let indexPath = NSIndexPath(row: newRowIndex, section: 0)
+    let indexPaths = [indexPath]
+    youOweTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+    
+    dismiss(animated: true, completion: nil)
+  }
+  
+  // MARK: - Table View
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return splits.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let split: Split
+    let transactionVM = TransactionViewModel()
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM/dd/yy"
+    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "split", for: indexPath) as! SplitsTableCell
+    split = splits[indexPath.row]
+    cell.payorName!.text = split.payor
+    cell.payeeName!.text = split.payee
+    cell.date!.text = split.datePaid
+    cell.descript!.text = split.descript
+    cell.orgCurrSymbol!.text = split.currencySymb
+    cell.orgAmt!.text = split.amountOwed
+    // cell.baseCurrSymbol!.text = get the base currency of payor
+    cell.convertedAmt!.text = transactionVM.convert(currType: split.currencyAbrev!, amount: split.amountOwed!)
+    return cell
   }
   
   // MARK: - Segues
