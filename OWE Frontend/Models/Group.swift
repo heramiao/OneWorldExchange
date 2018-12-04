@@ -16,7 +16,7 @@ class Group {
   var tripName: String
   var startDate: Date
   var endDate: Date
-  //var image: UIImage?
+  var image: UIImage?
   var members = [User]()
   
   init(id: Int, tripName: String, startDate: Date, endDate: Date, members: [User]) {

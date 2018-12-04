@@ -13,23 +13,23 @@ import CoreData
 
 class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditGroupDelegate, NewTransactionDelegate {
   
-  //@IBOutlet weak var tripImage: UIImageView!
+  @IBOutlet weak var tripImage: UIImageView!
   @IBOutlet var youOweTable: UITableView!
   
   var group: Group?
   var splits = [Split]()
   let viewModelMembers = GroupUsersViewModel()
+  let dateFormatter = DateFormatter()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     //addSlideMenuButton()
     self.navigationItem.title = group!.tripName
-//    if let tripImage = group!.image {
-//      tripImage.image = group!.image
-//    }
-//    if let image = self.tripImage {
-//      image.image = group!.image
-//    }
+    if let image = group!.image {
+      tripImage.image = group!.image
+    }
+    
+    dateFormatter.dateFormat = "YYYY-MM-dd"
     
     let cellNib = UINib(nibName: "SplitsTableCell", bundle: nil)
     youOweTable.register(cellNib, forCellReuseIdentifier: "split")
@@ -53,42 +53,45 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   
   func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User]) {
     // send update/patch request
-//    for member in newMembers {
-//      let paramsMember = [
-//        "travel_group_id": group.id,
-//        "user_id": member.id
-//      ]
-//
-//      Alamofire.request("https://oneworldexchange.herokuapp.com/group_members", method: .post, parameters: paramsMember, encoding: JSONEncoding.default, headers: nil).responseData{ response in
-//
-//        print(response)
-//        if let status = response.response?.statusCode {
-//          print(status)
-//        }
-//        if let result = response.result.value {
-//          print(result)
-//        }
-//      }
-//    }
-//
-//    let paramsGroup = [
-//      "id": group.id,
-//      "trip_name": group.tripName,
-//      "start_date": group.startDate,
-//      "end_date": group.endDate,
-//    ] as [String : Any]
-//
-//    Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups/1", method: .patch, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
-//
-//      print(response)
-//      if let status = response.response?.statusCode {
-//        print(status)
-//      }
-//      if let result = response.result.value {
-//        print(result)
-//      }
-//    }
+    for member in newMembers {
+      let paramsMember = [
+        "travel_group_id": group.id,
+        "user_id": member.id
+      ]
+
+      Alamofire.request("https://oneworldexchange.herokuapp.com/group_members", method: .post, parameters: paramsMember, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+
+        print(response)
+        if let status = response.response?.statusCode {
+          print(status)
+        }
+        if let result = response.result.value {
+          print(result)
+        }
+      }
+    }
+
+    let paramsGroup = [
+      "id": group.id,
+      "trip_name": group.tripName,
+      "start_date": dateFormatter.string(from: group.startDate),
+      "end_date": dateFormatter.string(from: group.endDate),
+    ] as [String : Any]
+
+    Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups/1", method: .patch, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
+
+      print(response)
+      if let status = response.response?.statusCode {
+        print(status)
+      }
+      if let result = response.result.value {
+        print(result)
+      }
+    }
     dismiss(animated: true, completion: nil)
+    
+    self.navigationItem.title = group.tripName
+    tripImage.image = group.image
   }
   
   func NewTransactionCancel(controller: TransactionController) {

@@ -335,6 +335,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Wa4-lb-ied"/>
                     </toolbarItems>
                     <connections>
+                        <outlet property="tripImage" destination="e0v-c5-WJV" id="gPG-va-Ro6"/>
                         <outlet property="youOweTable" destination="gEo-fh-9dX" id="Tah-zo-3gT"/>
                     </connections>
                 </viewController>
