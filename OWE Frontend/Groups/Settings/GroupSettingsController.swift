@@ -177,23 +177,15 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   @IBAction func save() {
-//      if let group = self.detailItem {
-//          updateGroup(group:group)
-//          //            delegate?.groupSettingsController(controller: self, didFinishUpdatingGroup: group)
-//      }
-//      else {
-//          let group = makeGroup()
-//          saveGroup(group: group)
-//          if group.title.count > 0 {
-//              delegate?.groupSettingsSave(controller: self, didFinishChangingGroup: group)
-//          }
-//      }
+//    if segue == "addGroup" {
+//      let group = Group()
+//    }
     group!.tripName = tripNameField.text!
     group!.startDate = dateFormatter.date(from: startDateField.text!)!
     group!.endDate = dateFormatter.date(from: endDateField.text!)!
-    // group!.members = viewModelMember.users
-     group!.image = picture
-    //self.saveGroup(group: group!)
+    group!.image = picture
+    //group!.members = viewModelMember.users
+    self.saveGroup(group: group!)
     if segue == "editGroup" {
       editDelegate?.EditGroupSave(controller: self, didFinishEditingGroup: group!, newMembers: newMembers)
     } else if segue == "addGroup" {
@@ -206,10 +198,10 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = appDelegate.persistentContainer.viewContext
     // Specifically select the Group entity to save this object to
-    let entity = NSEntityDescription.entity(forEntityName: "Groups", in: context)
-    let newGroup = NSManagedObject(entity: entity!, insertInto: context)
+    let groupEntity = NSEntityDescription.entity(forEntityName: "Groups", in: context)
+    let newGroup = NSManagedObject(entity: groupEntity!, insertInto: context)
     // Set values one at a time and save
-    newGroup.setValue(group.tripName, forKey: "title")
+    newGroup.setValue(group.tripName, forKey: "trip_name")
     newGroup.setValue(group.startDate, forKey: "start_date")
     newGroup.setValue(group.endDate, forKey: "end_date")
     // Safely unwrap the picture
@@ -221,6 +213,13 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       print("Success saving")
     } catch {
       print("Failed saving")
+    }
+    // Save new group members to Core Data
+    for member in newMembers {
+      let userGroupEntity = NSEntityDescription.entity(forEntityName: "User_Group", in: context)
+      let newUserGroup = NSManagedObject(entity: userGroupEntity!, insertInto: context)
+      newUserGroup.setValue(member.id, forKey: "user_id")
+      newUserGroup.setValue(group.id, forKey: "travel_group_id")
     }
   }
   

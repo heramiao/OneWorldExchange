@@ -19,6 +19,7 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
     
   // MARK: - Properties
   let viewModel = GroupTripViewModel()
+  var groups = [Group]()
   
   // MARK: - General
   override func viewDidLoad() {
@@ -43,12 +44,23 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
 //      let result = try context.fetch(request)
 //      for data in result as! [NSManagedObject] {
 //        self.loadGroups(data: data)
-//        print(data.value(forKey: "title") as! String)
+//        print(data.value(forKey: "trip_name") as! String)
 //      }
 //    } catch {
 //      print("Failed")
 //    }
   }
+  
+//  func loadGroups(data: NSManagedObject){
+//    let newGroup = Group()
+//    newGroup.tripName = (data.value(forKey: "trip_name") as! String)
+//    newGroup.startDate = (data.value(forKey: "start_date") as! Date)
+//    newGroup.endDate = (data.value(forKey: "end_date") as? Date)
+//    if let safeUnwrap = data.value(forKey: "picture") {
+//        newGroup.image = UIImage(data:(safeUnwrap as! NSData) as Data, scale:1.0)
+//    }
+//    groups.append(newGroup)
+//  }
   
   override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
@@ -61,20 +73,10 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
       super.didReceiveMemoryWarning()
   }
   
-//  func loadGroups(data: NSManagedObject){
-//      var newGroup = Group()
-//      newGroup.title = (data.value(forKey: "title") as! String)
-//      newGroup.startDate = (data.value(forKey: "start_date") as! Date)
-//      newGroup.endDate = (data.value(forKey: "end_date") as? Date)
-//      if let safeUnwrap = data.value(forKey: "picture") {
-//          newGroup.image = UIImage(data:(safeUnwrap as! NSData) as Data, scale:1.0)
-//      }
-//      groups.append(newGroup)
-//  }
-  
   // MARK: - Table View
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return viewModel.numberOfRows()
+    //return groups.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,6 +86,7 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "onegroup", for: indexPath) as! GroupTableViewCell
     group = viewModel.groups[indexPath.row]
+    //group = groups[indexPath.row]
     //cell.groupImage.image = group.image
     cell.groupTitle!.text = group.tripName
     cell.tripStartDate.text = dateFormatter.string(for: group.startDate)
@@ -126,6 +129,7 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
     if segue.identifier == "showGroup" {
       if let indexPath = self.tableView.indexPathForSelectedRow {
         (segue.destination as! GroupHomeController).group = viewModel.groups[indexPath.row]
+        //(segue.destination as! GroupHomeController).group = groups[indexPath.row]
       }
     } else if segue.identifier == "addGroup" {
         let navigationController = segue.destination as! UINavigationController

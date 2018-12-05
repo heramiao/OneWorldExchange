@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, SlideMenuDelegate {
+class BaseTableViewController: UITableViewController, SlideMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +28,28 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
             print("Profile\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("Profile", "Main")
             break
-            
+          
         case 1:
             print("Groups\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("Groups", "GroupViews")
             break
             
         case 2:
-            print("History\n", terminator: "")
+            print("Search People\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("History", "HistoryVC")
             break
-            
+          
         case 3:
+          print("Transfer to Bank\n", terminator: "")
+          self.openViewControllerBasedOnIdentifier("History", "HistoryVC")
+          break
+          
+        case 4:
+          print("Trip Summaries\n", terminator: "")
+          self.openViewControllerBasedOnIdentifier("History", "HistoryVC")
+          break
+            
+        case 5:
             print("Settings\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("Settings", "SettingsVC")
             break

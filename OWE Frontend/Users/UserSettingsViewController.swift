@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Photos
 
 // MARK: Protocol Methods
 
@@ -17,10 +18,13 @@ protocol UserSettingsDelegate: class {
   func UserSettingsSave(controller: UserSettingsViewController, didFinishAddingSettings user: User)
 }
 
-class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   var profile: User?
   var delegate: UserSettingsDelegate?
+  
+  var picture: UIImage?
+  let imagePicker = UIImagePickerController()
   
   // MARK: - Outlets
   
@@ -34,11 +38,13 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
 //  @IBOutlet weak var newPassConField: UITextField!
   
   // MARK: - General
-  var pickerData = ["AUD", "CAD", "CHF", "CNY", "EUR", "GBP", "JPY", "MXN", "SEK", "USD"]
+  var pickerData = ["$ AUD", "$ CAD", "CHF", "¥ CNY", "€ EUR", "£ GBP", "¥ JPY", "$ MXN", "kr SEK", "$ USD"]
   var pickerView = UIPickerView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    configureControls()
     
     pickerView.delegate = self
     pickerView.dataSource = self
@@ -56,6 +62,22 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  func configureControls() {
+    // request image permission
+    PHPhotoLibrary.requestAuthorization({_ in return})
+    
+    // configure image picker
+    imagePicker.delegate = (self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+    
+    // configure screen tap
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UserSettingsViewController.viewTapped(gestureRecognizer:)) )
+    view.addGestureRecognizer(tapGesture)
+  }
+  
+  @objc func viewTapped(gestureRecognizer: UIGestureRecognizer) {
+    view.endEditing(true)
   }
   
   // MARK: - UIPickerView
@@ -82,6 +104,21 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   }
   
   // MARK: - Actions
+  
+  @IBAction func loadImageButtonTapped(sender: UIButton) {
+    imagePicker.allowsEditing = false
+    imagePicker.sourceType = .photoLibrary
+    
+    present(imagePicker, animated: true, completion: nil)
+  }
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+      picture = pickedImage
+      //tripImage.image = picture
+    }
+    dismiss(animated: true, completion: nil)
+  }
   
   @IBAction func cancel() {
     delegate?.UserSettingsCancel(controller: self)

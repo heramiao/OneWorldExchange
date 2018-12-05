@@ -77,7 +77,7 @@
                                                     <outlet property="delegate" destination="Psh-QP-qd3" id="a5Y-az-jNN"/>
                                                 </connections>
                                             </tableView>
-                                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LoadImage" translatesAutoresizingMaskIntoConstraints="NO" id="ZIg-sO-H3H">
+                                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GroupHome" translatesAutoresizingMaskIntoConstraints="NO" id="ZIg-sO-H3H">
                                                 <rect key="frame" x="-22" y="0.0" width="365" height="157"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                             </imageView>
@@ -581,7 +581,6 @@
     <resources>
         <image name="CameraButton" width="28" height="25"/>
         <image name="GroupHome" width="2296" height="1724"/>
-        <image name="LoadImage" width="375" height="157"/>
         <image name="SettingsButton" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>

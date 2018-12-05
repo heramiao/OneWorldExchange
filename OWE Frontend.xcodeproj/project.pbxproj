@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E82137273B00B88D28374B4 /* Pods_OWE_Frontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BFE04CD19CF0053BC89AD5 /* Pods_OWE_Frontend.framework */; };
+		6305CEA621B8335100F1B4F3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6305CEA521B8335100F1B4F3 /* BaseViewController.swift */; };
 		6330383D219DC5880089B620 /* GroupUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330383C219DC5880089B620 /* GroupUsersViewModel.swift */; };
 		63303843219F53970089B620 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63303842219F53970089B620 /* SearchClient.swift */; };
 		6330384521A0F0DF0089B620 /* AddMemberTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330384421A0F0DF0089B620 /* AddMemberTableCell.swift */; };
@@ -33,7 +34,6 @@
 		D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D651A08521879FC8001F6EFA /* OWE_Frontend.xcdatamodeld */; };
 		D651A08C21879FC9001F6EFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D651A08A21879FC9001F6EFA /* LaunchScreen.storyboard */; };
 		D651A09721879FCA001F6EFA /* OWE_FrontendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D651A09621879FCA001F6EFA /* OWE_FrontendTests.swift */; };
-		D6DD62FF219A27AB00D28B2B /* BaseViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD62FE219A27AB00D28B2B /* BaseViewController copy.swift */; };
 		D6DD6300219A392000D28B2B /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EE7F55219610B700D15CB2 /* GroupTableViewCell.xib */; };
 		D6EE7F5421960FD800D15CB2 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE7F5321960FC100D15CB2 /* SwiftyJSON.swift */; };
 		D6EE7F58219610F900D15CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6EE7F57219610F200D15CB2 /* Assets.xcassets */; };
@@ -59,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		35BFE04CD19CF0053BC89AD5 /* Pods_OWE_Frontend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OWE_Frontend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6305CEA521B8335100F1B4F3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6330383C219DC5880089B620 /* GroupUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUsersViewModel.swift; sourceTree = "<group>"; };
 		63303842219F53970089B620 /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
 		6330384421A0F0DF0089B620 /* AddMemberTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberTableCell.swift; sourceTree = "<group>"; };
@@ -89,13 +90,12 @@
 		D651A09221879FCA001F6EFA /* OWE FrontendTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OWE FrontendTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D651A09621879FCA001F6EFA /* OWE_FrontendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWE_FrontendTests.swift; sourceTree = "<group>"; };
 		D651A09821879FCA001F6EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D6DD62FE219A27AB00D28B2B /* BaseViewController copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController copy.swift"; sourceTree = "<group>"; };
 		D6EE7F5321960FC100D15CB2 /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D6EE7F55219610B700D15CB2 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		D6EE7F56219610D100D15CB2 /* GroupViews.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupViews.storyboard; sourceTree = "<group>"; };
 		D6EE7F57219610F200D15CB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D6F717AD219901BC009ED62B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideMenuViewController.swift; path = "OWE Frontend/SideMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
-		D6F717AF21993C3A009ED62B /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = "OWE Frontend/BaseTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D6F717AD219901BC009ED62B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideMenuViewController.swift; path = "OWE Frontend/Nav Bar/SideMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D6F717AF21993C3A009ED62B /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = "OWE Frontend/Nav Bar/BaseTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D6FE2BA4218F58070038F54F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D6FE2BA6218F5E960038F54F /* GroupHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHomeController.swift; sourceTree = "<group>"; };
 		D6FE2BA8218F60590038F54F /* GroupSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsController.swift; sourceTree = "<group>"; };
@@ -124,6 +124,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6305CEA421B82D0E00F1B4F3 /* Nav Bar */ = {
+			isa = PBXGroup;
+			children = (
+				D6F717AD219901BC009ED62B /* SideMenuViewController.swift */,
+				D6F717AF21993C3A009ED62B /* BaseTableViewController.swift */,
+				6305CEA521B8335100F1B4F3 /* BaseViewController.swift */,
+			);
+			path = "Nav Bar";
+			sourceTree = "<group>";
+		};
 		6330385821AB129B0089B620 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,9 +235,7 @@
 				D6FE2BC02190E7000038F54F /* Users */,
 				D6FE2BB6219016690038F54F /* Groups */,
 				63C73C9821928F3600E06207 /* TransactionControllers */,
-				D6F717AD219901BC009ED62B /* SideMenuViewController.swift */,
-				D6DD62FE219A27AB00D28B2B /* BaseViewController copy.swift */,
-				D6F717AF21993C3A009ED62B /* BaseTableViewController.swift */,
+				6305CEA421B82D0E00F1B4F3 /* Nav Bar */,
 				63303842219F53970089B620 /* SearchClient.swift */,
 				6330384D21A650BC0089B620 /* Parser.swift */,
 				D6FE2BB5219016590038F54F /* Models */,
@@ -473,12 +481,12 @@
 				63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */,
 				63303843219F53970089B620 /* SearchClient.swift in Sources */,
 				63C73C84218AB37F00E06207 /* User.swift in Sources */,
+				6305CEA621B8335100F1B4F3 /* BaseViewController.swift in Sources */,
 				D6FE2BA9218F60590038F54F /* GroupSettingsController.swift in Sources */,
 				63C73C9A21928F6F00E06207 /* TransactionController.swift in Sources */,
 				D6FE2BA5218F58070038F54F /* Group.swift in Sources */,
 				D6FE2BA7218F5E960038F54F /* GroupHomeController.swift in Sources */,
 				6330385621AA50430089B620 /* GroupTripViewModel.swift in Sources */,
-				D6DD62FF219A27AB00D28B2B /* BaseViewController copy.swift in Sources */,
 				63630B4A21B57C7800D2A064 /* TransactionViewModel.swift in Sources */,
 				D651A08721879FC8001F6EFA /* OWE_Frontend.xcdatamodeld in Sources */,
 				63630B4D21B5F25B00D2A064 /* SplitsTableCell.swift in Sources */,

@@ -24,6 +24,7 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   override func viewDidLoad() {
     super.viewDidLoad()
     //addSlideMenuButton()
+    
     self.navigationItem.title = group!.tripName
     if let image = group!.image {
       tripImage.image = group!.image
@@ -33,14 +34,35 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     
     let cellNib = UINib(nibName: "SplitsTableCell", bundle: nil)
     youOweTable.register(cellNib, forCellReuseIdentifier: "split")
-    
+
+    // use core data bc already updated in API
     viewModelMembers.refresh ({ [unowned self] in
       DispatchQueue.main.async {
         self.group!.members = self.viewModelMembers.users
         // update wherever user contact photo is added
       }
       }, url: "https://oneworldexchange.herokuapp.com/travel_group/\(group!.id)/members")
+    
+    // Again set up the stack to interface with CoreData
+//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//    let context = appDelegate.persistentContainer.viewContext
+//    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Groups")
+//    request.returnsObjectsAsFaults = false
+//    do {
+//      let result = try context.fetch(request)
+//      for data in result as! [NSManagedObject] {
+//        self.loadGroup(data: data)
+//      }
+//    } catch {
+//      print("Failed")
+//    }
   }
+  
+  // using Core Data, update trip name and trip photo
+//  func loadGroup(data: NSManagedObject){
+//    self.navigationItem.title = data.value(forKey: "trip_name") as! String
+//    self.tripImage.image = UIImage(data:(data.value(forKey: "picture") as! NSData) as Data, scale:1.0)
+//  }
   
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
