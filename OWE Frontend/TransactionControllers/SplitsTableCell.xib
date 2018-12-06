@@ -62,6 +62,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54K-FK-xW6">
                         <rect key="frame" x="274" y="24" width="30" height="30"/>
                         <state key="normal" title="Pay"/>
+                        <connections>
+                            <action selector="paySelected" destination="L40-Uu-Aem" eventType="touchUpInside" id="tU1-AS-ADi"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="owes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyJ-PN-hTg">
                         <rect key="frame" x="56" y="4" width="40" height="21"/>
@@ -107,7 +110,7 @@
                 <outlet property="descript" destination="8Mz-2N-o5n" id="9gY-y9-KMb"/>
                 <outlet property="orgAmt" destination="5CX-vc-SWp" id="5kp-nZ-AMd"/>
                 <outlet property="orgCurrSymbol" destination="ejO-ZN-sW2" id="Gdb-gq-myS"/>
-                <outlet property="payBtn" destination="54K-FK-xW6" id="UrK-oU-dn2"/>
+                <outlet property="payBtn" destination="54K-FK-xW6" id="pah-7Y-6sJ"/>
                 <outlet property="payeeName" destination="H2A-bD-HOY" id="DNd-3s-Txu"/>
                 <outlet property="payorName" destination="bot-bW-kaI" id="Kx3-sV-DHn"/>
             </connections>

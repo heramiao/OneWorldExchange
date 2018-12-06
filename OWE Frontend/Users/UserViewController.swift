@@ -33,11 +33,14 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     super.viewDidLoad()
     addSlideMenuButton()
     
+    print("view did load")
+    
     if let user = getUser(swiftyjson: json) {
       self.user = user
       name.text = user.name
       email.text = user.email
       phone.text = user.phone
+      yourHoldings.text = String(user.balance)
     } else {
       print("couldn't get user")
     }

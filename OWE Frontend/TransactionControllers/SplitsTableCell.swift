@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PaySplitDelegate: class {
+  func paySplit(class: SplitsTableCell, payor: User, amountOwed: String)
+}
+
 class SplitsTableCell: UITableViewCell {
 
   @IBOutlet weak var payorName: UILabel!
@@ -20,6 +24,10 @@ class SplitsTableCell: UITableViewCell {
   @IBOutlet weak var convertedAmt: UILabel!
   @IBOutlet weak var payBtn: UIButton!
   
+  var payor: User?
+  var amountOwed: String?
+  var delegate: PaySplitDelegate?
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -27,6 +35,10 @@ class SplitsTableCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     //super.setSelected(selected, animated: animated)
     //self.accessoryType = selected ? .checkmark : .none
+  }
+  
+  @IBAction func paySelected() {
+    delegate?.paySplit(class: self, payor: payor!, amountOwed: amountOwed!)
   }
   
 }

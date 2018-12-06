@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 import CoreData
 
-class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditGroupDelegate, NewTransactionDelegate {
+class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditGroupDelegate, NewTransactionDelegate, PaySplitDelegate {
   
   @IBOutlet weak var tripImage: UIImageView!
   @IBOutlet var youOweTable: UITableView!
@@ -19,6 +19,7 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   var group: Group?
   var splits = [Split]()
   let viewModelMembers = GroupUsersViewModel()
+  let userVC = UserViewController()
   let dateFormatter = DateFormatter()
   
   override func viewDidLoad() {
@@ -132,6 +133,15 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     dismiss(animated: true, completion: nil)
   }
   
+  func paySplit(class: SplitsTableCell, payor: User, amountOwed: String) {
+    let amtOwed = Float(amountOwed)
+    payor.balance = payor.balance - amtOwed!
+    userVC.user! = payor
+    //payor.balance = newBalance
+    //userVC.user!.balance = newBalance
+  }
+
+  
   // MARK: - Table View
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return splits.count
@@ -145,18 +155,17 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "split", for: indexPath) as! SplitsTableCell
     split = splits[indexPath.row]
-    
-    let payorFName = split.payor!.components(separatedBy: " ")
-    let payeeFName = split.payee!.components(separatedBy: " ")
-    
-    cell.payorName!.text = payorFName[0]
-    cell.payeeName!.text = payeeFName[0]
+    cell.delegate = self as PaySplitDelegate
+    cell.payor = split.payor!
+    cell.payorName!.text = split.payor!.firstName
+    cell.payeeName!.text = split.payee!.firstName
     cell.date!.text = split.datePaid
     cell.descript!.text = split.descript
     cell.orgCurrSymbol!.text = split.currencySymb
     cell.orgAmt!.text = split.amountOwed
     // cell.baseCurrSymbol!.text = get the base currency of payor
     cell.convertedAmt!.text = transactionVM.convert(currAbrev: split.currencyAbrev!, amount: split.amountOwed!)
+    cell.amountOwed = cell.convertedAmt!.text
     
     if cell.payorName!.text != "Hera" {
       cell.payBtn!.isHidden = true

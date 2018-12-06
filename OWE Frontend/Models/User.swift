@@ -18,6 +18,7 @@ class User {
   //var password: String
   //var passwordConfirmation: String
   var baseCurrency: String
+  var balance: Float = 57.35
   
   init(id: Int, firstName: String, lastName: String, email: String, phone: String, baseCurrency: String) {
     // password: String, passwordConfirmation: String,

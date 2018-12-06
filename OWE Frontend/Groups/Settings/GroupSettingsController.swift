@@ -57,6 +57,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   let searchController = UISearchController(searchResultsController: nil)
   var filteredUsers = [User]()
   var newMembers = [User]()
+  var notInGroup = [User]()
   
   // MARK: - General
   override func viewDidLoad() {
@@ -79,6 +80,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     memberTable.register(cellNib1, forCellReuseIdentifier: "member")
     
     memberTable.tableFooterView = UIView()
+    userTable.tableFooterView = UIView()
     
     viewModelUser.refresh ({ [unowned self] in
       DispatchQueue.main.async {
@@ -99,6 +101,8 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
         }
         }, url: "https://oneworldexchange.herokuapp.com/travel_group/1/members")
     }
+    
+    //var notInGroup = viewModelUser.users
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -234,6 +238,22 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
   }
   
+  // get all the users in the system that aren't currenly in the group
+//  func newUsers(allUsers: [User], groupUsers: [User]) -> [User] {
+//    var newUsers = allUsers
+//    for currMember in groupUsers {
+//      if allUsers.contains(where: currMember) {
+//        let index = allUsers.index(of: currMember)
+//        newUsers.remove(at: index)
+//      }
+//    }
+//    for currMember in groupUsers {
+//      if let index = allUsers.index(of: currMember) {
+//
+//      }
+//    }
+//  }
+  
   // MARK: - Search User Table Views
   func beginSearch() -> Bool {
     return searchController.isActive
@@ -273,6 +293,8 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MemberTableCell
       user = viewModelMember.users[indexPath.row]
+//      if let index = notInGroup.index(of: user)
+//      notInGroup.remove(
       cell.name.text = user.name
       return cell
     }
@@ -281,7 +303,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   //MARK: - Search Methods
   func setupSearchBar() {
     searchController.searchResultsUpdater = self
-    searchController.dimsBackgroundDuringPresentation = false
+    searchController.dimsBackgroundDuringPresentation = true
     definesPresentationContext = true
     searchController.searchBar.placeholder = "Add New Members"
     //navigationItem.searchController = searchController

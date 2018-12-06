@@ -10,9 +10,9 @@ import UIKit
 import Foundation
 
 class Split: NSObject {
-  var payee: String?
+  var payee: User?
   //var payee: Int --> for the user id
-  var payor: String?
+  var payor: User?
   // var payor: Int
   var descript: String?
   var currencyAbrev: String?

@@ -22,6 +22,8 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   var delegate: NewTransactionDelegate?
   let viewModel = TransactionViewModel()
   let dateFormatter = DateFormatter()
+  var payor: User?
+  var payee: User?
   
   // MARK: - Outlets
   @IBOutlet weak var currencyTypeField: UITextField!
@@ -125,8 +127,8 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
       let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell
       if cell.amtField.text != "0.00" {
         let split = Split()
-        split.payee = paidByField.text!
-        split.payor = cell.nameLabel.text!
+        split.payee = payee
+        split.payor = group!.members[i]
         split.datePaid = dateFormatter.string(from: Date())
         split.descript = descriptionField.text!
         split.currencyAbrev = currencyTypeField.text!
@@ -181,6 +183,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
     } else if pickerView == pickerExpType {
       expenseTypeField.text = expType[row]
     } else {
+      payee = group!.members[row]
       paidByField.text = members[row]
     }
     self.view.endEditing(true)
