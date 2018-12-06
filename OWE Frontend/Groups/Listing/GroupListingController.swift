@@ -131,7 +131,7 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
       if let indexPath = self.tableView.indexPathForSelectedRow {
         (segue.destination as! GroupHomeController).group = viewModel.groups[indexPath.row]
         //(segue.destination as! GroupHomeController).group = groups[indexPath.row]
-        (segue.destination as! GroupHomeController).user = self.user
+        //(segue.destination as! GroupHomeController).user = self.user
       }
     } else if segue.identifier == "addGroup" {
         let navigationController = segue.destination as! UINavigationController

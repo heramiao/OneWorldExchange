@@ -138,6 +138,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
       } else {
         continue
       }
+      dismiss(animated: true, completion: nil)
     }
   }
 

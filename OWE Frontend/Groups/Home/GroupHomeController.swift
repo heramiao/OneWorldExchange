@@ -11,13 +11,23 @@ import UIKit
 import Alamofire
 import CoreData
 
+extension Double {
+  /// Rounds the double to decimal places value
+  func rounded(toPlaces places:Int) -> Double {
+    let divisor = pow(10.0, Double(places))
+    return (self * divisor).rounded() / divisor
+  }
+}
+
 class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditGroupDelegate, NewTransactionDelegate, PaySplitDelegate {
   
   @IBOutlet weak var tripImage: UIImageView!
   @IBOutlet var youOweTable: UITableView!
   
-  var group: Group?
   var user: User?
+  let delegate = UIApplication.shared.delegate as! AppDelegate
+  
+  var group: Group?
   var splits = [Split]()
   let viewModelMembers = GroupUsersViewModel()
   let userVC = UserViewController()
@@ -26,6 +36,13 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   override func viewDidLoad() {
     super.viewDidLoad()
     //addSlideMenuButton()
+    
+    if let user = delegate.user {
+      self.user = user
+    } else {
+      self.user = User.getUser(1)
+      delegate.user = self.user
+    }
     
     self.navigationItem.title = group!.tripName
     if let image = group!.image {
@@ -130,15 +147,15 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     let indexPath = NSIndexPath(row: newRowIndex, section: 0)
     let indexPaths = [indexPath]
     youOweTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
-    
-    dismiss(animated: true, completion: nil)
   }
   
   func paySplit(class: SplitsTableCell, payor: User, amountOwed: String) {
-    let amtOwed = Float(amountOwed)
-    if payor === self.user! {
+    let amtOwed = Double(amountOwed)
+    if payor.id == self.user!.id {
       user!.balance = user!.balance - amtOwed!
+      delegate.user!.balance = ((delegate.user?.balance)! - amtOwed!).rounded(toPlaces: 2)
     }
+    
 //    payor.balance = payor.balance - amtOwed!
 //    userVC.user! = payor
     //payor.balance = newBalance

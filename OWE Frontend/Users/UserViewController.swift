@@ -12,6 +12,7 @@ import Alamofire
 class UserViewController: BaseViewController, UserSettingsDelegate {
   
   var user: User?
+  let delegate = UIApplication.shared.delegate as! AppDelegate
   
   // MARK: - Outlets
   @IBOutlet weak var name: UILabel!
@@ -29,17 +30,22 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     super.viewDidLoad()
     addSlideMenuButton()
     
+    if let user = delegate.user {
+      self.user = user
+    } else {
+      self.user = User.getUser(1)
+      delegate.user = self.user
+    }
+    
     name.text = user!.name
     email.text = user!.email
     phone.text = user!.phone
     yourHoldings.text = String(user!.balance)
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
   }
-  
   
   func UserSettingsCancel(controller: UserSettingsViewController) {
     dismiss(animated: true, completion: nil)
@@ -53,7 +59,8 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
       "last_name": user.lastName,
       "email": user.email,
       "phone": user.phone,
-      "base_currency": user.baseCurrency
+      "base_currency": user.baseCurrency,
+      "balance": user.balance
       // "password": user.password,
       // "password_confirmation": user.passwordConfirmation,
       ] as [String : Any]
@@ -76,6 +83,7 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     name.text = user.firstName + " " + user.lastName
     email.text = user.email
     phone.text = user.phone
+    yourHoldings.text = String(user.balance)
   }
   
   // MARK: - Navigation

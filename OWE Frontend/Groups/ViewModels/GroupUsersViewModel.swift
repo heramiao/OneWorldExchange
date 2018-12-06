@@ -73,8 +73,9 @@ class GroupUsersViewModel {
       let phone = dict["phone"] as? String,
       let password = dict["password"] as? String,
       //let passwordConfirmation = dict["password_confirmation" ]
-      let baseCurr = dict["base_currency"] as? String {
-      let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, baseCurrency: baseCurr)
+      let baseCurr = dict["base_currency"] as? String,
+      let balance = dict["balance"] as? Double {
+      let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, baseCurrency: baseCurr, balance: balance)
       // password: password, passwordConfirmation: passwordConfirmation,
       return user
     } else {

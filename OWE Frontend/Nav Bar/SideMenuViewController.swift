@@ -21,11 +21,23 @@ class SideMenuViewController: UIViewController , UITableViewDataSource, UITableV
     var arrayMenuOptions = [Dictionary<String,String>]()
     var btnMenu : UIButton!
     var delegate : SlideMenuDelegate?
+  
+  var user: User?
+  let userDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
       super.viewDidLoad()
       tblMenuOptions.tableFooterView = UIView()
       // Do any additional setup after loading the view.
+      
+      if let user = userDelegate.user {
+        self.user = user
+      } else {
+        self.user = User.getUser(1)
+        userDelegate.user = self.user
+      }
+      
+      balance.text! = String(user!.balance)
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,6 +54,8 @@ class SideMenuViewController: UIViewController , UITableViewDataSource, UITableV
       arrayMenuOptions.append(["title":"Groups"])
       arrayMenuOptions.append(["title":"Search People"])
       arrayMenuOptions.append(["title":"Transfer to Bank"])
+      arrayMenuOptions.append(["title":"Trip Summaries"])
+      arrayMenuOptions.append(["title":"User Settings"])
       arrayMenuOptions.append(["title":"Log Out"])
       
       tblMenuOptions.reloadData()
