@@ -26,12 +26,12 @@ class BaseTableViewController: UITableViewController, SlideMenuDelegate {
         switch(index){
         case 0:
             print("Profile\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("Profile", "Main")
+            self.openViewControllerBasedOnIdentifier("Profile", "UserViews")
             break
           
         case 1:
             print("Groups\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("Groups", "GroupViews")
+            self.openViewControllerBasedOnIdentifier("Groups", "Main")
             break
             
         case 2:
