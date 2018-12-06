@@ -17,6 +17,7 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   @IBOutlet var youOweTable: UITableView!
   
   var group: Group?
+  var user: User?
   var splits = [Split]()
   let viewModelMembers = GroupUsersViewModel()
   let userVC = UserViewController()
@@ -135,8 +136,11 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   
   func paySplit(class: SplitsTableCell, payor: User, amountOwed: String) {
     let amtOwed = Float(amountOwed)
-    payor.balance = payor.balance - amtOwed!
-    userVC.user! = payor
+    if payor === self.user! {
+      user!.balance = user!.balance - amtOwed!
+    }
+//    payor.balance = payor.balance - amtOwed!
+//    userVC.user! = payor
     //payor.balance = newBalance
     //userVC.user!.balance = newBalance
   }

@@ -42,8 +42,6 @@ class SideMenuViewController: UIViewController , UITableViewDataSource, UITableV
       arrayMenuOptions.append(["title":"Groups"])
       arrayMenuOptions.append(["title":"Search People"])
       arrayMenuOptions.append(["title":"Transfer to Bank"])
-      arrayMenuOptions.append(["title":"Trip Summaries"])
-      arrayMenuOptions.append(["title":"User Settings"])
       arrayMenuOptions.append(["title":"Log Out"])
       
       tblMenuOptions.reloadData()
