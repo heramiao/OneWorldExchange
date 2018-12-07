@@ -251,8 +251,8 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     for user in allUsers {
       var count = 0
       for member in groupUsers {
-        if user === member {
-          print("true")
+        //if user === member
+        if user.firstName == member.firstName {
           break
         } else {
           count += 1
@@ -260,14 +260,13 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       }
       if count == groupUsers.count {
         newUsers.append(user)
-        //print(user.name)
         continue
       } else {
         continue
       }
     }
     return newUsers
-    
+  
 //    var newUsers = [User]()
 //    for user in allUsers {
 //      if !groupUsers.contains(user) {
@@ -277,9 +276,10 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
 //    }
 //    return newUsers
   }
-  
+
   // MARK: - Search User Table Views
   func beginSearch() -> Bool {
+    notInGroup = newUsers(allUsers: viewModelUser.users, groupUsers: viewModelMember.users)
     return searchController.isActive
   }
   
@@ -292,7 +292,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       if isFiltering() {
         return filteredUsers.count
       } else if beginSearch() {
-        return viewModelUser.numberOfRows()
+        return notInGroup.count
       } else {
         return 0
       }
@@ -310,7 +310,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       if isFiltering() {
         user = filteredUsers[indexPath.row]
       } else {
-        user = viewModelUser.users[indexPath.row]
+        user = notInGroup[indexPath.row]
       }
       cell.member = user
       cell.nameLabel.text = user.name
@@ -318,8 +318,6 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MemberTableCell
       user = viewModelMember.users[indexPath.row]
-//      if let index = notInGroup.index(of: user)
-//      notInGroup.remove(
       cell.name.text = user.name
       return cell
     }
@@ -347,12 +345,10 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-    let notInGroup = newUsers(allUsers: viewModelUser.users, groupUsers: viewModelMember.users)
-    //print(notInGroup.count)
-    
-    filteredUsers = viewModelUser.users.filter { user in
+    filteredUsers = notInGroup.filter { user in
       return user.name.lowercased().contains(searchText.lowercased())
     }
+    
     userTable.reloadData()
   }
   

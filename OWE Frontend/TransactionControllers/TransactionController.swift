@@ -71,12 +71,12 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
     //self.whoOwesTable.allowsMultipleSelection = true
     //self.whoOwesTable.allowsMultipleSelectionDuringEditing = true
     
-    currencyAmountField!.addTarget(self, action: #selector(amtPaidDidChange(_:)), for: .editingChanged)
+    //currencyAmountField!.addTarget(self, action: #selector(amtPaidDidChange(_:)), for: .editingChanged)
   }
   
-  @objc func amtPaidDidChange(_ textField: UITextField) {
-    remainingAmt!.text = currencyAmountField!.text
-  }
+//  @objc func amtPaidDidChange(_ textField: UITextField) {
+//    remainingAmt!.text = currencyAmountField!.text
+//  }
   
 //  var totalAssigned = Float(0.00)
 //  @objc func splitAmtDidChange(_ textField: UITextField) {
@@ -175,7 +175,7 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     if pickerView == pickerCurrType {
       currencyTypeField.text = currType[row]
-      currSymbol.text = viewModel.currToSymbol(currType: currType[row])
+      // currSymbol.text = viewModel.currToSymbol(currType: currType[row])
       for i in 0...members.count-1 {
         let indexPath = NSIndexPath(row: i, section: 0)
         let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell
