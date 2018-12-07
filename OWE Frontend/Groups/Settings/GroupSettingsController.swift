@@ -337,7 +337,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     } else {
       userTable.tableHeaderView = searchController.searchBar
     }
-    searchController.searchBar.barTintColor = UIColor(red:0.98, green:0.48, blue:0.24, alpha:1.0)
+    //searchController.searchBar.barTintColor = UIColor(red:0.98, green:0.48, blue:0.24, alpha:1.0)
   }
   
   func searchBarIsEmpty() -> Bool {
