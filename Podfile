@@ -5,4 +5,5 @@ use_frameworks!
 target 'OWE Frontend' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire', '~> 4.7'
+  pod 'IQKeyboardManagerSwift'
 end

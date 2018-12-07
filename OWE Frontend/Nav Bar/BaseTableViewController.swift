@@ -57,18 +57,18 @@ class BaseTableViewController: UITableViewController, SlideMenuDelegate {
         case 6:
           print("Logout\n", terminator: "")
           
-//          // create the alert
-//          let alert = UIAlertController(title: "OWE Logout", message: "Are you sure you would like to logout?", preferredStyle: UIAlertController.Style.alert)
-//
-//          // add the actions (buttons)
-//          alert.addAction(UIAlertAction(title: "Logout", style: UIAlertAction.Style.default, handler: { action in
-//            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-//            self.present(loginVC, animated:true, completion:nil)
-//          }))
-//          alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-//
-//          // show the alert
-//          self.present(alert, animated: true, completion: nil)
+          // create the alert
+          let alert = UIAlertController(title: "OWE Logout", message: "Are you sure you would like to logout?", preferredStyle: UIAlertController.Style.alert)
+
+          // add the actions (buttons)
+          alert.addAction(UIAlertAction(title: "Logout", style: UIAlertAction.Style.default, handler: { action in
+            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            self.present(loginVC, animated:true, completion:nil)
+          }))
+          alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+
+          // show the alert
+          self.present(alert, animated: true, completion: nil)
           
         default:
             print("default\n", terminator: "")
