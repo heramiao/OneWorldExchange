@@ -51,7 +51,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9bR-3F-e7W">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GroupHome" translatesAutoresizingMaskIntoConstraints="NO" id="9bR-3F-e7W">
                         <rect key="frame" x="0.0" y="0.0" width="90" height="72.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="72.5" id="4Cm-Jf-f6L"/>
@@ -86,4 +86,7 @@
             <point key="canvasLocation" x="-360" y="-29.23538230884558"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="GroupHome" width="2296" height="1724"/>
+    </resources>
 </document>

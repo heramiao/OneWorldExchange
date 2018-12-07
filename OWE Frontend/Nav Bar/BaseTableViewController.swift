@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, SlideMenuDelegate {
+class BaseTableViewController: UITableViewController, SlideMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,24 +26,50 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         switch(index){
         case 0:
             print("Profile\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("Profile", "Main")
+            self.openViewControllerBasedOnIdentifier("Profile", "UserViews")
             break
-            
+          
         case 1:
             print("Groups\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("Groups", "GroupViews")
+            self.openViewControllerBasedOnIdentifier("Groups", "Main")
             break
             
         case 2:
-            print("History\n", terminator: "")
+            print("Search People\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("History", "HistoryVC")
             break
-            
+          
         case 3:
-            print("Settings\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("Settings", "SettingsVC")
-            break
-            
+          print("Transfer to Bank\n", terminator: "")
+          self.openViewControllerBasedOnIdentifier("History", "HistoryVC")
+          break
+        
+        case 4:
+          print("Trip Summaries\n", terminator: "")
+          self.openViewControllerBasedOnIdentifier("History", "HistoryVC")
+          break
+        
+        case 5:
+          print("User Settings\n", terminator: "")
+          self.openViewControllerBasedOnIdentifier("History", "HistoryVC")
+          break
+          
+        case 6:
+          print("Logout\n", terminator: "")
+          
+          // create the alert
+          let alert = UIAlertController(title: "OWE Logout", message: "Are you sure you would like to logout?", preferredStyle: UIAlertController.Style.alert)
+
+          // add the actions (buttons)
+          alert.addAction(UIAlertAction(title: "Logout", style: UIAlertAction.Style.default, handler: { action in
+            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            self.present(loginVC, animated:true, completion:nil)
+          }))
+          alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+
+          // show the alert
+          self.present(alert, animated: true, completion: nil)
+          
         default:
             print("default\n", terminator: "")
         }

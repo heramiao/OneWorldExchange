@@ -9,13 +9,10 @@
 import UIKit
 import Alamofire
 
-let userURL: NSURL = NSURL(string: "https://oneworldexchange.herokuapp.com/users/1")!
-let data = NSData(contentsOf: userURL as URL)!
-let json = try! JSON(data: data as Data)
-
 class UserViewController: BaseViewController, UserSettingsDelegate {
   
   var user: User?
+  let delegate = UIApplication.shared.delegate as! AppDelegate
   
   // MARK: - Outlets
   @IBOutlet weak var name: UILabel!
@@ -33,36 +30,22 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     super.viewDidLoad()
     addSlideMenuButton()
     
-    if let user = getUser(swiftyjson: json) {
+    if let user = delegate.user {
       self.user = user
-      name.text = user.name
-      email.text = user.email
-      phone.text = user.phone
     } else {
-      print("couldn't get user")
+      self.user = User.getUser(1)
+      delegate.user = self.user
     }
+    
+    name.text = user!.name
+    email.text = user!.email
+    phone.text = user!.phone
+    yourHoldings.text = String(user!.balance)
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
   }
-  
-  func getUser(swiftyjson: JSON) -> User? {
-    let id = swiftyjson["id"].intValue
-    let fname = swiftyjson["first_name"].stringValue
-    let lname = swiftyjson["last_name"].stringValue
-    let email = swiftyjson["email"].stringValue
-    let phone = swiftyjson["phone"].stringValue
-    let password = swiftyjson["password"].stringValue
-    // let passwordConfirmation = swiftyjson["password_confirmation"].stringValue
-    let baseCurrency = swiftyjson["base_currency"].stringValue
-    
-    let user = User(id: id, firstName: fname, lastName: lname, email: email, phone: phone, password: password, baseCurrency: baseCurrency)
-    // passwordConfirmation: passwordConfirmation,
-    
-    return user
-  }
-  
   
   func UserSettingsCancel(controller: UserSettingsViewController) {
     dismiss(animated: true, completion: nil)
@@ -76,9 +59,10 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
       "last_name": user.lastName,
       "email": user.email,
       "phone": user.phone,
-      "password": user.password,
+      "base_currency": user.baseCurrency,
+      "balance": user.balance
+      // "password": user.password,
       // "password_confirmation": user.passwordConfirmation,
-      "base_currency": user.baseCurrency
       ] as [String : Any]
     
     Alamofire.request("https://oneworldexchange.herokuapp.com/users/1", method: .patch, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData{ response in
@@ -94,11 +78,12 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     
     dismiss(animated: true, completion: nil)
     
-    self.user = user
-    name.text = user.name
+    //self.user = user
+    //name.text = user.name
+    name.text = user.firstName + " " + user.lastName
     email.text = user.email
     phone.text = user.phone
-    
+    yourHoldings.text = String(user.balance)
   }
   
   // MARK: - Navigation

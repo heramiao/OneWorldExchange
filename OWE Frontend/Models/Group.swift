@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Group {
+class Group: NSObject {
     
   // MARK: - Properties
   var id: Int
@@ -24,7 +24,11 @@ class Group {
     self.tripName = tripName
     self.startDate = startDate
     self.endDate = endDate
-    self.members = members 
+    self.members = members
   }
+  
+//  override init() {
+//    super.init()
+//  }
   
 }

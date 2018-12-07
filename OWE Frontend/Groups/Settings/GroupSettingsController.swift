@@ -9,12 +9,12 @@ import UIKit
 // MARK: Protocol Methods
 protocol EditGroupDelegate: class {
   func EditGroupCancel(controller: GroupSettingsController)
-  func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User], segue: String)
+  func EditGroupSave(controller: GroupSettingsController, didFinishEditingGroup group: Group, newMembers: [User])
 }
 
 protocol AddGroupDelegate: class {
   func AddGroupCancel(controller: GroupSettingsController)
-  func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User], segue: String)
+  func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User])
 }
 
 // MARK: - UISearch extension
@@ -57,6 +57,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   let searchController = UISearchController(searchResultsController: nil)
   var filteredUsers = [User]()
   var newMembers = [User]()
+  var notInGroup = [User]()
   
   // MARK: - General
   override func viewDidLoad() {
@@ -79,6 +80,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     memberTable.register(cellNib1, forCellReuseIdentifier: "member")
     
     memberTable.tableFooterView = UIView()
+    userTable.tableFooterView = UIView()
     
     viewModelUser.refresh ({ [unowned self] in
       DispatchQueue.main.async {
@@ -177,30 +179,57 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   @IBAction func save() {
-//      if let group = self.detailItem {
-//          updateGroup(group:group)
-//          //            delegate?.groupSettingsController(controller: self, didFinishUpdatingGroup: group)
-//      }
-//      else {
-//          let group = makeGroup()
-//          saveGroup(group: group)
-//          if group.title.count > 0 {
-//              delegate?.groupSettingsSave(controller: self, didFinishChangingGroup: group)
-//          }
-//      }
-    group!.tripName = tripNameField.text!
-    group!.startDate = dateFormatter.date(from: startDateField.text!)!
-    group!.endDate = dateFormatter.date(from: endDateField.text!)!
-    // group!.members = viewModelMember.users
-    
-    if segue == "editGroup" {
-      editDelegate?.EditGroupSave(controller: self, didFinishEditingGroup: group!, newMembers: newMembers, segue: segue!)
-    } else if segue == "addGroup" {
-      addDelegate?.AddGroupSave(controller: self, didFinishAddingGroup: group!, newMembers: newMembers, segue: segue!)
+    if segue == "addGroup" {
+      var newGroup = Group(id: 4, tripName: tripNameField.text!, startDate: dateFormatter.date(from: startDateField.text!)!, endDate: dateFormatter.date(from: endDateField.text!)!, members: [])
+      //var group: Group?
+      addDelegate?.AddGroupSave(controller: self, didFinishAddingGroup: newGroup, newMembers: newMembers)
+    } else {
+      group!.tripName = tripNameField.text!
+      group!.startDate = dateFormatter.date(from: startDateField.text!)!
+      group!.endDate = dateFormatter.date(from: endDateField.text!)!
+      group!.image = picture
+      //group!.members = viewModelMember.users
+      editDelegate?.EditGroupSave(controller: self, didFinishEditingGroup: group!, newMembers: newMembers)
+    }
+    //self.saveGroup(group: group!)
+//    if segue == "editGroup" {
+//
+//    } else if segue == "addGroup" {
+//
+//    }
+  }
+  
+  func saveGroup(group: Group) {
+    // Connect to the context for the container stack
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    // Specifically select the Group entity to save this object to
+    let groupEntity = NSEntityDescription.entity(forEntityName: "Groups", in: context)
+    let newGroup = NSManagedObject(entity: groupEntity!, insertInto: context)
+    // Set values one at a time and save
+    newGroup.setValue(group.tripName, forKey: "trip_name")
+    newGroup.setValue(group.startDate, forKey: "start_date")
+    newGroup.setValue(group.endDate, forKey: "end_date")
+    // Safely unwrap the picture
+    if let pic = group.image {
+      newGroup.setValue(UIImagePNGRepresentation(pic), forKey: "picture")
+    }
+    do {
+      try context.save()
+      print("Success saving")
+    } catch {
+      print("Failed saving")
+    }
+    // Save new group members to Core Data
+    for member in newMembers {
+      let userGroupEntity = NSEntityDescription.entity(forEntityName: "User_Group", in: context)
+      let newUserGroup = NSManagedObject(entity: userGroupEntity!, insertInto: context)
+      newUserGroup.setValue(member.id, forKey: "user_id")
+      newUserGroup.setValue(group.id, forKey: "travel_group_id")
     }
   }
   
-  func addMember(class: AddMemberTableCell, didFinishAdding member: User) {
+  func addMember(class: AddMemberTableCell, didFinishAdding member: User, indexPath: Int) {
     let newRowIndex = viewModelMember.users.count
     viewModelMember.users.append(member)
     newMembers.append(member)
@@ -209,10 +238,48 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     let indexPath = NSIndexPath(row: newRowIndex, section: 0)
     let indexPaths = [indexPath]
     memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+    
+    // remove member from all users
+//    filteredUsers.remove(at: indexPath)
+//    viewModelUser.users.remove(at: indexPath)
+//    self.userTable.deleteRows(at: [IndexPath(row: indexPath, section: 0)], with: .automatic)
   }
   
+   // get all the users in the system that aren't currenly in the group
+  func newUsers(allUsers: [User], groupUsers: [User]) -> [User] {
+    var newUsers = [User]()
+    for user in allUsers {
+      var count = 0
+      for member in groupUsers {
+        //if user === member
+        if user.firstName == member.firstName {
+          break
+        } else {
+          count += 1
+        }
+      }
+      if count == groupUsers.count {
+        newUsers.append(user)
+        continue
+      } else {
+        continue
+      }
+    }
+    return newUsers
+  
+//    var newUsers = [User]()
+//    for user in allUsers {
+//      if !groupUsers.contains(user) {
+//        newUsers.append(user)
+//        print(user)
+//      }
+//    }
+//    return newUsers
+  }
+
   // MARK: - Search User Table Views
   func beginSearch() -> Bool {
+    notInGroup = newUsers(allUsers: viewModelUser.users, groupUsers: viewModelMember.users)
     return searchController.isActive
   }
   
@@ -225,7 +292,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       if isFiltering() {
         return filteredUsers.count
       } else if beginSearch() {
-        return viewModelUser.numberOfRows()
+        return notInGroup.count
       } else {
         return 0
       }
@@ -239,10 +306,11 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     if tableView == self.userTable {
       let cell = tableView.dequeueReusableCell(withIdentifier: "addmember", for: indexPath) as! AddMemberTableCell
       cell.delegate = self as AddMemberDelegate
+      cell.indexPath = indexPath.row
       if isFiltering() {
         user = filteredUsers[indexPath.row]
       } else {
-        user = viewModelUser.users[indexPath.row]
+        user = notInGroup[indexPath.row]
       }
       cell.member = user
       cell.nameLabel.text = user.name
@@ -269,7 +337,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     } else {
       userTable.tableHeaderView = searchController.searchBar
     }
-    searchController.searchBar.barTintColor = UIColor(red:0.98, green:0.48, blue:0.24, alpha:1.0)
+    //searchController.searchBar.barTintColor = UIColor(red:0.98, green:0.48, blue:0.24, alpha:1.0)
   }
   
   func searchBarIsEmpty() -> Bool {
@@ -277,9 +345,10 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-    filteredUsers = viewModelUser.users.filter { user in
+    filteredUsers = notInGroup.filter { user in
       return user.name.lowercased().contains(searchText.lowercased())
     }
+    
     userTable.reloadData()
   }
   

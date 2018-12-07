@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddMemberDelegate: class {
-  func addMember(class: AddMemberTableCell, didFinishAdding member: User)
+  func addMember(class: AddMemberTableCell, didFinishAdding member: User, indexPath: Int)
 }
 
 class AddMemberTableCell: UITableViewCell {
@@ -17,6 +17,7 @@ class AddMemberTableCell: UITableViewCell {
   @IBOutlet weak var nameLabel: UILabel!
   
   var member: User?
+  var indexPath: Int?
   var delegate: AddMemberDelegate?
   
   override func awakeFromNib() {
@@ -29,7 +30,7 @@ class AddMemberTableCell: UITableViewCell {
   }
   
   @IBAction func addMemberTapped(_ sender: UIButton) {
-    delegate?.addMember(class: self, didFinishAdding: member!)
+    delegate?.addMember(class: self, didFinishAdding: member!, indexPath: indexPath!)
   }
   
 }

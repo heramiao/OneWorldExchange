@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Photos
 
 // MARK: Protocol Methods
 
@@ -17,10 +18,13 @@ protocol UserSettingsDelegate: class {
   func UserSettingsSave(controller: UserSettingsViewController, didFinishAddingSettings user: User)
 }
 
-class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   var profile: User?
   var delegate: UserSettingsDelegate?
+  
+  var picture: UIImage?
+  let imagePicker = UIImagePickerController()
   
   // MARK: - Outlets
   
@@ -28,34 +32,52 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   @IBOutlet weak var lnameField: UITextField!
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var phoneField: UITextField!
-  @IBOutlet weak var baseCurrField: UIPickerView!
-  @IBOutlet weak var oldPassField: UITextField!
-  @IBOutlet weak var newPassField: UITextField!
-  @IBOutlet weak var newPassConField: UITextField!
+  @IBOutlet weak var baseCurrField: UITextField!
+//  @IBOutlet weak var oldPassField: UITextField!
+//  @IBOutlet weak var newPassField: UITextField!
+//  @IBOutlet weak var newPassConField: UITextField!
   
   // MARK: - General
-  
-  var pickerData = ["USD", "EUR", "GBP", "CHF", "AUD", "JPY", "TWD", "CNH"]
-  var picker = UIPickerView()
+  var pickerData = ["$ AUD", "$ CAD", "CHF", "¥ CNY", "€ EUR", "£ GBP", "¥ JPY", "$ MXN", "kr SEK", "$ USD"]
+  var pickerView = UIPickerView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    picker.delegate = self
-    picker.dataSource = self
+    configureControls()
+    
+    pickerView.delegate = self
+    pickerView.dataSource = self
+    baseCurrField.inputView = pickerView
     
     if let user = profile {
       fnameField.text = user.firstName
       lnameField.text = user.lastName
       emailField.text = user.email
       phoneField.text = user.phone
-      // baseCurrField.text = user.baseCurrency
+      baseCurrField.text = user.baseCurrency
     }
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  func configureControls() {
+    // request image permission
+    PHPhotoLibrary.requestAuthorization({_ in return})
+    
+    // configure image picker
+    imagePicker.delegate = (self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+    
+    // configure screen tap
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UserSettingsViewController.viewTapped(gestureRecognizer:)) )
+    view.addGestureRecognizer(tapGesture)
+  }
+  
+  @objc func viewTapped(gestureRecognizer: UIGestureRecognizer) {
+    view.endEditing(true)
   }
   
   // MARK: - UIPickerView
@@ -76,12 +98,27 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
   }
   
   // Capture the picker view selection
-  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//    baseCurrField.text = pickerData[row]
-    self.view.endEditing(false)
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    baseCurrField.text = pickerData[row]
+    self.view.endEditing(true)
   }
   
   // MARK: - Actions
+  
+  @IBAction func loadImageButtonTapped(sender: UIButton) {
+    imagePicker.allowsEditing = false
+    imagePicker.sourceType = .photoLibrary
+    
+    present(imagePicker, animated: true, completion: nil)
+  }
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+      picture = pickedImage
+      //tripImage.image = picture
+    }
+    dismiss(animated: true, completion: nil)
+  }
   
   @IBAction func cancel() {
     delegate?.UserSettingsCancel(controller: self)
@@ -92,7 +129,7 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
     profile!.lastName = lnameField.text!
     profile!.email = emailField.text!
     profile!.phone = phoneField.text!
-    // profile!.baseCurrency = baseCurrField.text!
+    profile!.baseCurrency = baseCurrField.text!
     // user.password = new password or old password if newPassField not filled in
     // user.passwordConfirmation =
     self.saveUser(user: profile!) // saving to Core Data
