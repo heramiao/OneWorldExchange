@@ -21,11 +21,14 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
   let viewModel = GroupTripViewModel()
   var groups = [Group]()
   var user: User?
+  let dateFormatter = DateFormatter()
   
   // MARK: - General
   override func viewDidLoad() {
     super.viewDidLoad()
     addSlideMenuButton()
+    
+    dateFormatter.dateFormat = "YYYY-MM-dd"
     
     //        self.navigationItem.leftBarButtonItem = self.editButtonItem
     tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "onegroup")
@@ -169,8 +172,8 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
     let paramsGroup = [
       "id": group.id,
       "trip_name": group.tripName,
-      "start_date": group.startDate,
-      "end_date": group.endDate,
+      "start_date": dateFormatter.string(from: group.startDate),
+      "end_date": dateFormatter.string(from: group.endDate),
       ] as [String : Any]
 
     Alamofire.request("https://oneworldexchange.herokuapp.com/travel_groups", method: .post, parameters: paramsGroup, encoding: JSONEncoding.default, headers: nil).responseData{ response in
@@ -183,6 +186,14 @@ class GroupListingController: BaseTableViewController, AddGroupDelegate {
         print(result)
       }
     }
+    
+    let newRowIndex = viewModel.groups.count
+    viewModel.groups.append(group)
+    
+    let indexPath = NSIndexPath(row: newRowIndex, section: 0)
+    let indexPaths = [indexPath]
+    tableView.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+    
     dismiss(animated: true, completion: nil)
   }
 }

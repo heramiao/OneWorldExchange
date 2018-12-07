@@ -101,8 +101,6 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
         }
         }, url: "https://oneworldexchange.herokuapp.com/travel_group/1/members")
     }
-    
-    //var notInGroup = viewModelUser.users
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -181,20 +179,24 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   @IBAction func save() {
-//    if segue == "addGroup" {
-//      let group = Group()
-//    }
-    group!.tripName = tripNameField.text!
-    group!.startDate = dateFormatter.date(from: startDateField.text!)!
-    group!.endDate = dateFormatter.date(from: endDateField.text!)!
-    group!.image = picture
-    //group!.members = viewModelMember.users
-    self.saveGroup(group: group!)
-    if segue == "editGroup" {
+    if segue == "addGroup" {
+      var newGroup = Group(id: 4, tripName: tripNameField.text!, startDate: dateFormatter.date(from: startDateField.text!)!, endDate: dateFormatter.date(from: endDateField.text!)!, members: [])
+      //var group: Group?
+      addDelegate?.AddGroupSave(controller: self, didFinishAddingGroup: newGroup, newMembers: newMembers)
+    } else {
+      group!.tripName = tripNameField.text!
+      group!.startDate = dateFormatter.date(from: startDateField.text!)!
+      group!.endDate = dateFormatter.date(from: endDateField.text!)!
+      group!.image = picture
+      //group!.members = viewModelMember.users
       editDelegate?.EditGroupSave(controller: self, didFinishEditingGroup: group!, newMembers: newMembers)
-    } else if segue == "addGroup" {
-      addDelegate?.AddGroupSave(controller: self, didFinishAddingGroup: group!, newMembers: newMembers)
     }
+    //self.saveGroup(group: group!)
+//    if segue == "editGroup" {
+//
+//    } else if segue == "addGroup" {
+//
+//    }
   }
   
   func saveGroup(group: Group) {
@@ -227,7 +229,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     }
   }
   
-  func addMember(class: AddMemberTableCell, didFinishAdding member: User) {
+  func addMember(class: AddMemberTableCell, didFinishAdding member: User, indexPath: Int) {
     let newRowIndex = viewModelMember.users.count
     viewModelMember.users.append(member)
     newMembers.append(member)
@@ -236,23 +238,45 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     let indexPath = NSIndexPath(row: newRowIndex, section: 0)
     let indexPaths = [indexPath]
     memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+    
+    // remove member from all users
+//    filteredUsers.remove(at: indexPath)
+//    viewModelUser.users.remove(at: indexPath)
+//    self.userTable.deleteRows(at: [IndexPath(row: indexPath, section: 0)], with: .automatic)
   }
   
-  // get all the users in the system that aren't currenly in the group
-//  func newUsers(allUsers: [User], groupUsers: [User]) -> [User] {
-//    var newUsers = allUsers
-//    for currMember in groupUsers {
-//      if allUsers.contains(where: currMember) {
-//        let index = allUsers.index(of: currMember)
-//        newUsers.remove(at: index)
+   // get all the users in the system that aren't currenly in the group
+  func newUsers(allUsers: [User], groupUsers: [User]) -> [User] {
+    var newUsers = [User]()
+    for user in allUsers {
+      var count = 0
+      for member in groupUsers {
+        if user === member {
+          print("true")
+          break
+        } else {
+          count += 1
+        }
+      }
+      if count == groupUsers.count {
+        newUsers.append(user)
+        //print(user.name)
+        continue
+      } else {
+        continue
+      }
+    }
+    return newUsers
+    
+//    var newUsers = [User]()
+//    for user in allUsers {
+//      if !groupUsers.contains(user) {
+//        newUsers.append(user)
+//        print(user)
 //      }
 //    }
-//    for currMember in groupUsers {
-//      if let index = allUsers.index(of: currMember) {
-//
-//      }
-//    }
-//  }
+//    return newUsers
+  }
   
   // MARK: - Search User Table Views
   func beginSearch() -> Bool {
@@ -282,6 +306,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     if tableView == self.userTable {
       let cell = tableView.dequeueReusableCell(withIdentifier: "addmember", for: indexPath) as! AddMemberTableCell
       cell.delegate = self as AddMemberDelegate
+      cell.indexPath = indexPath.row
       if isFiltering() {
         user = filteredUsers[indexPath.row]
       } else {
@@ -303,7 +328,7 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   //MARK: - Search Methods
   func setupSearchBar() {
     searchController.searchResultsUpdater = self
-    searchController.dimsBackgroundDuringPresentation = true
+    searchController.dimsBackgroundDuringPresentation = false
     definesPresentationContext = true
     searchController.searchBar.placeholder = "Add New Members"
     //navigationItem.searchController = searchController
@@ -322,6 +347,9 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   }
   
   func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    let notInGroup = newUsers(allUsers: viewModelUser.users, groupUsers: viewModelMember.users)
+    //print(notInGroup.count)
+    
     filteredUsers = viewModelUser.users.filter { user in
       return user.name.lowercased().contains(searchText.lowercased())
     }
