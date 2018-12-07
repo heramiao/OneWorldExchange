@@ -30,6 +30,7 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   var group: Group?
   var splits = [Split]()
   let viewModelMembers = GroupUsersViewModel()
+  let transactionVM = TransactionViewModel()
   let userVC = UserViewController()
   let dateFormatter = DateFormatter()
   
@@ -140,6 +141,18 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   }
   
   func NewTransactionSave(controller: TransactionController, didFinishCreatingSplit split: Split) {
+    if split.payee == split.payor {
+      // if split is for me, charge myself and don't add row to table
+      if split.payee!.id == self.user?.id {
+        let converted = Double(transactionVM.convert(currAbrev: split.currencyAbrev!, amount: split.amountOwed!))
+        delegate.user!.balance = ((delegate.user?.balance)! - converted!).rounded(toPlaces: 2)
+        // if split is for someone else to themselves, don't add to table
+        return
+      } else {
+        return
+      }
+    }
+    
     let newRowIndex = splits.count
     
     splits.append(split)
@@ -149,19 +162,19 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     youOweTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
   }
   
-  func paySplit(class: SplitsTableCell, payor: User, amountOwed: String) {
+  func paySplit(cell: SplitsTableCell, payor: User, amountOwed: String, indexPath: Int) {
     let amtOwed = Double(amountOwed)
     if payor.id == self.user!.id {
       user!.balance = user!.balance - amtOwed!
       delegate.user!.balance = ((delegate.user?.balance)! - amtOwed!).rounded(toPlaces: 2)
+      
+//      let indexPath = youOweTable.indexPath(for: cell)
+//      let row = indexPath![0]
+//      print(row)
+      splits.remove(at: indexPath)
+      self.youOweTable.deleteRows(at: [IndexPath(row: indexPath, section: 0)], with: .automatic)
     }
-    
-//    payor.balance = payor.balance - amtOwed!
-//    userVC.user! = payor
-    //payor.balance = newBalance
-    //userVC.user!.balance = newBalance
   }
-
   
   // MARK: - Table View
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -170,13 +183,13 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let split: Split
-    let transactionVM = TransactionViewModel()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM/dd/yy"
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "split", for: indexPath) as! SplitsTableCell
     split = splits[indexPath.row]
     cell.delegate = self as PaySplitDelegate
+    cell.indexPath = indexPath.row
     cell.payor = split.payor!
     cell.payorName!.text = split.payor!.firstName
     cell.payeeName!.text = split.payee!.firstName

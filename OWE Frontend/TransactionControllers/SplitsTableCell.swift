@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PaySplitDelegate: class {
-  func paySplit(class: SplitsTableCell, payor: User, amountOwed: String)
+  func paySplit(cell: SplitsTableCell, payor: User, amountOwed: String, indexPath: Int)
 }
 
 class SplitsTableCell: UITableViewCell {
@@ -26,6 +26,7 @@ class SplitsTableCell: UITableViewCell {
   
   var payor: User?
   var amountOwed: String?
+  var indexPath: Int?
   var delegate: PaySplitDelegate?
   
   override func awakeFromNib() {
@@ -38,7 +39,7 @@ class SplitsTableCell: UITableViewCell {
   }
   
   @IBAction func paySelected() {
-    delegate?.paySplit(class: self, payor: payor!, amountOwed: amountOwed!)
+    delegate?.paySplit(cell: self, payor: payor!, amountOwed: amountOwed!, indexPath: indexPath!)
   }
   
 }
