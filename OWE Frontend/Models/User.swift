@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class User: NSObject {
   var id: Int

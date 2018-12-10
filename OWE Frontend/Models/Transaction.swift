@@ -26,4 +26,5 @@ class Transaction {
     self.expenseType = expenseType
     self.groupID = groupID
   }
+  
 }

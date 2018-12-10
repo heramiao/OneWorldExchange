@@ -30,7 +30,6 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   var group: Group?
   var splits = [Split]()
   let viewModelMembers = GroupUsersViewModel()
-  let transactionVM = TransactionViewModel()
   let userVC = UserViewController()
   let dateFormatter = DateFormatter()
   
@@ -76,6 +75,20 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
 //    } catch {
 //      print("Failed")
 //    }
+    
+    // Again set up the stack to interface with CoreData
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionSplit")
+    request.returnsObjectsAsFaults = false
+    do {
+      let result = try context.fetch(request)
+      for data in result as! [NSManagedObject] {
+        self.loadSplit(data: data)
+      }
+    } catch {
+      print("Failed")
+    }
   }
   
   // using Core Data, update trip name and trip photo
@@ -83,6 +96,20 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
 //    self.navigationItem.title = data.value(forKey: "trip_name") as! String
 //    self.tripImage.image = UIImage(data:(data.value(forKey: "picture") as! NSData) as Data, scale:1.0)
 //  }
+  
+  func loadSplit(data: NSManagedObject) {
+    let newSplit = Split()
+    newSplit.payee = (data.value(forKey: "payee") as! User)
+    print(data.value(forKey: "payee") as! User)
+    newSplit.payor = (data.value(forKey: "payor") as! User)
+    newSplit.datePaid = (data.value(forKey: "date_paid") as! String)
+    newSplit.descript = (data.value(forKey: "descript") as! String)
+    newSplit.currencyAbrev = data.value(forKey: "currency_abrev") as! String
+    newSplit.currencySymb = (data.value(forKey: "currency_symb") as! String)
+    newSplit.amountOwed = (data.value(forKey: "amount_owed") as! Double)
+    newSplit.convertedAmt = (data.value(forKey: "converted_amt") as! Double)
+    splits.append(newSplit)
+  }
   
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
@@ -144,8 +171,7 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     if split.payee == split.payor {
       // if split is for me, charge myself and don't add row to table
       if split.payee!.id == self.user?.id {
-        let converted = Double(transactionVM.convert(currAbrev: split.currencyAbrev!, amount: split.amountOwed!))
-        delegate.user!.balance = ((delegate.user?.balance)! - converted!).rounded(toPlaces: 2)
+        delegate.user!.balance = ((delegate.user?.balance)! - split.convertedAmt!).rounded(toPlaces: 2)
         // if split is for someone else to themselves, don't add to table
         return
       } else {
@@ -166,11 +192,8 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     let amtOwed = Double(amountOwed)
     if payor.id == self.user!.id {
       user!.balance = user!.balance - amtOwed!
-      delegate.user!.balance = ((delegate.user?.balance)! - amtOwed!).rounded(toPlaces: 2)
-      
-//      let indexPath = youOweTable.indexPath(for: cell)
-//      let row = indexPath![0]
-//      print(row)
+      delegate.user!.balance = user!.balance
+    
       splits.remove(at: indexPath)
       self.youOweTable.deleteRows(at: [IndexPath(row: indexPath, section: 0)], with: .automatic)
     }
@@ -196,9 +219,9 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
     cell.date!.text = split.datePaid
     cell.descript!.text = split.descript
     cell.orgCurrSymbol!.text = split.currencySymb
-    cell.orgAmt!.text = split.amountOwed
+    cell.orgAmt!.text = String(split.amountOwed!)
     // cell.baseCurrSymbol!.text = get the base currency of payor
-    cell.convertedAmt!.text = transactionVM.convert(currAbrev: split.currencyAbrev!, amount: split.amountOwed!)
+    cell.convertedAmt!.text = String(split.convertedAmt!)
     cell.amountOwed = cell.convertedAmt!.text
     
     if cell.payorName!.text != "Hera" {
