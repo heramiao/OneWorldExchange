@@ -8,6 +8,7 @@
 //
 import UIKit
 import Foundation
+import CoreData
 
 protocol NewTransactionDelegate: class {
   func NewTransactionCancel(controller: TransactionController)
@@ -19,8 +20,8 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
   var group: Group?
   var transaction: Transaction?
-  var delegate: NewTransactionDelegate?
   let viewModel = TransactionViewModel()
+  var delegate: NewTransactionDelegate?
   let dateFormatter = DateFormatter()
   var payor: User?
   var payee: User?
@@ -133,7 +134,9 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
         split.descript = descriptionField.text!
         split.currencyAbrev = currencyTypeField.text!
         split.currencySymb = cell.currLabel.text!
-        split.amountOwed = cell.amtField.text!
+        split.amountOwed = Double(cell.amtField.text!)?.rounded(toPlaces: 2)
+        split.convertedAmt = viewModel.convert(currAbrev: split.currencyAbrev!, amount: split.amountOwed!)
+        //self.saveSplit(split: split)
         delegate?.NewTransactionSave(controller: self, didFinishCreatingSplit: split)
       } else {
         continue
@@ -141,8 +144,26 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
       dismiss(animated: true, completion: nil)
     }
   }
+  
+  func saveSplit(split: Split){
+    // Connect to the context for the container stack
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    // Specifically select the People entity to save this object to
+    let entity = NSEntityDescription.entity(forEntityName: "TransactionSplit", in: context)
+    let newSplit = NSManagedObject(entity: entity!, insertInto: context)
+    // Set values one at a time and save
+    newSplit.setValue(split.payee, forKey: "payee")
+    newSplit.setValue(split.payor, forKey: "payor")
+    newSplit.setValue(split.datePaid, forKey: "date_paid")
+    newSplit.setValue(split.descript, forKey: "descript")
+    newSplit.setValue(split.currencyAbrev, forKey: "currency_abbrev")
+    newSplit.setValue(split.currencySymb, forKey: "currency_Symb")
+    newSplit.setValue(split.amountOwed, forKey: "amount_owed")
+    newSplit.setValue(split.convertedAmt, forKey: "converted_amt")
+  }
 
-  // MARK: - UIPickerView
+  // MARK: - UIPickerViewu
   
   // Number of columns of data
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -175,7 +196,6 @@ class TransactionController: UIViewController, UIPickerViewDelegate, UIPickerVie
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     if pickerView == pickerCurrType {
       currencyTypeField.text = currType[row]
-      // currSymbol.text = viewModel.currToSymbol(currType: currType[row])
       for i in 0...members.count-1 {
         let indexPath = NSIndexPath(row: i, section: 0)
         let cell = whoOwesTable.cellForRow(at: indexPath as IndexPath) as! WhoOwesTableCell

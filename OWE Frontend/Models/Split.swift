@@ -14,13 +14,14 @@ class Split: NSObject {
   //var payee: Int --> for the user id
   var payor: User?
   // var payor: Int
+  var datePaid: String?
+  // var datePaid: Date
   var descript: String?
   var currencyAbrev: String?
   var currencySymb: String?
-  var amountOwed: String?
+  var amountOwed: Double?
   //var amountOwed: Float
-  var datePaid: String?
-  // var datePaid: Date
+  var convertedAmt: Double?
   //var transactionID: Int
   
 //  init(payee: String, payor: String, description: String, currency: String, amountOwed: String, datePaid: String) {

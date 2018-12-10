@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Groups" representedClassName="Groups" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
+        <attribute name="balance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="base_currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="split" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TransactionSplit" syncable="YES"/>
+        <relationship name="user_group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User_Group" syncable="YES"/>
+    </entity>
+    <entity name="TransactionSplit" representedClassName="TransactionSplit" syncable="YES" codeGenerationType="class">
+        <attribute name="amount_owed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="converted_amt" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currency_abrev" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currency_symb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date_paid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descript" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="payee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
+        <relationship name="payor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="TravelGroup" representedClassName="TravelGroup" syncable="YES" codeGenerationType="class">
         <attribute name="end_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -12,19 +35,10 @@
         <attribute name="travel_group_id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="user_id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
     </entity>
-    <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="class">
-        <attribute name="base_currency" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="user_group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User_Group" syncable="YES"/>
-    </entity>
     <elements>
-        <element name="Groups" positionX="-368.01171875" positionY="-148.4609375" width="128" height="30"/>
-        <element name="User_Group" positionX="-18" positionY="27" width="128" height="30"/>
-        <element name="Users" positionX="-366.1328125" positionY="104.6875" width="128" height="163"/>
+        <element name="TravelGroup" positionX="-368.01171875" positionY="-148.4609375" width="128" height="135"/>
+        <element name="User_Group" positionX="-18" positionY="27" width="128" height="75"/>
+        <element name="Person" positionX="-366.1328125" positionY="104.6875" width="128" height="210"/>
+        <element name="TransactionSplit" positionX="-189" positionY="0" width="128" height="165"/>
     </elements>
 </model>
