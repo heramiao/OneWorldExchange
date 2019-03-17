@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class BaseViewController: UIViewController, SlideMenuDelegate {
+class BaseController: UIViewController, SlideMenuDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -91,7 +91,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
     let btnShowMenu = UIButton(type: UIButton.ButtonType.system)
     btnShowMenu.setImage(self.defaultMenuImage(), for: UIControl.State())
     btnShowMenu.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-    btnShowMenu.addTarget(self, action: #selector(BaseViewController.onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
+    btnShowMenu.addTarget(self, action: #selector(BaseController.onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
     let customBarItem = UIBarButtonItem(customView: btnShowMenu)
     self.navigationItem.leftBarButtonItem = customBarItem;
   }

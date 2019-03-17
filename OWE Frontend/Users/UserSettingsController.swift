@@ -13,12 +13,12 @@ import Photos
 // MARK: Protocol Methods
 
 protocol UserSettingsDelegate: class {
-  func UserSettingsCancel(controller: UserSettingsViewController)
+  func UserSettingsCancel(controller: UserSettingsController)
   
-  func UserSettingsSave(controller: UserSettingsViewController, didFinishAddingSettings user: User)
+  func UserSettingsSave(controller: UserSettingsController, didFinishAddingSettings user: User)
 }
 
-class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UserSettingsController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   var profile: User?
   var delegate: UserSettingsDelegate?
@@ -72,7 +72,7 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
     imagePicker.delegate = (self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate)
     
     // configure screen tap
-    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UserSettingsViewController.viewTapped(gestureRecognizer:)) )
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UserSettingsController.viewTapped(gestureRecognizer:)) )
     view.addGestureRecognizer(tapGesture)
   }
   

@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0E82137273B00B88D28374B4 /* Pods_OWE_Frontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BFE04CD19CF0053BC89AD5 /* Pods_OWE_Frontend.framework */; };
 		6305CEA621B8335100F1B4F3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6305CEA521B8335100F1B4F3 /* BaseViewController.swift */; };
-		6305CEAD21B9736F00F1B4F3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6305CEAC21B9736F00F1B4F3 /* LoginViewController.swift */; };
+		6305CEAD21B9736F00F1B4F3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6305CEAC21B9736F00F1B4F3 /* LoginController.swift */; };
+		631FCDB02210E48300AA3917 /* MemberSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FCDAF2210E48300AA3917 /* MemberSearchController.swift */; };
+		631FCDB2221B254A00AA3917 /* PopoverMemberSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FCDB1221B254A00AA3917 /* PopoverMemberSearchController.swift */; };
 		6330383D219DC5880089B620 /* GroupUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330383C219DC5880089B620 /* GroupUsersViewModel.swift */; };
 		63303843219F53970089B620 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63303842219F53970089B620 /* SearchClient.swift */; };
 		6330384521A0F0DF0089B620 /* AddMemberTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330384421A0F0DF0089B620 /* AddMemberTableCell.swift */; };
@@ -23,8 +25,8 @@
 		63630B4D21B5F25B00D2A064 /* SplitsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63630B4B21B5F25B00D2A064 /* SplitsTableCell.swift */; };
 		63630B4E21B5F25B00D2A064 /* SplitsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63630B4C21B5F25B00D2A064 /* SplitsTableCell.xib */; };
 		6370A9DE21BE0E7500DAA5C6 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370A9DD21BE0E7500DAA5C6 /* TransactionViewModel.swift */; };
-		63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */; };
-		63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C81218AA9C900E06207 /* UserViewController.swift */; };
+		63C73C8021892A7C00E06207 /* UserSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C7F21892A7C00E06207 /* UserSettingsController.swift */; };
+		63C73C82218AA9C900E06207 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C81218AA9C900E06207 /* UserController.swift */; };
 		63C73C84218AB37F00E06207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C83218AB37F00E06207 /* User.swift */; };
 		63C73C86218E66F200E06207 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C73C85218E66F200E06207 /* SwiftyJSON.framework */; };
 		63C73C9121928A3A00E06207 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C73C9021928A3A00E06207 /* Transaction.swift */; };
@@ -61,7 +63,9 @@
 /* Begin PBXFileReference section */
 		35BFE04CD19CF0053BC89AD5 /* Pods_OWE_Frontend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OWE_Frontend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6305CEA521B8335100F1B4F3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		6305CEAC21B9736F00F1B4F3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6305CEAC21B9736F00F1B4F3 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		631FCDAF2210E48300AA3917 /* MemberSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberSearchController.swift; sourceTree = "<group>"; };
+		631FCDB1221B254A00AA3917 /* PopoverMemberSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverMemberSearchController.swift; sourceTree = "<group>"; };
 		6330383C219DC5880089B620 /* GroupUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUsersViewModel.swift; sourceTree = "<group>"; };
 		63303842219F53970089B620 /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
 		6330384421A0F0DF0089B620 /* AddMemberTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberTableCell.swift; sourceTree = "<group>"; };
@@ -75,8 +79,8 @@
 		63630B4B21B5F25B00D2A064 /* SplitsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsTableCell.swift; sourceTree = "<group>"; };
 		63630B4C21B5F25B00D2A064 /* SplitsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsTableCell.xib; sourceTree = "<group>"; };
 		6370A9DD21BE0E7500DAA5C6 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
-		63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
-		63C73C81218AA9C900E06207 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		63C73C7F21892A7C00E06207 /* UserSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsController.swift; sourceTree = "<group>"; };
+		63C73C81218AA9C900E06207 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		63C73C83218AB37F00E06207 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		63C73C85218E66F200E06207 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C73C9021928A3A00E06207 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -139,7 +143,7 @@
 		6305CEAB21B9734A00F1B4F3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				6305CEAC21B9736F00F1B4F3 /* LoginViewController.swift */,
+				6305CEAC21B9736F00F1B4F3 /* LoginController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -152,6 +156,8 @@
 				6330384621A1F1FC0089B620 /* AddMemberTableCell.xib */,
 				6330385321A918440089B620 /* MemberTableCell.swift */,
 				6330385121A917E70089B620 /* MemberTableCell.xib */,
+				631FCDAF2210E48300AA3917 /* MemberSearchController.swift */,
+				631FCDB1221B254A00AA3917 /* PopoverMemberSearchController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -315,8 +321,8 @@
 		D6FE2BC02190E7000038F54F /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				63C73C81218AA9C900E06207 /* UserViewController.swift */,
-				63C73C7F21892A7C00E06207 /* UserSettingsViewController.swift */,
+				63C73C81218AA9C900E06207 /* UserController.swift */,
+				63C73C7F21892A7C00E06207 /* UserSettingsController.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -481,19 +487,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6305CEAD21B9736F00F1B4F3 /* LoginViewController.swift in Sources */,
+				6305CEAD21B9736F00F1B4F3 /* LoginController.swift in Sources */,
 				63C73C9321928B5F00E06207 /* Split.swift in Sources */,
 				D6FE2BAB218F60680038F54F /* GroupListingController.swift in Sources */,
 				D6EE7F5421960FD800D15CB2 /* SwiftyJSON.swift in Sources */,
-				63C73C8021892A7C00E06207 /* UserSettingsViewController.swift in Sources */,
+				631FCDB02210E48300AA3917 /* MemberSearchController.swift in Sources */,
+				63C73C8021892A7C00E06207 /* UserSettingsController.swift in Sources */,
 				6330385421A918440089B620 /* MemberTableCell.swift in Sources */,
 				6330384521A0F0DF0089B620 /* AddMemberTableCell.swift in Sources */,
 				63630B4821B4DE6D00D2A064 /* WhoOwesTableCell.swift in Sources */,
 				D6FE2BBD2190A32A0038F54F /* GroupTableViewCell.swift in Sources */,
 				6330383D219DC5880089B620 /* GroupUsersViewModel.swift in Sources */,
 				63C73C9121928A3A00E06207 /* Transaction.swift in Sources */,
+				631FCDB2221B254A00AA3917 /* PopoverMemberSearchController.swift in Sources */,
 				6370A9DE21BE0E7500DAA5C6 /* TransactionViewModel.swift in Sources */,
-				63C73C82218AA9C900E06207 /* UserViewController.swift in Sources */,
+				63C73C82218AA9C900E06207 /* UserController.swift in Sources */,
 				63303843219F53970089B620 /* SearchClient.swift in Sources */,
 				63C73C84218AB37F00E06207 /* User.swift in Sources */,
 				6305CEA621B8335100F1B4F3 /* BaseViewController.swift in Sources */,

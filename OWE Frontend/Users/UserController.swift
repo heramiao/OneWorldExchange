@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class UserViewController: BaseViewController, UserSettingsDelegate {
+class UserController: BaseController, UserSettingsDelegate {
   
   var user: User?
   let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -47,11 +47,11 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
     super.viewWillAppear(animated)
   }
   
-  func UserSettingsCancel(controller: UserSettingsViewController) {
+  func UserSettingsCancel(controller: UserSettingsController) {
     dismiss(animated: true, completion: nil)
   }
   
-  func UserSettingsSave(controller: UserSettingsViewController, didFinishAddingSettings user: User) {
+  func UserSettingsSave(controller: UserSettingsController, didFinishAddingSettings user: User) {
     // send update/patch request
     let params = [
       "id": user.id,
@@ -90,7 +90,7 @@ class UserViewController: BaseViewController, UserSettingsDelegate {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showUserSettings" {
       let navigationController = segue.destination as! UINavigationController
-      let controller = navigationController.topViewController as! UserSettingsViewController
+      let controller = navigationController.topViewController as! UserSettingsController
       controller.profile = self.user
       
       controller.delegate = self as UserSettingsDelegate

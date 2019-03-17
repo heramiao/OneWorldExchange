@@ -17,13 +17,6 @@ protocol AddGroupDelegate: class {
   func AddGroupSave(controller: GroupSettingsController, didFinishAddingGroup group: Group, newMembers: [User])
 }
 
-// MARK: - UISearch extension
-extension GroupSettingsController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    filterContentForSearchText(searchController.searchBar.text!)
-  }
-}
-
 // MARK: GroupSettingsViewController
 class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, AddMemberDelegate {
     
@@ -33,7 +26,6 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   @IBOutlet weak var startDateField: UITextField!
   @IBOutlet weak var endDateField: UITextField!
   @IBOutlet weak var memberTable: UITableView!
-  @IBOutlet weak var userTable: UITableView!
   
   // MARK: - Properties
   var group: Group?
@@ -52,12 +44,8 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
   private var startDate: Date?
   private var endDate: Date?
   
-  let viewModelUser = GroupUsersViewModel()
   let viewModelMember = GroupUsersViewModel()
-  let searchController = UISearchController(searchResultsController: nil)
-  var filteredUsers = [User]()
   var newMembers = [User]()
-  var notInGroup = [User]()
   
   // MARK: - General
   override func viewDidLoad() {
@@ -73,20 +61,9 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     configureDatePickers()
     configureControls()
     
-    let cellNib = UINib(nibName: "AddMemberTableCell", bundle: nil)
-    userTable.register(cellNib, forCellReuseIdentifier: "addmember")
-    
     let cellNib1 = UINib(nibName: "MemberTableCell", bundle: nil)
     memberTable.register(cellNib1, forCellReuseIdentifier: "member")
-    
     memberTable.tableFooterView = UIView()
-    userTable.tableFooterView = UIView()
-    
-    viewModelUser.refresh ({ [unowned self] in
-      DispatchQueue.main.async {
-        self.userTable.reloadData()
-      }
-      }, url: "https://oneworldexchange.herokuapp.com/users")
     
     if segue == "editGroup" {
       if let group = group {
@@ -166,10 +143,6 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
       dismiss(animated: true, completion: nil)
   }
   
-  @IBAction func addNewMembers() {
-    setupSearchBar()
-  }
-  
   @IBAction func cancel() {
     if segue == "editGroup" {
       editDelegate?.EditGroupCancel(controller: self)
@@ -229,15 +202,17 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
     }
   }
   
-  func addMember(class: AddMemberTableCell, didFinishAdding member: User, indexPath: Int) {
-    let newRowIndex = viewModelMember.users.count
-    viewModelMember.users.append(member)
-    newMembers.append(member)
-    viewModelMember.addMemberToGroup(member: member)
-
-    let indexPath = NSIndexPath(row: newRowIndex, section: 0)
-    let indexPaths = [indexPath]
-    memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+  func addMembersToGroup(selectedMembers: [User]) {
+    for member in selectedMembers {
+      let newRowIndex = viewModelMember.users.count
+      viewModelMember.users.append(member)
+      newMembers.append(member)
+      viewModelMember.addMemberToGroup(member: member)
+      
+      let indexPath = NSIndexPath(row: newRowIndex, section: 0)
+      let indexPaths = [indexPath]
+      memberTable.insertRows(at: indexPaths as [IndexPath], with: .automatic)
+    }
     
     // remove member from all users
 //    filteredUsers.remove(at: indexPath)
@@ -245,111 +220,25 @@ class GroupSettingsController: UIViewController, UIImagePickerControllerDelegate
 //    self.userTable.deleteRows(at: [IndexPath(row: indexPath, section: 0)], with: .automatic)
   }
   
-   // get all the users in the system that aren't currenly in the group
-  func newUsers(allUsers: [User], groupUsers: [User]) -> [User] {
-    var newUsers = [User]()
-    for user in allUsers {
-      var count = 0
-      for member in groupUsers {
-        //if user === member
-        if user.firstName == member.firstName {
-          break
-        } else {
-          count += 1
-        }
-      }
-      if count == groupUsers.count {
-        newUsers.append(user)
-        continue
-      } else {
-        continue
-      }
-    }
-    return newUsers
-  
-//    var newUsers = [User]()
-//    for user in allUsers {
-//      if !groupUsers.contains(user) {
-//        newUsers.append(user)
-//        print(user)
-//      }
-//    }
-//    return newUsers
-  }
-
-  // MARK: - Search User Table Views
-  func beginSearch() -> Bool {
-    notInGroup = newUsers(allUsers: viewModelUser.users, groupUsers: viewModelMember.users)
-    return searchController.isActive
-  }
-  
-  func isFiltering() -> Bool {
-    return searchController.isActive && !searchBarIsEmpty()
-  }
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if tableView == self.userTable {
-      if isFiltering() {
-        return filteredUsers.count
-      } else if beginSearch() {
-        return notInGroup.count
-      } else {
-        return 0
-      }
-    } else {
-      return viewModelMember.numberOfRows()
-    }
+    return viewModelMember.numberOfRows()
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let user: User
-    if tableView == self.userTable {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "addmember", for: indexPath) as! AddMemberTableCell
-      cell.delegate = self as AddMemberDelegate
-      cell.indexPath = indexPath.row
-      if isFiltering() {
-        user = filteredUsers[indexPath.row]
-      } else {
-        user = notInGroup[indexPath.row]
-      }
-      cell.member = user
-      cell.nameLabel.text = user.name
-      return cell
-    } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MemberTableCell
-      user = viewModelMember.users[indexPath.row]
-      cell.name.text = user.name
-      return cell
-    }
+    let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MemberTableCell
+    user = viewModelMember.users[indexPath.row]
+    cell.name.text = user.name
+    return cell
   }
   
-  //MARK: - Search Methods
-  func setupSearchBar() {
-    searchController.searchResultsUpdater = self
-    searchController.dimsBackgroundDuringPresentation = false
-    definesPresentationContext = true
-    searchController.searchBar.placeholder = "Add New Members"
-    //navigationItem.searchController = searchController
-    //userTable.tableHeaderView = searchController.searchBar
-    if #available(iOS 11.0, *) {
-      navigationItem.searchController = searchController
-      navigationItem.hidesSearchBarWhenScrolling = false
-    } else {
-      userTable.tableHeaderView = searchController.searchBar
+  // MARK: - Segues
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "searchUser" {
+      let popoverController = segue.destination as! PopoverMemberSearchController
+      popoverController.viewModelMember = self.viewModelMember
+      popoverController.delegate = self as AddMemberDelegate
     }
-    //searchController.searchBar.barTintColor = UIColor(red:0.98, green:0.48, blue:0.24, alpha:1.0)
-  }
-  
-  func searchBarIsEmpty() -> Bool {
-    return searchController.searchBar.text?.isEmpty ?? true
-  }
-  
-  func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-    filteredUsers = notInGroup.filter { user in
-      return user.name.lowercased().contains(searchText.lowercased())
-    }
-    
-    userTable.reloadData()
   }
   
 }

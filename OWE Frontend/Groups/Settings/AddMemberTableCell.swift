@@ -8,8 +8,10 @@
 
 import UIKit
 
-protocol AddMemberDelegate: class {
-  func addMember(class: AddMemberTableCell, didFinishAdding member: User, indexPath: Int)
+
+protocol SelectMemberDelegate: class {
+  func selectMember(cell: AddMemberTableCell, didFinishAdding member: User, indexPath: Int)
+  func removeMember(cell: AddMemberTableCell, didFinishAdding member: User, indexPath: Int)
 }
 
 class AddMemberTableCell: UITableViewCell {
@@ -18,7 +20,7 @@ class AddMemberTableCell: UITableViewCell {
   
   var member: User?
   var indexPath: Int?
-  var delegate: AddMemberDelegate?
+  var delegate: SelectMemberDelegate?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -30,7 +32,13 @@ class AddMemberTableCell: UITableViewCell {
   }
   
   @IBAction func addMemberTapped(_ sender: UIButton) {
-    delegate?.addMember(class: self, didFinishAdding: member!, indexPath: indexPath!)
+    if sender.titleLabel?.text == "Add" {
+      delegate?.selectMember(cell: self, didFinishAdding: member!, indexPath: indexPath!)
+      sender.setTitle("Remove", for: .normal)
+    } else {
+      delegate?.removeMember(cell: self, didFinishAdding: member!, indexPath: indexPath!)
+      sender.setTitle("Add", for: .normal)
+    }
   }
   
 }

@@ -11,7 +11,7 @@ import Photos
 import UIKit
 import Alamofire
 
-class GroupListingController: BaseTableViewController, AddGroupDelegate {
+class GroupListingController: BaseTableController, AddGroupDelegate {
  // , GroupSettingsControllerDelegate
   
   // MARK: - Outlets

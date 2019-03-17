@@ -30,7 +30,7 @@ class GroupHomeController: UIViewController, UITableViewDataSource, UITableViewD
   var group: Group?
   var splits = [Split]()
   let viewModelMembers = GroupUsersViewModel()
-  let userVC = UserViewController()
+  let userVC = UserController()
   let dateFormatter = DateFormatter()
   
   override func viewDidLoad() {

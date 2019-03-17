@@ -16,11 +16,11 @@ protocol SlideMenuDelegate {
 class SideMenuViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
   
   @IBOutlet weak var balance: UILabel!
-    @IBOutlet var tblMenuOptions : UITableView!
-    @IBOutlet var btnCloseMenuOverlay : UIButton!
-    var arrayMenuOptions = [Dictionary<String,String>]()
-    var btnMenu : UIButton!
-    var delegate : SlideMenuDelegate?
+  @IBOutlet var tblMenuOptions : UITableView!
+  @IBOutlet var btnCloseMenuOverlay : UIButton!
+  var arrayMenuOptions = [Dictionary<String,String>]()
+  var btnMenu : UIButton!
+  var delegate : SlideMenuDelegate?
   
   var user: User?
   let userDelegate = UIApplication.shared.delegate as! AppDelegate
